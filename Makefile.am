@@ -45,8 +45,7 @@ dist_systemdsystemconf_DATA = \
 	snmptrapd.service
 
 dist_systemdutil_SCRIPTS = \
-	unexicon-setup \
-	ypwait
+	unexicon-setup
 
 dist_udevconfrules_DATA = \
 	80-net-name-slot.rules \
@@ -156,8 +155,7 @@ AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = \
 	81-zebra.sh \
 	ipinfodb-lookup \
 	ip-pre-up \
-	unexicon-setup \
-	ypwait
+	unexicon-setup
 
 install-data-hook:
 	chmod 0700 $(DESTDIR)$(dhcpcdhooksdir)/*.sh
