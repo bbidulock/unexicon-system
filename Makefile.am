@@ -128,3 +128,6 @@ dist_pppipdown_SCRIPTS = \
 	80-rip.sh \
 	65-ntp.sh
 
+install-data-hook:
+	chmod 0700 $(DESTDIR)$(dhcpcdhooksdir)/*.sh
+	chmod 0700 $(DESTDIR)$(nmdispatcherdir)/*-*
