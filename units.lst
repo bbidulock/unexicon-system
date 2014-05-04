@@ -1,0 +1,6 @@
+autofs.service
+autologin@.service
+avahi-autoipd@.service
+pacman-init.service
+snmpd.service
+snmptrapd.service

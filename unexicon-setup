@@ -1,0 +1,57 @@
+#!/bin/bash
+
+kernel_cmdline ()
+{
+    for param in $(/bin/cat /proc/cmdline); do
+	case "${param}" in
+	    $1=*) echo "${param##*=}"; return 0 ;;
+	    $1) return 0 ;;
+	    *) continue ;;
+	esac
+    done
+
+    return 1
+}
+
+do_locale_gen ()
+{
+    local lang locale
+    locale="$(kernel_cmdline lang)"
+    lang="${locale/[@.]*}"
+    locale="${lang}.utf8"
+    if [ -n "$lang" ]; then
+	if grep "^#$lang\>" /etc/local.gen &>/dev/null ; then
+	    sed -i "s/#\($lang\)/\1/" /etc/locale.gen
+	    /usr/sbin/locale-gen &>/dev/null
+	    localectl set-locale $locale
+	fi
+    fi
+}
+
+do_timezone ()
+{
+    local tzone
+    tzone="$(kernel_cmdline tzone)"
+    if [ -n "$tzone" -a "$tzone" != UTC -a -e /usr/share/zoneinfo/$tzone ]; then
+	timedatectl set-timezone "$tzone"
+    fi
+}
+
+do_hostname ()
+{
+    local hostname
+    hostname="$(kernel_cmdline hostname)"
+    if [ -n "$hostname" -a "$hostname" != unexicon ]; then
+	hostnamectl set-hostname "$hostname"
+    fi
+}
+
+do_firstboot ()
+{
+    rm -f /.firstboot
+}
+
+do_locale_gen
+do_timezone
+do_hostname
+do_firstboot

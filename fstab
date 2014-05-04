@@ -1,0 +1,6 @@
+# 
+# /etc/fstab: static file system information
+#
+# <file system>	<dir>	<type>	<options>	<dump>	<pass>
+#LABEL=unxswap	swap	swap	defaults	0	0
+#LABEL=unxdata	/var/local ext4	defaults	0	2

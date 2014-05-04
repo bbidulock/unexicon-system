@@ -1,0 +1,82 @@
+
+AC_PREREQ([2.69])
+AC_INIT([unexicon-system],[1.0.1],[http://github.com/bbidulock/unexicon-system],[unexicon-system])
+AC_REVISION([1.0.1])
+
+AC_CONFIG_SRCDIR([configure.template])
+AC_CONFIG_HEADERS([autoconf.h])
+AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_AUX_DIR([scripts])
+
+DATE=`date -uI`
+AC_SUBST([DATE])
+
+AM_INIT_AUTOMAKE([gnits 1.14 dist-xz no-dist-gzip std-options -Wall color-tests silent-rules tar-pax])
+AM_MAINTAINER_MODE
+
+# Checks for programs.
+AC_PROG_AWK
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_MKDIR_P
+
+systemdsystemunitdir="`pkg-config systemd --variable=systemdsystemunitdir 2>/dev/null`"
+test -n "$systemdsystemunitdir" || systemdsystemunitdir=/usr/lib/systemd/system
+AC_SUBST([systemdsystemunitdir])
+
+systemdsystemconfdir="`pkg-config systemd --variable=systemdsystemconfdir 2>/dev/null`"
+test -n "$systemdsystemconfdir" || systemdsystemconfdir=/etc/systemd/system
+AC_SUBST([systemdsystemconfdir])
+
+systemdutildir="`pkg-config systemd --variable=systemdutildir 2>/dev/null`"
+test -n "$systemdutildir" || systemdutildir=/usr/lib/systemd
+AC_SUBST([systemdutildir])
+
+udevdir="`pkg-config udev --variable=udevdir 2>/dev/null`"
+test -n "$udevdir" || udevdir=/usr/lib/udev
+udevrulesdir='${udevdir}/rules.d'
+AC_SUBST([udevdir])
+AC_SUBST([udevrulesdir])
+
+udevconfdir="`pkg-config udev --variable=udevconfdir 2>/dev/null`"
+test -n "$udevconfdir" || udevconfdir=/etc/udev
+udevconfrulesdir='${udevconfdir}/rules.d'
+AC_SUBST([udevconfdir])
+AC_SUBST([udevconfrulesdir])
+
+fermdir='${sysconfdir}/ferm'
+AC_SUBST([fermdir])
+
+avahiservicedir=/etc/avahi/services
+AC_SUBST([avahiservicedir])
+
+pppdir='${sysconfdir}/ppp'
+pppippreupdir="$pppdir/ip-pre-up.d"
+pppipupdir="$pppdir/ip-up.d"
+pppipdowndir="$pppdir/ip-down.d"
+AC_SUBST([pppdir])
+AC_SUBST([pppippreupdir])
+AC_SUBST([pppipupdir])
+AC_SUBST([pppipdowndir])
+
+dhcpcdhooksdir='${libdir}/dhcpcd/dhcpcd-hooks'
+AC_SUBST([dhcpcdhooksdir])
+
+nmdispatcherdir='${sysconfdir}/NetworkManager/dispatcher.d'
+AC_SUBST([nmdispatcherdir])
+
+
+test "x$prefix" = xNONE && prefix="$ac_default_prefix"
+sharedir="$datadir"
+eval "sharedir=\"$sharedir\""
+eval "sharedir=\"$sharedir\""
+eval "sharedir=\"$sharedir\""
+
+AC_SUBST([sharedir])
+
+AC_CONFIG_FILES([Makefile])
+
+AC_OUTPUT
+
+# vim: set ft=config:

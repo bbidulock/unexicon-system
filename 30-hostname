@@ -1,0 +1,308 @@
+#!/bin/bash
+#
+# /etc/NetworkManager/dispatcher.d/XX-unit
+# /etc/ppp/ip-up.d/XX-unit.sh
+# /etc/ppp/ip-down.d/XX-unit.sh
+# /etc/ppp/ipv6-up.d/XX-unit.sh
+# /etc/ppp/ipv6-down.d/XX-unit.sh
+# /usr/lib/dhcpcd/dhcpcd-hooks/XX-unit
+#
+# This script is for interfaces being established by NetworkManager
+# and those that are being established by PPTPD or PPPOED.  We need
+# to add these interfaces to the routing daemon but we restrict them
+# to having routing information for the unexicon subnetwork of
+# 10.55.7.0/24 for PPTPD.  NetworkManager establishes the normal
+# interfaces and PPTP or PPPOE client associations, but PPTPD and
+# PPPOED establish the server associations.
+#
+
+unit=hostname
+unit_dir=/run/nm-unexicon/$unit
+[ -d $unit_dir ] || mkdir -p -- $unit_dir
+
+case "$0" in
+(./*|../*|[^./]*)   dispatcher="$(pwd)/$0" ;;
+(*)		    dispatcher="$0" ;;
+esac
+
+prog=$(basename $0)
+[ "$prog" != 'dhcpcd-run-hooks' ] || prog=dhcpcd
+
+syslog ()
+{
+	local level="$1"
+	[ -n "$level" ] && shift
+	if [ -n "$*" ]; then
+		if type logger >/dev/null 2>&1; then
+			logger -i -t $prog -p daemon.${level:-info} "${interface:+$interface: }$*"
+		fi
+	fi
+}
+
+# Check for a valid domain name as per RFC1123 with the exception of
+# allowing - and _ as they seem to be widely used.
+valid_domainname()
+{
+	local name="$1" label
+
+	[ -z "$name" -o ${#name} -gt 255 ] && return 1
+	
+	while [ -n "$name" ]; do
+		label="${name%%.*}"
+		[ -z "$label" -o ${#label} -gt 63 ] && return 1
+		case "$label" in
+		-*|_*|*-|*_)		return 1;;
+		*[![:alnum:]-_]*)	return 1;;
+		esac
+		[ "$name" = "${name#*.}" ] && break
+		name="${name#*.}"
+	done
+	return 0	
+}
+
+# Some systems don't have hostname(1)
+_hostname()
+{
+	local name=
+
+	if [ -z "$1" ]; then
+		if [ -r /proc/sys/kernel/hostname ]; then
+			read name </proc/sys/kernel/hostname && echo "$name"
+		else
+			hostname
+		fi
+		return $?
+	fi
+
+	if [ -x "`which hostnamectl 2>/dev/null`" ]; then
+		hostnamectl --transient set-hostname "$1"
+	else
+		if [ -w /proc/sys/kernel/hostname ]; then
+			echo "$1" >/proc/sys/kernel/hostname
+		else
+			hostname "$1"
+		fi
+	fi
+}
+
+need_hostname()
+{
+	local new_name= new_fqdn= old_name= old_fqdn= hostname=
+	case "$DHCP4_HOST_NAME" in
+	*.*)	new_fqdn="$DHCP4_HOST_NAME"
+		new_name="$(echo "$new_fqdn" | sed -e 's,\..*$,,')"
+		;;
+	*)	new_fqdn=""
+		new_name="$DHCP4_HOST_NAME"
+		;;
+	esac
+	hostname=$(_hostname)
+	case "$hostname" in
+	*.*)	old_fqdn="$hostname"
+		old_name="$(echo "$old_fqdn" | sed -e 's,\..*$,,')"
+		;;
+	*)	old_fqdn=""
+		old_name="$hostname"
+		;;
+	esac
+	case "$hostname" in
+	""|"(none)"|localhost|localhost.localdomain)
+		[ -n "$new_name" -o -n "$new_fqdn" ];;
+	"$old_name"|"$old_fqdn")
+		true;;
+	*)
+		false;;
+	esac
+}
+
+try_hostname()
+{
+	if valid_domainname "$1"; then
+		_hostname "$1"
+	else
+		syslog err "Invalid hostname: $1"
+	fi
+}
+
+set_hostname()
+{
+	local new_name= new_fqdn=
+	case "$1" in
+	*.*)	new_fqdn="$1"
+		new_name="$(echo "$new_fqdn" | sed -e 's,\..*$,,')"
+		;;
+	*)	new_fqdn=""
+		new_name="$1"
+		;;
+	esac
+	if need_hostname; then
+		if [ -n "$new_name" ]; then
+			try_hostname "$new_name"
+		elif [ -n "$new_fqdn" ]; then
+			try_hostname "$new_fqdn"
+		fi
+	fi
+}
+
+unit_remove ()
+{
+	:
+}
+
+unit_add ()
+{
+	set_hostname $2
+}
+
+unit_nm_add ()
+{
+	unit_add "$1" "$DHCP4_HOST_NAME"
+}
+
+unit_nm_rmv ()
+{
+	unit_remove $@
+}
+
+unit_nm_cha ()
+{
+	if [ -n "$DEVICE_IP_IFACE" ]; then
+		unit_nm_add $@
+	else
+		unit_nm_rmv $@
+	fi
+}
+
+# Network manager up command
+unit_nm_up ()
+{
+	syslog debug "Responding to NM up command."
+	unit_nm_add $@
+}
+
+# Network manager down command
+unit_nm_down ()
+{
+	syslog debug "Responding to NM down command."
+	unit_nm_rmv $@
+}
+
+# Network manager vpn-up command
+unit_nm_vpn-up ()
+{
+	syslog debug "Responding to NM vpn-up command."
+	unit_nm_add $@
+}
+
+# Network manager vpn-down command
+unit_nm_vpn-down ()
+{
+	syslog debug "Responding to NM vpn-down command."
+	unit_nm_rmv $@
+}
+
+# Network manager dhcp4-change command
+unit_nm_dhcp4-change ()
+{
+	syslog debug "Responding to NM dhcp4-change command."
+	unit_nm_cha $@
+}
+
+# Network manager dhcp6-change command
+unit_nm_dhcp6-change ()
+{
+	syslog debug "Responding to NM dhcp6-change command."
+	unit_nm_cha $@
+}
+
+# Network manager hostname command
+unit_nm_hostname ()
+{
+	syslog debug "Responding to NM hostname command."
+	:
+}
+
+unit_ppp_add ()
+{
+	:
+}
+
+unit_ppp_rmv ()
+{
+	unit_remove $@
+}
+
+# PPP daemon ip-up command
+unit_ppp_ip-up ()
+{
+	unit_ppp_add $@
+}
+
+# PPP daemon ip-down command
+unit_ppp_ip-down ()
+{
+	unit_ppp_rmv $@
+}
+
+# PPP daemon ipv6-up command
+unit_ppp_ipv6-up ()
+{
+	unit_ppp_add $@
+}
+
+# PPP daemon ipv6-down command
+unit_ppp_ipv6-down ()
+{
+	unit_ppp_rmv $@
+}
+
+unit_dhcp_add ()
+{
+	unit_add "$1" "$new_host_name"
+}
+
+unit_dhcp_rmv ()
+{
+	unit_remove $@
+}
+
+# DHCP client daemon hook command
+unit_dhcpcd_hook ()
+{
+	case "$reason" in
+	(PREINIT|CARRIER|INFORM|BOUND|RENEW|REBIND|REBOOT|IPV4LL|STATIC|3RDPARTY|TIMEOUT)
+		unit_dhcp_add $interface ;;
+	(EXPIRE|RELEASE|NAK|NOCARRIER|FAIL|STOP)
+		unit_dhcp_rmv $interface ;;
+	(DUMP|TEST|ROUTERADVERT)
+		;;
+	esac
+}
+
+# We just put this script in /etc/NetworkManager/dispatcher.d
+# and then symbolic link it from /etc/ppp/ip{v6}-{up|down}.d/
+# directories.  So, we decide what to do based on how we were
+# called.
+
+syslog debug "Dispatcher $dispatcher invoked."
+
+case "$dispatcher" in
+	(*/dispatcher.d/*)
+		syslog debug "Invoked as dispatcher."
+		case "$2" in
+		(up)		unit_nm_up		$@ ;;
+		(down)		unit_nm_down		$@ ;;
+		(vpn-up)	unit_nm_vpn-up		$@ ;;
+		(vpn-down)	unit_nm_vpn-down	$@ ;;
+		(dhcp4-change)	unit_nm_dhcp4-change	$@ ;;
+		(dhcp6-change)	unit_nm_dhcp6-change	$@ ;;
+		(hostname)	unit_nm_hostname	$@ ;;
+		esac
+		;;
+	(*/ip-up.d/*)		unit_ppp_ip-up		$@ ;;
+	(*/ip-down.d/*)		unit_ppp_ip-down	$@ ;;
+	(*/ipv6-up.d/*)		unit_ppp_ipv6-up	$@ ;;
+	(*/ipv6-down.d/*)	unit_ppp_ipv6-down	$@ ;;
+	(*/dhcpcd-run-hooks)	unit_dhcpcd_hook	$@ ;;
+esac
+

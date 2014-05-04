@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# This script is run by pppd when the link goes down, if /etc/ppp/auth-up
+# was previously executed.
+#
+
+# Execute all scripts in /etc/ppp/ip-down.d/
+for ipdown in /etc/ppp/ip-down.d/*.sh; do
+  if [ -x $ipdown ]; then
+    # Parameters: interface-name peer-name user-name tty-device speed
+    $ipdown "$@"
+  fi
+done

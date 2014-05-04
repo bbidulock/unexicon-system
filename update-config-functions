@@ -1,0 +1,113 @@
+#!/bin/bash
+
+syslog ()
+{
+	local level="$1"
+	[ -n "$level" ] && shift
+	if [ -n "$*" ]; then
+		if type logger >/dev/null 2>&1; then
+			logger -is -t $prog -p daemon.${level:-info} "${interface:+$interface: }$*"
+		fi
+	fi
+}
+
+
+unit_scope_names ()
+{
+	local val names=
+	local -ra scopeval=(unknown default l2tp linklocal loopback multicast pppoe private public reserved shared unexicon unxres)
+	for val in $*; do
+		names="${names:+$names }${scopeval[$val]}"
+	done
+	echo -n "$names"
+}
+
+unit_scope_val ()
+{
+	case "$1" in
+	(default)	echo -n 1;;
+	(l2tp)		echo -n 2;;
+	(linklocal)	echo -n 3;;
+	(loopback)	echo -n 4;;
+	(multicast)	echo -n 5;;
+	(pppoe)		echo -n 6;;
+	(private)	echo -n 7;;
+	(public)	echo -n 8;;
+	(reserved)	echo -n 9;;
+	(shared)	echo -n 10;;
+	(unexicon)	echo -n 11;;
+	(unxres)	echo -n 12;;
+	(*)		echo -n 0;;
+	esac
+}
+
+unit_test_ipv4_addr ()
+{
+	case "$1" in
+	0.*)					echo -n default		;; # 0/8
+	10.41.0.*)				echo -n shared		;; # 10.41.0/24 (NM shared)
+	10.55.4.*)				echo -n unxres		;; # 10.55.4/24 (Unexicon reserved)
+	10.55.5.*)				echo -n pppoe		;; # 10.55.5/24 (PPPOE direct)
+	10.55.6.*)				echo -n l2tp		;; # 10.55.6/24 (L2TP direct)
+	10.55.7.*)				echo -n unexicon	;; # 10.55.7/24 (Unexicon VPN)
+	10.*)					echo -n private		;; # 10/8
+	127.*)					echo -n loopback	;; # 127.0/8
+	169.254.*)				echo -n linklocal	;; # 169.254/16
+	172.1[6-9].*|172.2[0-9].*|172.3[0-1].*)	echo -n private		;; # 172.16/12
+	192.168.*)				echo -n private		;; # 192.168/16
+	192.0.2.*)				echo -n reserved	;; # 192.0.2/24
+	192.0.0.[0-7])				echo -n reserved	;; # 192.0.0/29
+	22[4-9].*|23[0-9].*)			echo -n multicast	;; # 224/4 (224-239.)
+	24[0-9].*|25[0-5].*)			echo -n reserved	;; # 240/4 (240-255.)
+	24[0-7].*)				echo -n reserved	;; # 240/5 (240-247.)
+	24[8-9].*|25[0-5].*)			echo -n reserved	;; # 248/5 (248-255.)
+	*)					echo -n public		;;
+	esac
+}
+
+# unit_del() - Pass the interface name.  Delete the files associated
+# with the unit in the unit directory if they exist.  Return true if
+# files were deleted (an update is required).
+#
+unit_del ()
+{
+	local f existing=1
+	for f in $unit_dir/${1}_*; do
+		[ -e $f ] || continue
+		existing=0
+		break
+	done
+	if [ $existing -eq 0 ]; then
+		rm -f -- $unit_dir/${1}_*
+	fi
+	return $existing
+}
+
+# unit_old () - Check if an interface to be added is the first interface
+# for the unit.  Return true if it is not the first.
+#
+unit_old ()
+{
+	local f existing=1
+	for f in $unit_dir/*_*; do
+		[ -e $f ] || continue
+		existing=0
+		break
+	done
+	return $existing
+}
+
+# unit_shutdown () - Delete all interface-specific files in the
+# unit directory if they exist.  Return true if files were deleted (an
+# update is required).
+#
+unit_shutdown ()
+{
+	local existing
+	unit_old; existing=$?
+	if [ $existing -eq 0 ]; then
+		rm -f -- $unit_dir/*_*
+	fi
+	return $existing
+}
+

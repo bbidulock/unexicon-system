@@ -1,0 +1,41 @@
+<?xml version="1.0" standalone='no'?><!--*-nxml-*-->
+<!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+<service-group>
+  <name replace-wildcards="yes">%h</name>
+  <service>
+    <type>_ssh._tcp</type>
+    <port>22</port>
+  </service>
+  <service>
+    <type>_sftp-ssh._tcp</type>
+    <port>22</port>
+  </service>
+  <service>
+    <type>_ntp._udp</type>
+    <port>123</port>
+  </service>
+  <service>
+    <type>_snmp._udp</type>
+    <port>161</port>
+  </service>
+  <service>
+    <type>_syslog-conn._udp</type>
+    <port>601</port>
+  </service>
+  <service>
+    <type>_syslog-conn._tcp</type>
+    <port>601</port>
+  </service>
+  <service>
+    <type>_rsync._tcp</type>
+    <port>873</port>
+  </service>
+  <service>
+    <type>_l2tp._udp</type>
+    <port>1701</port>
+  </service>
+  <service>
+    <type>_pptp._tcp</type>
+    <port>1723</port>
+  </service>
+</service-group>

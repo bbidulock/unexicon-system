@@ -1,0 +1,25 @@
+# /etc/networks
+#
+# $Id: networks,v 1.2 2012/09/18 10:46:34 root Exp root $
+#
+# /etc/networks -- describes known DARPA networks and
+# symbolic names for these networks
+#
+# This file is read by the route, netstat, ipchains and
+# iptables utilities.  Only Class A, B or C networks are
+# supported, partitioned networks (i.e. netwrok/26 or
+# network/28) are not supported by this facility.
+#
+# See networks(5) for more information.
+#
+# <name>	<number>	<aliases>
+default		0.0.0.0
+loopback	127.0.0.0
+link-local	169.254.0.0
+shared		10.41.0		shared.unexicon.com
+unxwac		10.55.4		wac.unexicon.com
+unxtun		10.55.5		tun.unexicon.com
+unxppp		10.55.6		ppp.unexicon.com
+unxvpn		10.55.7		vpn.unexicon.com
+#
+# vim: ft=conf tw=56 comments=\:##,\:# fo+=tcqlorn

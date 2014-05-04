@@ -1,0 +1,141 @@
+@hook pre "echo 1 > /proc/sys/net/ipv4/ip_dynaddr";
+@hook pre "echo 1 > /proc/sys/net/ipv4/conf/all/rp_filter";
+@hook pre "echo 0 > /proc/sys/net/ipv4/conf/all/accept_source_route";
+@hook pre "echo 0 > /proc/sys/net/ipv4/conf/all/accept_redirects";
+@hook pre "echo 0 > /proc/sys/net/ipv4/conf/all/log_martians";
+@hook pre "echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts";
+@hook pre "echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all";
+@hook pre "echo 1 > /proc/sys/net/ipv4/icmp_ignore_bogus_error_responses";
+@hook post "echo 1 >/proc/sys/net/ipv4/ip_forward";
+@hook post "echo 1 >/proc/sys/net/ipv4/conf/all/forwarding";
+@hook post "echo 1 >/proc/sys/net/ipv4/conf/default/forwarding";
+@hook flush "echo 0 >/proc/sys/net/ipv4/ip_forward";
+@def $EXTERNAL	= (eth0 eth1);
+@include vars.ferm;
+@def $pFTPDATA	= 20; # ftp-data
+@def $pFTP	= 21; # ftp
+@def $pSSH	= 22; # ssh
+@def $pDNS	= 53; # bind
+@def $pBOOTPS	= 67; # bootps
+@def $pBOOTPC	= 68; # bootpc
+@def $pTFTP	= 69; # tftp
+@def $pHTTP	= 80; # http
+@def $pHTTPS	= 443; # https
+@def $pAUTH	= 113;
+@def $pNTP	= 123; # ntp
+@def $pBIOS	= 138;
+@def $pWHO	= 513;
+@def $pLOG	= 514;
+@def $pTALK	= 517:518;
+@def $pRIP	= 520; # router
+@def $pRIPNG	= 521; # ripng
+@def $pRSYNC	= 873; # rsync
+@def $pFTPS	= 990; # ftps
+@def $pUSER	= 1024:65535;
+@def $pCVS	= 2401;
+@def $pPPTP	= 1723;
+@def $pTFTPS	= 3713;
+@def $pBABEL	= 6697; # babel
+@def $nICMP	= 1; # icmp
+@def $nIGMP	= 2; # igmp
+@def $nGGP	= 3; # ggp
+@def $nEGP	= 8; # egp
+@def $nIDRP	= 45; # idrp
+@def $nOSPFIGP	= 89; # ospfigp
+@def $nISIS	= 124; # isis
+@def $PROTOS	= ($nIGMP $nGGP $nEGP $nIDRP $nOSPFIGP $nISIS);
+@def $UDPPORTS	= ($pDNS $pBOOTPC $pNTP $pRIP $pRIPNG $pBABEL);
+@def $TCPPORTS	= ($pFTPDATA $pFTP $pTFTP $pHTTP $pHTTPS $pRSYNC $pFTPS $pPPTP);
+@def $mNTP	= 224.0.1.1;
+domain ip {
+    table filter {
+	chain log_nss;
+	chain log_icmp;
+	chain connected;
+	chain external_i;
+	chain external_o;
+	chain INPUT {
+	    protocol tcp dport $pSSH mod conntrack ctstate (NEW ESTABLISHED) ACCEPT;
+	    jump connected;
+	    interface $EXTERNAL jump external_i;
+	    policy ACCEPT;
+	}
+	chain FORWARD {
+            protocol tcp tcp-flags (SYN RST) SYN TCPMSS clamp-mss-to-pmtu;
+	    jump connected;
+	    interface $EXTERNAL jump external_i;
+	    outerface $EXTERNAL jump external_o;
+	    policy ACCEPT;
+	}
+	chain OUTPUT {
+	    jump connected;
+	    outerface $EXTERNAL jump external_o;
+	    policy ACCEPT;
+	}
+	chain log_nss {
+	    LOG log-prefix 'Nmap Stealth Scans: ';
+	    protocol tcp REJECT reject-with tcp-reset;
+	    DROP;
+	}
+	chain log_icmp {
+	    LOG log-prefix 'Suspect ICMP: ' log-level info;
+	    ACCEPT;
+	}
+	chain connected {
+	    mod conntrack {
+		ctstate (RELATED ESTABLISHED) ACCEPT;
+		ctstate INVALID DROP;
+	    }
+	    RETURN;
+	}
+	chain external_i {
+	    protocol tcp {
+		tcp-flags (FIN SYN RST ACK) ACK jump log_nss;
+		tcp-flags (FIN SYN RST PSH ACK URG) (FIN ACK) jump log_nss;
+		tcp-flags (FIN SYN RST PSH ACK URG) NONE jump log_nss;
+		tcp-flags (FIN SYN RST PSH ACK URG) FIN jump log_nss;
+		tcp-flags (FIN SYN RST PSH ACK URG) (FIN PSH URG) jump log_nss;
+		tcp-flags (FIN SYN RST PSH ACK URG) (FIN PSH) jump log_nss;
+	    }
+	    protocol $PROTOS ACCEPT;
+	    mod conntrack ctstate NEW {
+		protocol tcp {
+		    mod multiport destination-ports $TCPPORTS ACCEPT;
+		}
+		protocol udp {
+		    mod multiport destination-ports $UDPPORTS ACCEPT;
+		}
+		protocol icmp {
+		    icmpv6-type (3/1 0/0 8/0 3/3 11/0 11/1) ACCEPT;
+		    jump log_icmp;
+		}
+	    }
+	    DROP;
+	}
+	chain external_o {
+	    # don't polute external interface
+	    mod addrtype dst-type (UNSPEC LOCAL MULTICAST BLACKHOLE PROHIBIT) DROP;
+	    mod addrtype src-type (UNSPEC LOCAL MULTICAST BLACKHOLE PROHIBIT) DROP;
+	    # accept any new outgoing associations
+	    protocol $PROTOS ACCEPT;
+	    mod conntrack ctstate NEW ACCEPT;
+	    DROP;
+	}
+    }
+    table nat {
+	chain (PREROUTING OUTPUT) policy ACCEPT;
+	chain Private_Source;
+	chain Private_Destination;
+	chain POSTROUTING {
+	    protocol (tcp udp) {
+		saddr !10.55.7.0/24 daddr 10.55.7.0/24 MASQUERADE;
+		interface $EXTERNAL {
+		    saddr (192.168.0.0/16 172.16.0.0/21 10.0.0.0/8) MASQUERADE;
+		}
+	    }
+	    policy ACCEPT;
+	}
+    }
+}
+
+# vim: ft=conf sw=4:

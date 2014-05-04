@@ -1,0 +1,11 @@
+[Unit]
+Description=Unexicon Live Setup
+ConditionPathExists=/.firstboot
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/systemd/unexicon-setup
+
+[Install]
+WantedBy=multi-user.target

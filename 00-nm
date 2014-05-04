@@ -1,0 +1,73 @@
+
+nm_rebuild_conf() {
+	local f=/etc/NetworkManager/NetworkManager.conf
+	local t=/tmp/NetworkManager.conf.$$
+	if grep -q '^unmanaged-devices' $f &>/dev/null; then
+		{
+			sed -n '1,/^unmanaged-devices/{/^unmanaged-devices/!p}' $f
+			echo "unmanaged-devices=$1"
+			sed -n '/^unmanaged-devices/,${/^unmanaged-devices/!p}' $f
+		}>$t
+	else
+		cat>$t<<-EOF
+		[main]
+		plugins=
+		no-auto-default=*
+
+		[keyfile]
+		hostname=unexicon
+		unmanaged-devices=$1
+		EOF
+	fi
+	if ! diff $t $f &>/dev/null; then
+		chmod --reference=$f $t || :
+		chown --reference=$f $t || :
+		/bin/cp -pf -- $t $f || :
+	fi
+}
+
+nm_add_unmanaged() {
+	local devices f=/etc/NetworkManager/NetworkManager.conf
+	local -a unmanaged macaddrs remaining
+	unmanaged=( $(cat $f|sed -n '/^unmanaged/{s/unmanaged-devices=//;s/;/ /g;p}') )
+	unmanaged=( $(echo "${unmanaged[*]}"|sed 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/') )
+	macaddrs=( $(ip link ls $1|sed -n -r '/\<ether\>/p'|awk '{print$2}'|sed 's/^/mac:/') )
+	remaining=( ${macaddrs[*]} )
+	for mac in ${unmanaged[*]}; do
+		case " ${macaddrs[*]} " in
+		*" $mac "*) ;;
+		*) remaining=( ${remaining[*]} $mac ) ;;
+		esac
+	done
+	remaining=( $(echo "${remaining[*]}"|sed -r 's, ,\n,g'|sort -u) )
+	devices=$(echo "${remaining[*]}"|sed 's, ,;,g')
+	nm_rebuild_conf "$devices"
+}
+
+nm_del_unmanaged() {
+	local devices f=/etc/NetworkManager/NetworkManager.conf
+	local mac t=/tmp/NetworkManager.conf.$$
+	local -a unmanaged macaddrs remaining
+	unmanaged=( $(cat $f|sed -n '/^unmanaged/{s/unmanaged-devices=//;s/;/ /g;p}') )
+	unmanaged=( $(echo "${unmanaged[*]}"|sed 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/') )
+	macaddrs=( $(ip link ls $1|sed -n -r '/\<ether\>/p'|awk '{print$2}'|sed 's/^/mac:/') )
+	remaining=()
+	for mac in ${unmanaged[*]}; do
+		case " ${macaddrs[*]} " in
+		*" $mac "*) ;;
+		*) remaining=( ${remaining[*]} $mac ) ;;
+		esac
+	done
+	remaining=( $(echo "${remaining[*]}"|sed -r 's, ,\n,g'|sort -u) )
+	devices=$(echo "${remaining[*]}"|sed 's, ,;,g')
+	nm_rebuild_conf "$devices"
+}
+
+case "$reason" in
+(PREINIT|CARRIER|INFORM|BOUND|RENEW|REBIND|REBOOT|IPV4LL|STATIC|3RDPARTY|TIMEOUT)
+	nm_add_unmanaged $interface ;;
+(EXPIRE|RELEASE|NAK|NOCARRIER|FAIL|STOP)
+	nm_del_unmanaged $interface ;;
+(DUMP|TEST|ROUTERADVERT)
+	;;
+esac

@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# This script is run by pppd after the remote system successfully authenticates itself.
+#
+
+# Execute all scripts in /etc/ppp/auth-up.d/
+for authup in /etc/ppp/auth-up.d/*.sh; do
+  if [ -x $authup ]; then
+    # Parameters: interface-name peer-name user-name tty-device speed
+    $authup "$@"
+  fi
+done

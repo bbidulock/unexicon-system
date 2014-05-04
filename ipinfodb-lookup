@@ -1,0 +1,28 @@
+#!/bin/bash
+
+outfile="$1"
+
+# detach from terminal
+exec 0</dev/null
+exec 1>/dev/null
+exec 2>/dev/null
+
+lookup ()
+{
+	local key= ret=
+	read key</etc/ipinfodb.key 2>/dev/null
+	( 
+	  flock 9
+	  if [ -n "$key" ]; then
+		ret=$(wget -O - "http://api.ipinfodb.com/v3/ip-city/?key=$key" 2>/dev/null)
+	  fi
+	  case "$ret" in (OK;*) echo "$ret" >$outfile ;; fi
+
+	) 9>${outfile}.LCK
+}
+
+# background again
+lookup &
+
+exit 0
+

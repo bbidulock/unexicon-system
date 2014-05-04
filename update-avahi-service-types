@@ -1,0 +1,67 @@
+#!/usr/bin/perl
+
+use XML::Simple qw(:strict);
+use Data::Dumper;
+use GDBM_File;
+
+my $xml = XMLin('./service-names-port-numbers.xml', KeyAttr => { person => 'id' }, ForceArray => [ 'record', 'person' ]);
+
+#open(my $tfh,">","./tmp.log");
+#print $tfh Dumper($xml);
+#close($tfh);
+
+#open(my $ifh,">","./service-types.iana");
+#foreach my $rec (@{$xml->{record}}) {
+#	next unless exists $rec->{name};
+#	next unless exists $rec->{protocol};
+##next unless exists $rec->{number};
+#	next unless exists $rec->{description};
+#	print $ifh "_$rec->{name}._$rec->{protocol}:$rec->{description}\n";
+#}
+#close($ifh);
+
+tie my %file, 'GDBM_File', './service-types.db', &GDBM_WRCREAT, 0644;
+foreach my $rec (@{$xml->{record}}) {
+	next unless exists $rec->{name};
+	next unless exists $rec->{protocol};
+#next unless exists $rec->{number};
+	next unless exists $rec->{description};
+	if (ref $rec->{description} eq 'HASH') {
+		delete $rec->{description};
+		delete $file{"_$rec->{name}._$rec->{protocol}"};
+	} else {
+		if ($rec->{description}=~/\n/) {
+			$rec->{description}=~s/\s*\n\s*/ /g;
+		}
+		$file{"_$rec->{name}._$rec->{protocol}"}=$rec->{description};
+	}
+}
+open(my $yfh,">","./service-types");
+foreach my $key (sort keys %file) {
+	print $yfh "$key:$file{$key}\n";
+}
+close($yfh);
+untie %file;
+
+my @services = ();
+foreach my $rec (@{$xml->{record}}) {
+	next unless exists $rec->{name};
+	next unless exists $rec->{protocol};
+	next unless exists $rec->{number};
+#	next unless exists $rec->{description};
+	push @services,$rec;
+}
+
+##tie my %sfile, 'GDBM_File', './services.db', &GDBM_WRCREAT, 0644;
+#open(my $sfh, ">", "./services");
+#foreach my $rec (sort {$a->{number}<=>$b->{number}} @services) {
+#	my $name = $rec->{name};
+#	if (length($name) > 7) { $name="$name\t"; } else { $name="$name\t\t"; }
+#	my $prot = "$rec->{number}/$rec->{protocol}";
+#	if (length($prot) > 7) { $prot="$prot\t"; } else { $prot="$prot\t\t"; }
+#	my $desc = $rec->{description};
+#	print $sfh "$name$prot# $desc\n";
+##	$sfile{$rec->{name}}="$rec->{number}/$rec->{protocol}";
+#}
+#close($sfh);
+##untie %sfile;

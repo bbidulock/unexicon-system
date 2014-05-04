@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# This script is run by pppd just before the ppp network interface is brought
+# up.  At this point the interface exists and has IP addresses assigned but is
+# still down.  This can be used to add firewall rules before any IP traffic can
+# pass through the interface.
+#
+
+# Execute all scripts in /etc/ppp/ip-pre-up.d/
+for ippreup in /etc/ppp/ip-pre-up.d/*.sh; do
+  if [ -x $ippreup ]; then
+    # Parameters: interface-name tty-device speed local-IP-address remote-IP-address ipparam
+    $ippreup "$@"
+  fi
+done

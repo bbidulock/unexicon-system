@@ -1,0 +1,18 @@
+Section "Device"
+	Identifier "Configured Video Device"
+	Driver "radeon"
+	#Option "AccelMethod" "XAA"
+	Option "AccelMethod" "EXA"
+	#Option "AccelMethod" "shadowfb"
+	Option "EXAVSync" "off"
+	Option "ColorTiling" "on"
+	Option "ColorTiling2D" "on"
+	Option "DisplayPriority" "BIOS"
+	Option "EnablePageFlip" "on"
+	Option "FBTexPercent" "0"
+	#Option "DRI" "on"
+	#Option "DRI" "off"
+	#Option "Audio" "on"
+	#Option "HDMI" "all"
+EndSection
+

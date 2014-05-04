@@ -1,0 +1,8 @@
+#!/usr/bin/perl
+
+use GDBM_File;
+tie my %file, 'GDBM_File', './services.db', &GDBM_WRCREAT, 0644;
+foreach my $key (sort keys %file) {
+	print "$key\t$file{$key}\n";
+}
+untie %file;

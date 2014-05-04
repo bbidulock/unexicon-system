@@ -1,0 +1,15 @@
+[Unit]
+Description=Initializes Pacman keyring
+ConditionPathExists=!/etc/pacman.d/gnupg/trustdb.gpg
+Wants=haveged.service
+After=haveged.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/pacman-key --init
+ExecStart=/usr/bin/pacman-key --populate archlinux
+ExecStart=/usr/bin/pacman-key --populate openss7
+
+[Install]
+WantedBy=multi-user.target

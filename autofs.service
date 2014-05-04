@@ -1,0 +1,15 @@
+[Unit]
+Description=Automounter
+Documentation=man:automount(8)
+After=network.target ypbind.service
+Before=systemd-user-sessions.service
+
+[Service]
+Type=forking
+PIDFile=/run/autofs.pid
+EnvironmentFile=-/etc/conf.d/autofs
+ExecStart=/usr/sbin/automount $OPTIONS --pid-file /run/autofs.pid
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

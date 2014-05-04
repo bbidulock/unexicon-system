@@ -1,0 +1,130 @@
+
+ACLOCAL_AMFLAGS = -I m4
+
+SUBDIRS =
+
+ChangeLog:
+	( \
+	  echo -e "# created with git log --stat=76 -M -C|fmt -sct -w80\n" ; \
+	  git log --stat=76 -M -C|fmt -sct -w80 ; \
+	)>$@
+
+AUTHORS.in:
+	( \
+	  echo "\@PACKAGE\@ -- authors file.  \@DATE\@" ; \
+	  echo "" ; \
+	  git log|grep '^Author:'|awk '{if(!authors[$$0]){print$$0;authors[$$0]=1;}}'|tac \
+	)>$@
+
+README: README.in
+	sed -r -e 's:\@PACKAGE\@:$(PACKAGE):g;s:\@VERSION\@:$(VERSION):g;s:\@DATE\@:$(DATE):g' $< >$@
+
+NEWS: NEWS.in
+	sed -r -e 's:\@PACKAGE\@:$(PACKAGE):g;s:\@VERSION\@:$(VERSION):g;s:\@DATE\@:$(DATE):g' $< >$@
+
+AUTHORS: AUTHORS.in
+	sed -r -e 's:\@PACKAGE\@:$(PACKAGE):g;s:\@VERSION\@:$(VERSION):g;s:\@DATE\@:$(DATE):g' $< >$@
+
+THANKS: THANKS.in
+	sed -r -e 's:\@PACKAGE\@:$(PACKAGE):g;s:\@VERSION\@:$(VERSION):g;s:\@DATE\@:$(DATE):g' $< >$@
+
+TODO: TODO.in
+	sed -r -e 's:\@PACKAGE\@:$(PACKAGE):g;s:\@VERSION\@:$(VERSION):g;s:\@DATE\@:$(DATE):g' $< >$@
+
+dist_systemdsystemconf_DATA = \
+	autofs.service \
+	autologin@.service \
+	avahi-autoipd@.service \
+	pacman-init.service \
+	snmpd.service \
+	snmptrapd.service
+
+dist_systemdutil_SCRIPTS = \
+	unexicon-setup \
+	ypwait
+
+dist_udevconfrules_DATA = \
+	80-net-name-slot.rules \
+	80-net-setup-link.rules \
+	99-xtra-systemd.rules
+
+dist_ferm_DATA = \
+	vars.sh \
+	vars.ferm \
+	unexicon.ferm
+
+dist_avahiservice_DATA = \
+	unexicon.service
+
+dist_sysconf_DATA = \
+	ipinfodb.key
+
+dist_bin_SCRIPTS = \
+	ipinfodb-lookup
+
+dist_systemdsystemunit_DATA = \
+	unexicon-setup.service
+
+00-nm.sh: 00-nm
+	rm -f $@; $(LN_S) $< $@
+
+10-ferm.sh: 10-ferm
+	rm -f $@; $(LN_S) $< $@
+
+81-zebra.sh 19-zebra.sh: 19-zebra
+	rm -f $@; $(LN_S) $< $@
+
+80-babel.sh 20-babel.sh: 20-babel
+	rm -f $@; $(LN_S) $< $@
+
+80-ospf.sh 20-ospf.sh: 20-ospf
+	rm -f $@; $(LN_S) $< $@
+
+80-rip.sh 20-rip.sh: 20-rip
+	rm -f $@; $(LN_S) $< $@
+
+65-ntp.sh 35-ntp.sh: 35-ntp
+	rm -f $@; $(LN_S) $< $@
+
+37-nis.sh: 37-nis
+	rm -f $@; $(LN_S) $< $@
+
+dist_dhcpcdhooks_SCRIPTS = \
+	00-nm.sh \
+	10-ferm.sh \
+	19-zebra.sh \
+	20-babel.sh \
+	20-ospf.sh \
+	20-rip.sh \
+	35-ntp.sh \
+	37-nis.sh
+
+dist_nmdispatcher_SCRIPTS = \
+	10-ferm \
+	19-zebra \
+	20-babel \
+	20-ospf \
+	20-rip \
+	35-ntp \
+	37-nis
+
+dist_ppp_SCRIPTS = \
+	ip-pre-up
+
+dist_pppippreup_SCRIPTS = \
+	10-ferm.sh
+
+dist_pppipup_SCRIPTS = \
+	19-zebra.sh \
+	20-babel.sh \
+	20-ospf.sh \
+	20-rip.sh \
+	35-ntp.sh
+
+dist_pppipdown_SCRIPTS = \
+	81-zebra.sh \
+	80-babel.sh \
+	80-ospf.sh \
+	80-rip.sh \
+	65-ntp.sh
+
