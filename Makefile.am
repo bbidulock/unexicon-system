@@ -31,6 +31,11 @@ THANKS: THANKS.in
 TODO: TODO.in
 	sed -r -e 's:\@PACKAGE\@:$(PACKAGE):g;s:\@VERSION\@:$(VERSION):g;s:\@DATE\@:$(DATE):g' $< >$@
 
+EXTRA_DIST = autogen.sh configure.template 00-nm \
+	README.in NEWS.in THANKS.in TODO.in
+
+DISTCLEANFILES = AUTHORS AUTHORS.in
+
 dist_systemdsystemconf_DATA = \
 	autofs.service \
 	autologin@.service \
@@ -127,6 +132,32 @@ dist_pppipdown_SCRIPTS = \
 	80-ospf.sh \
 	80-rip.sh \
 	65-ntp.sh
+
+AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = \
+	00-nm.sh \
+	10-ferm \
+	10-ferm.sh \
+	19-zebra \
+	19-zebra.sh \
+	20-babel \
+	20-babel.sh \
+	20-ospf \
+	20-ospf.sh \
+	20-rip \
+	20-rip.sh \
+	35-ntp \
+	35-ntp.sh \
+	37-nis \
+	37-nis.sh \
+	65-ntp.sh \
+	80-babel.sh \
+	80-ospf.sh \
+	80-rip.sh \
+	81-zebra.sh \
+	ipinfodb-lookup \
+	ip-pre-up \
+	unexicon-setup \
+	ypwait
 
 install-data-hook:
 	chmod 0700 $(DESTDIR)$(dhcpcdhooksdir)/*.sh

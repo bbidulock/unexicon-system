@@ -21,26 +21,31 @@ AC_PROG_LN_S
 AC_PROG_MAKE_SET
 AC_PROG_MKDIR_P
 
-systemdsystemunitdir="`pkg-config systemd --variable=systemdsystemunitdir 2>/dev/null`"
-test -n "$systemdsystemunitdir" || systemdsystemunitdir=/usr/lib/systemd/system
+#systemdsystemunitdir="`pkg-config systemd --variable=systemdsystemunitdir 2>/dev/null`"
+#test -n "$systemdsystemunitdir" && systemdsystemunitdir="${DESTDIR}$systemdsystemunitdir"
+test -n "$systemdsystemunitdir" || systemdsystemunitdir='${libdir}/systemd/system'
 AC_SUBST([systemdsystemunitdir])
 
-systemdsystemconfdir="`pkg-config systemd --variable=systemdsystemconfdir 2>/dev/null`"
-test -n "$systemdsystemconfdir" || systemdsystemconfdir=/etc/systemd/system
+#systemdsystemconfdir="`pkg-config systemd --variable=systemdsystemconfdir 2>/dev/null`"
+#test -n "$systemdsystemconfdir" && systemdsystemconfdir="${DESTDIR}$systemdsystemconfdir"
+test -n "$systemdsystemconfdir" || systemdsystemconfdir='${sysconfdir}/systemd/system'
 AC_SUBST([systemdsystemconfdir])
 
-systemdutildir="`pkg-config systemd --variable=systemdutildir 2>/dev/null`"
-test -n "$systemdutildir" || systemdutildir=/usr/lib/systemd
+#systemdutildir="`pkg-config systemd --variable=systemdutildir 2>/dev/null`"
+#test -n "$systemdutildir" && systemdutildir="${DESTDIR}$systemdutildir"
+test -n "$systemdutildir" || systemdutildir='${libdir}/systemd'
 AC_SUBST([systemdutildir])
 
-udevdir="`pkg-config udev --variable=udevdir 2>/dev/null`"
-test -n "$udevdir" || udevdir=/usr/lib/udev
+#udevdir="`pkg-config udev --variable=udevdir 2>/dev/null`"
+#test -n "$udevdir" && udevdir="${DESTDIR}$udevdir"
+test -n "$udevdir" || udevdir='${libdir}/udev'
 udevrulesdir='${udevdir}/rules.d'
 AC_SUBST([udevdir])
 AC_SUBST([udevrulesdir])
 
-udevconfdir="`pkg-config udev --variable=udevconfdir 2>/dev/null`"
-test -n "$udevconfdir" || udevconfdir=/etc/udev
+#udevconfdir="`pkg-config udev --variable=udevconfdir 2>/dev/null`"
+#test -n "$udevconfdir" && udevconfdir="${DESTDIR}$udevconfdir"
+test -n "$udevconfdir" || udevconfdir='${sysconfdir}/udev'
 udevconfrulesdir='${udevconfdir}/rules.d'
 AC_SUBST([udevconfdir])
 AC_SUBST([udevconfrulesdir])
@@ -48,7 +53,7 @@ AC_SUBST([udevconfrulesdir])
 fermdir='${sysconfdir}/ferm'
 AC_SUBST([fermdir])
 
-avahiservicedir=/etc/avahi/services
+avahiservicedir='${sysconfdir}/avahi/services'
 AC_SUBST([avahiservicedir])
 
 pppdir='${sysconfdir}/ppp'

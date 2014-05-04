@@ -35,3 +35,4 @@ stamp-h1
 .*.sw[nop]
 THANKS
 TODO
+*.tar.xz
