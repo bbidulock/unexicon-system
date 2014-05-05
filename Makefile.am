@@ -160,6 +160,7 @@ AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = \
 	ip-pre-up \
 	unexicon-setup
 
-#install-data-hook:
-#	chmod 0444 $(DESTDIR)$(dhcpcdhooksdir)/*-*
+install-data-hook:
+	chmod 0444 $(DESTDIR)$(dhcpcdhooksdir)/*-*
+
 #	chmod 0700 $(DESTDIR)$(nmdispatcherdir)/*-*
