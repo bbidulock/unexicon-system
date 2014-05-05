@@ -267,6 +267,7 @@ unit_ppp_ipv6_down ()
 unit_dhcp_add ()
 {
 	local route routes=
+	syslog debug "Responding to DHCP add command (reason: $reason)"
 	routes=$(echo "$new_classless_static_routes"|awk '
 		BEGIN{routes="";RS=","}
 		{if(NF>=2){if(routes){routes=routes" "$1"/"$2}else{routes=$1"/"$2}}}
@@ -276,6 +277,7 @@ unit_dhcp_add ()
 
 unit_dhcp_rmv ()
 {
+	syslog debug "Responding to DHCP rmv command (reason: $reason)"
 	unit_remove $@
 }
 

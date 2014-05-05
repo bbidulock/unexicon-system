@@ -16,8 +16,6 @@
 # PPPOED establish the server associations.
 #
 
-set -x
-
 unit=ferm
 unit_dir=/run/nm-unexicon/$unit
 [ -d $unit_dir ] || mkdir -p -- $unit_dir
@@ -159,11 +157,13 @@ unit_ppp_ipv6_down ()
 
 unit_dhcp_add ()
 {
+	syslog debug "Responding to DHCP add command (reason: $reason)"
 	unit_add $@
 }
 
 unit_dhcp_rmv ()
 {
+	syslog debug "Responding to DHCP rmv command (reason: $reason)"
 	unit_remove $@
 }
 

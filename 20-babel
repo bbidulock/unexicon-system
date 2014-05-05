@@ -257,11 +257,13 @@ unit_ppp_ipv6_down ()
 
 unit_dhcp_add ()
 {
+	syslog debug "Responding to DHCP add command (reason: $reason)"
 	unit_add "$1" "$1" "$ifwireless"
 }
 
 unit_dhcp_rmv ()
 {
+	syslog debug "Responding to DHCP rmv command (reason: $reason)"
 	unit_remove "$1"
 }
 

@@ -366,11 +366,13 @@ unit_ppp_ipv6_down ()
 
 unit_dhcp_add ()
 {
+	syslog debug "Responding to DHCP add command (reason: $reason)"
 	unit_add "$1" "$1" "$new_ip_address" "$ifwireless" "$network_number" "$subnet_cidr" "$(echo $new_routers|sed 's/,/ /g')"
 }
 
 unit_dhcp_rmv ()
 {
+	syslog debug "Responding to DHCP rmv command (reason: $reason)"
 	unit_remove $@
 }
 

@@ -280,11 +280,13 @@ unit_ppp_ipv6_down ()
 
 unit_dhcp_add ()
 {
+	syslog debug "Responding to DHCP add command (reason: $reason)"
 	unit_add "$1" "$new_nisplus_domain" "$new_nisplus_servers" "$new_nis_domain" "$new_nis_servers"
 }
 
 unit_dhcp_rmv ()
 {
+	syslog debug "Responding to DHCP rmv command (reason: $reason)"
 	unit_remove $@
 }
 

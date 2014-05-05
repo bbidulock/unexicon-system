@@ -93,15 +93,15 @@ dist_systemdsystemunit_DATA = \
 37-nis.sh: 37-nis
 	rm -f $@; $(LN_S) $< $@
 
-dist_dhcpcdhooks_SCRIPTS = \
-	00-nm.sh \
-	10-ferm.sh \
-	19-zebra.sh \
-	20-babel.sh \
-	20-ospf.sh \
-	20-rip.sh \
-	35-ntp.sh \
-	37-nis.sh
+dist_dhcpcdhooks_DATA = \
+	00-nm \
+	10-ferm \
+	19-zebra \
+	20-babel \
+	20-ospf \
+	20-rip \
+	35-ntp \
+	37-nis
 
 dist_nmdispatcher_SCRIPTS = \
 	10-ferm \
@@ -132,6 +132,9 @@ dist_pppipdown_SCRIPTS = \
 	80-rip.sh \
 	65-ntp.sh
 
+dist_modprobe_DATA = \
+	blacklist-mei_me.conf
+
 AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = \
 	00-nm.sh \
 	10-ferm \
@@ -157,6 +160,6 @@ AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = \
 	ip-pre-up \
 	unexicon-setup
 
-install-data-hook:
-	chmod 0700 $(DESTDIR)$(dhcpcdhooksdir)/*.sh
-	chmod 0700 $(DESTDIR)$(nmdispatcherdir)/*-*
+#install-data-hook:
+#	chmod 0444 $(DESTDIR)$(dhcpcdhooksdir)/*-*
+#	chmod 0700 $(DESTDIR)$(nmdispatcherdir)/*-*

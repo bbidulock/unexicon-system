@@ -71,6 +71,9 @@ AC_SUBST([dhcpcdhooksdir])
 nmdispatcherdir='${sysconfdir}/NetworkManager/dispatcher.d'
 AC_SUBST([nmdispatcherdir])
 
+modprobedir='${sysconfdir}/modprobe.d'
+AC_SUBST([modprobedir])
+
 
 test "x$prefix" = xNONE && prefix="$ac_default_prefix"
 sharedir="$datadir"
