@@ -108,15 +108,15 @@ unit_rebuild_config ()
 		if [ -e $conf ]; then
 			if ! diff $temp $conf &>/dev/null; then
 				cp -pf -- $temp $conf
-				systemctl reload-or-try-restart $unit
+				systemctl reload-or-try-restart $unit || :
 			fi
 		else
 			cp -pf -- $temp $conf
-			systemctl reload-or-restart $unit
+			systemctl reload-or-restart $unit || :
 		fi
 		rm -f -- $temp
 	else
-		systemctl stop $unit
+		systemctl stop $unit || :
 		if [ -s $save ]; then
 			cp -pf -- $save $conf
 		else

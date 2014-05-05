@@ -96,16 +96,16 @@ unit_rebuild_config ()
 			if ! diff $temp $conf &>/dev/null; then
 				cp -pf -- $temp $conf
 				unit_set_domainname
-				systemctl reload-or-try-restart domainname $unit nscd autofs
+				systemctl reload-or-try-restart domainname $unit nscd autofs || :
 			fi
 		else
 			cp -pf -- $temp $conf
 			unit_set_domainname
-			systemctl reload-or-restart domainname $unit nscd autofs
+			systemctl reload-or-restart domainname $unit nscd autofs || :
 		fi
 		rm -f -- $temp
 	else
-		systemctl stop autofs nscd $unit domainname
+		systemctl stop autofs nscd $unit domainname || :
 		unit_set_domainname
 		if [ -s $save ]; then
 			cp -pf -- $save $conf
