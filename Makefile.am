@@ -75,22 +75,34 @@ dist_systemdsystemunit_DATA = \
 10-ferm.sh: 10-ferm
 	rm -f $@; $(LN_S) $< $@
 
-81-zebra.sh 19-zebra.sh: 19-zebra
+19-zebra.sh 81-zebra.sh: 19-zebra
 	rm -f $@; $(LN_S) $< $@
 
-80-babel.sh 20-babel.sh: 20-babel
+20-babel.sh 80-babel.sh: 20-babel
 	rm -f $@; $(LN_S) $< $@
 
-80-ospf.sh 20-ospf.sh: 20-ospf
+20-ospf.sh 80-ospf.sh: 20-ospf
 	rm -f $@; $(LN_S) $< $@
 
-80-rip.sh 20-rip.sh: 20-rip
+20-ospf6.sh 80-ospf6.sh: 20-ospf6
 	rm -f $@; $(LN_S) $< $@
 
-65-ntp.sh 35-ntp.sh: 35-ntp
+20-rip.sh 80-rip.sh: 20-rip
+	rm -f $@; $(LN_S) $< $@
+
+20-ripng.sh 80-ripng.sh: 20-ripng
+	rm -f $@; $(LN_S) $< $@
+
+35-ntp.sh 65-ntp.sh: 35-ntp
 	rm -f $@; $(LN_S) $< $@
 
 37-nis.sh: 37-nis
+	rm -f $@; $(LN_S) $< $@
+
+39-lldp.sh 61-lldp.sh: 39-lldp
+	rm -f $@; $(LN_S) $< $@
+
+50-geoip.sh: 50-geoip
 	rm -f $@; $(LN_S) $< $@
 
 dist_dhcpcdhooks_DATA = \
@@ -99,18 +111,26 @@ dist_dhcpcdhooks_DATA = \
 	19-zebra \
 	20-babel \
 	20-ospf \
+	20-ospf6 \
 	20-rip \
+	20-ripng \
 	35-ntp \
-	37-nis
+	37-nis \
+	39-lldp \
+	50-geoip
 
 dist_nmdispatcher_SCRIPTS = \
 	10-ferm \
 	19-zebra \
 	20-babel \
 	20-ospf \
+	20-ospf6 \
 	20-rip \
+	20-ripng \
 	35-ntp \
-	37-nis
+	37-nis \
+	39-lldp \
+	50-geoip
 
 dist_ppp_SCRIPTS = \
 	ip-pre-up
@@ -122,14 +142,20 @@ dist_pppipup_SCRIPTS = \
 	19-zebra.sh \
 	20-babel.sh \
 	20-ospf.sh \
+	20-ospf6.sh \
 	20-rip.sh \
-	35-ntp.sh
+	20-ripng.sh \
+	35-ntp.sh \
+	39-lldp.sh \
+	50-geoip.sh
 
 dist_pppipdown_SCRIPTS = \
 	81-zebra.sh \
 	80-babel.sh \
 	80-ospf.sh \
+	80-ospf6.sh \
 	80-rip.sh \
+	80-ripng.sh \
 	65-ntp.sh
 
 dist_modprobe_DATA = \
@@ -145,16 +171,26 @@ AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = \
 	20-babel.sh \
 	20-ospf \
 	20-ospf.sh \
+	20-ospf6 \
+	20-ospf6.sh \
 	20-rip \
 	20-rip.sh \
+	20-ripng \
+	20-ripng.sh \
 	35-ntp \
 	35-ntp.sh \
 	37-nis \
 	37-nis.sh \
+	39-lldp \
+	39-lldp.sh \
+	50-geoip \
+	50-geoip.sh \
 	65-ntp.sh \
 	80-babel.sh \
 	80-ospf.sh \
+	80-ospf6.sh \
 	80-rip.sh \
+	80-ripng.sh \
 	81-zebra.sh \
 	ipinfodb-lookup \
 	ip-pre-up \

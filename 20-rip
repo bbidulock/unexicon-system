@@ -379,11 +379,20 @@ unit_dhcp_rmv ()
 # DHCP client daemon hook command
 unit_dhcpcd_hook ()
 {
+	syslog debug "Executing dhcpcd hook $unit (reason: $reason)"
 	case "$reason" in
-	(PREINIT|CARRIER|INFORM|BOUND|RENEW|REBIND|REBOOT|IPV4LL|STATIC|3RDPARTY|TIMEOUT)
-		unit_dhcp_add $interface ;;
-	(EXPIRE|RELEASE|NAK|NOCARRIER|FAIL|STOP)
-		unit_dhcp_rmv $interface ;;
+	(PREINIT|FAIL|RECONFIGURE)
+		;;
+	(INFORM|INFORM6|BOUND|BOUND6|IPV4LL|STATIC|3RDPARTY|TIMEOUT)
+		unit_dhcp_add $interface
+		;;
+	(RENEW|RENEW6|REBIND|REBIND6|REBOOT|REBOOT6|CARRIER|NOCARRIER|DEPARTED)
+		;;
+	(EXPIRE|RELEASE|NAK)
+		unit_dhcp_rmv $interface
+		;;
+	(STOP)
+		;;
 	(DUMP|TEST|ROUTERADVERT)
 		;;
 	esac

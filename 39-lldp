@@ -28,6 +28,7 @@ esac
 prog=$(basename $0)
 [ "$prog" != 'dhcpcd-run-hooks' ] || prog=dhcpcd
 
+if [ "$prog" != dhcpcd ]; then
 syslog ()
 {
 	local level="$1"
@@ -38,6 +39,9 @@ syslog ()
 		fi
 	fi
 }
+else
+	syslog debug "Running dhcpcd-hook for unit $unit..."
+fi
 
 unit_rebuild_config ()
 {
@@ -72,15 +76,15 @@ unit_rebuild_config ()
 		if [ -e $conf ]; then
 			if ! diff $temp $conf &>/dev/null; then
 				cp -pf -- $temp $conf
-				systemctl reload-or-try-restart $unit
+				systemctl reload-or-try-restart $unit || :
 			fi
 		else
 			cp -pf -- $temp $conf
-			systemctl reload-or-restart $unit
+			systemctl reload-or-restart $unit || :
 		fi
 		rm -f -- $temp
 	else
-		systemctl stop $unit
+		systemctl stop $unit || :
 		if [ -s $save ]; then
 			cp -pf -- $save $conf
 		else
@@ -176,28 +180,28 @@ unit_nm_down ()
 }
 
 # Network manager vpn-up command
-unit_nm_vpn-up ()
+unit_nm_vpn_up ()
 {
 	syslog debug "Responding to NM vpn-up command."
 	unit_nm_add $@
 }
 
 # Network manager vpn-down command
-unit_nm_vpn-down ()
+unit_nm_vpn_down ()
 {
 	syslog debug "Responding to NM vpn-down command."
 	unit_nm_rmv $@
 }
 
 # Network manager dhcp4-change command
-unit_nm_dhcp4-change ()
+unit_nm_dhcp4_change ()
 {
 	syslog debug "Responding to NM dhcp4-change command."
 	unit_nm_cha $@
 }
 
 # Network manager dhcp6-change command
-unit_nm_dhcp6-change ()
+unit_nm_dhcp6_change ()
 {
 	syslog debug "Responding to NM dhcp6-change command."
 	unit_nm_cha $@
@@ -221,47 +225,58 @@ unit_ppp_rmv ()
 }
 
 # PPP daemon ip-up command
-unit_ppp_ip-up ()
+unit_ppp_ip_up ()
 {
 	unit_ppp_add $@
 }
 
 # PPP daemon ip-down command
-unit_ppp_ip-down ()
+unit_ppp_ip_down ()
 {
 	unit_ppp_rmv $@
 }
 
 # PPP daemon ipv6-up command
-unit_ppp_ipv6-up ()
+unit_ppp_ipv6_up ()
 {
 	unit_ppp_add $@
 }
 
 # PPP daemon ipv6-down command
-unit_ppp_ipv6-down ()
+unit_ppp_ipv6_down ()
 {
 	unit_ppp_rmv $@
 }
 
 unit_dhcp_add ()
 {
+	syslog debug "Responding to DHCP add command (reason: $reason)"
 	unit_add $@
 }
 
 unit_dhcp_rmv ()
 {
+	syslog debug "Responding to DHCP rmv command (reason: $reason)"
 	unit_remove $@
 }
 
 # DHCP client daemon hook command
 unit_dhcpcd_hook ()
 {
+	syslog debug "Executing dhcpcd hook $unit (reason: $reason)"
 	case "$reason" in
-	(PREINIT|CARRIER|INFORM|BOUND|RENEW|REBIND|REBOOT|IPV4LL|STATIC|3RDPARTY|TIMEOUT)
-		unit_dhcp_add $interface ;;
-	(EXPIRE|RELEASE|NAK|NOCARRIER|FAIL|STOP)
-		unit_dhcp_rmv $interface ;;
+	(PREINIT|FAIL|RECONFIGURE)
+		;;
+	(INFORM|INFORM6|BOUND|BOUND6|IPV4LL|STATIC|3RDPARTY|TIMEOUT)
+		unit_dhcp_add $interface
+		;;
+	(RENEW|RENEW6|REBIND|REBIND6|REBOOT|REBOOT6|CARRIER|NOCARRIER|DEPARTED)
+		;;
+	(EXPIRE|RELEASE|NAK)
+		unit_dhcp_rmv $interface
+		;;
+	(STOP)
+		;;
 	(DUMP|TEST|ROUTERADVERT)
 		;;
 	esac
@@ -272,7 +287,7 @@ unit_dhcpcd_hook ()
 # directories.  So, we decide what to do based on how we were
 # called.
 
-syslog debug "Dispatcher $dispatcher invoked."
+syslog debug "Dispatcher for $unit invoked..."
 
 case "$dispatcher" in
 	(*/dispatcher.d/*)
@@ -280,17 +295,19 @@ case "$dispatcher" in
 		case "$2" in
 		(up)		unit_nm_up		$@ ;;
 		(down)		unit_nm_down		$@ ;;
-		(vpn-up)	unit_nm_vpn-up		$@ ;;
-		(vpn-down)	unit_nm_vpn-down	$@ ;;
-		(dhcp4-change)	unit_nm_dhcp4-change	$@ ;;
-		(dhcp6-change)	unit_nm_dhcp6-change	$@ ;;
+		(vpn-up)	unit_nm_vpn_up		$@ ;;
+		(vpn-down)	unit_nm_vpn_down	$@ ;;
+		(dhcp4-change)	unit_nm_dhcp4_change	$@ ;;
+		(dhcp6-change)	unit_nm_dhcp6_change	$@ ;;
 		(hostname)	unit_nm_hostname	$@ ;;
 		esac
 		;;
-	(*/ip-up.d/*)		unit_ppp_ip-up		$@ ;;
-	(*/ip-down.d/*)		unit_ppp_ip-down	$@ ;;
-	(*/ipv6-up.d/*)		unit_ppp_ipv6-up	$@ ;;
-	(*/ipv6-down.d/*)	unit_ppp_ipv6-down	$@ ;;
+	(*/ip-up.d/*)		unit_ppp_ip_up		$@ ;;
+	(*/ip-down.d/*)		unit_ppp_ip_down	$@ ;;
+	(*/ipv6-up.d/*)		unit_ppp_ipv6_up	$@ ;;
+	(*/ipv6-down.d/*)	unit_ppp_ipv6_down	$@ ;;
 	(*/dhcpcd-run-hooks)	unit_dhcpcd_hook	$@ ;;
 esac
+
+syslog debug "...done dispatcher for $unit."
 
