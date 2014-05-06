@@ -2,13 +2,19 @@
 10-ferm.sh
 19-zebra.sh
 20-babel.sh
+20-ospf6.sh
 20-ospf.sh
+20-ripng.sh
 20-rip.sh
 35-ntp.sh
 37-nis.sh
+39-lldp.sh
+50-geoip.sh
 65-ntp.sh
 80-babel.sh
+80-ospf6.sh
 80-ospf.sh
+80-ripng.sh
 80-rip.sh
 81-zebra.sh
 aclocal.m4
@@ -33,6 +39,6 @@ README
 scripts/
 stamp-h1
 .*.sw[nop]
+*.tar.xz
 THANKS
 TODO
-*.tar.xz

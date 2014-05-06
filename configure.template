@@ -74,6 +74,9 @@ AC_SUBST([nmdispatcherdir])
 modprobedir='${sysconfdir}/modprobe.d'
 AC_SUBST([modprobedir])
 
+ifplugdconfdir='${sysconfdir}/ifplugd'
+AC_SUBST([ifplugdconfdir])
+
 
 test "x$prefix" = xNONE && prefix="$ac_default_prefix"
 sharedir="$datadir"

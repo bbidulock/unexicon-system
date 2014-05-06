@@ -49,8 +49,11 @@ dist_systemdutil_SCRIPTS = \
 
 dist_udevconfrules_DATA = \
 	80-net-name-slot.rules \
-	80-net-setup-link.rules \
-	99-xtra-systemd.rules
+	80-net-setup-link.rules
+
+dist_udevrules_DATA = \
+	99-xtra-systemd.rules \
+	99-unexicon-ifplugd.rules
 
 dist_ferm_DATA = \
 	vars.sh \
@@ -68,6 +71,9 @@ dist_bin_SCRIPTS = \
 
 dist_systemdsystemunit_DATA = \
 	unexicon-setup.service
+
+dist_ifplugdconf_SCRIPTS = \
+	unexicon.action
 
 00-nm.sh: 00-nm
 	rm -f $@; $(LN_S) $< $@
@@ -194,7 +200,8 @@ AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = \
 	81-zebra.sh \
 	ipinfodb-lookup \
 	ip-pre-up \
-	unexicon-setup
+	unexicon-setup \
+	unexicon.action
 
 install-data-hook:
 	chmod 0444 $(DESTDIR)$(dhcpcdhooksdir)/*-*
