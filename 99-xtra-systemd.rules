@@ -1,4 +1,5 @@
 ACTION=="remove", GOTO="xtra_systemd_end"
 #SUBSYSTEM=="net", KERNEL=="eth*|usb*|en*", TAG+="systemd", ENV{SYSTEMD_ALIAS}+="/sys/subsystem/net/devices/$name", ENV{SYSTEMD_WANTS}+="avahi-autoipd@%k.service"
-SUBSYSTEM=="tty", KERNEL=="ttyS0|ttyUSB0", TAG+="systemd", ENV{SYSTEMD_WANTS}+="serial-getty@%k.service"
+#SUBSYSTEM=="tty", KERNEL=="ttyS0|ttyUSB0", TAG+="systemd", ENV{SYSTEMD_WANTS}+="serial-getty@%k.service"
+SUBSYSTEM=="net", KERNEL=="eth*|usb*|en*", TAG+="systemd", ENV{SYSTEMD_ALIAS}+="/sys/subsystem/net/devices/$name", ENV{SYSTEMD_WANTS}+="ifplugd@%k.service"
 LABEL="xtra_systemd_end"
