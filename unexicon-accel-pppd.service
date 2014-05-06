@@ -1,0 +1,15 @@
+[Unit]
+Description=Unexicon Accel-PPPD Daemon
+Documentation=man:accel-ppp.conf(5)
+Conflicts=pptpd.service accel-pppd.service
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/default/accel-pppd
+ExecStart=/usr/bin/accel-pppd -d -p $PIDFILE -c /etc/accel-ppp-unexicon.conf $ARGS
+ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
+PIDFile=/run/accel-pppd.pid
+Type=forking
+
+[Install]
+WantedBy=multi-user.target
