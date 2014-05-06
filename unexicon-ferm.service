@@ -1,0 +1,15 @@
+[Unit]
+Description=For Easy Rule Making automatic firewall
+Documentation=man:ferm(1)
+After=ipset.service
+Conflicts=ferm.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/ferm /etc/ferm-unexicon.conf
+ExecReload=/usr/bin/ferm /etc/ferm-unexicon.conf
+ExecStop=/usr/bin/ferm -F /etc/ferm-unexicon.conf
+
+[Install]
+WantedBy=multi-user.target

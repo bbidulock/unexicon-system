@@ -6,9 +6,6 @@ etc/aurgetrc
 etc/autofs/auto.master
 etc/default/grub
 etc/dhclient.conf
-etc/dhcpcd.conf
-etc/dnsmasq.conf
-etc/ferm.conf
 etc/hostname
 etc/hosts
 etc/hosts.allow

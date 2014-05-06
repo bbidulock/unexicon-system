@@ -66,7 +66,8 @@ dist_avahiservice_DATA = \
 dist_sysconf_DATA = \
 	ipinfodb.key \
 	dhcpcd-unexicon.conf \
-	dnsmasq-unexicon.conf
+	dnsmasq-unexicon.conf \
+	ferm-unexicon.conf
 
 dist_bin_SCRIPTS = \
 	ipinfodb-lookup
@@ -76,7 +77,8 @@ dist_systemdsystemunit_DATA = \
 	unexicon-ifplugd@.service \
 	unexicon-dhcpcd.service \
 	unexicon-dhcpcd@.service \
-	unexicon-dnsmasq.service
+	unexicon-dnsmasq.service \
+	unexicon-ferm.service
 
 dist_ifplugdconf_SCRIPTS = \
 	unexicon.action
