@@ -44,9 +44,6 @@ dist_systemdsystemconf_DATA = \
 	snmpd.service \
 	snmptrapd.service
 
-dist_systemdsystemunit_DATA = \
-	unexicon-ifplugd@.service
-
 dist_systemdutil_SCRIPTS = \
 	unexicon-setup
 
@@ -73,7 +70,8 @@ dist_bin_SCRIPTS = \
 	ipinfodb-lookup
 
 dist_systemdsystemunit_DATA = \
-	unexicon-setup.service
+	unexicon-setup.service \
+	unexicon-ifplugd@.service
 
 dist_ifplugdconf_SCRIPTS = \
 	unexicon.action
