@@ -1,0 +1,16 @@
+[Unit]
+Description=A lightweight DHCP and caching DNS server
+Documentation=man:dnsmasq(8)
+After=network.target
+Conflicts=dnsmasq.service
+
+[Service]
+Type=dbus
+BusName=uk.org.thekelleys.dnsmasq
+ExecStartPre=/usr/bin/dnsmasq --test --conf-file=/etc/dnsmaq-unexicon.conf
+ExecStart=/usr/bin/dnsmasq -k --enable-dbus --user=dnsmasq --pid-file --conf-file=/etc/dnsmaq-unexicon.conf
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+Alias=dbus-uk.org.thekelleys.dnsmasq
