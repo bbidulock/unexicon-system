@@ -44,6 +44,9 @@ dist_systemdsystemconf_DATA = \
 	snmpd.service \
 	snmptrapd.service
 
+dist_systemdsystemunit_DATA = \
+	unexicon-ifplugd@.service
+
 dist_systemdutil_SCRIPTS = \
 	unexicon-setup
 
