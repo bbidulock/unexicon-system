@@ -1,0 +1,17 @@
+[Unit]
+Description=DHCP Client Daemon on %I
+Documentation=man:dhcpcd(8)
+Wants=network.target
+Before=network.target
+BindsTo=sys-subsystem-net-devices-%i.device
+After=sys-subsystem-net-devices-%i.device
+Conflicts=dhcpcd@%i.service unexicon-dhcpcd.service dhcpcd.service
+
+[Service]
+Type=forking
+PIDFile=/run/dhcpcd-%I.pid
+ExecStart=/usr/bin/dhcpcd -q -w %I -f /etc/dhcpcd-unexicon.conf
+ExecStop=/usr/bin/dhcpcd -x %I -f /etc/dhcpcd-unexicon.conf
+
+[Install]
+WantedBy=multi-user.target

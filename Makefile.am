@@ -64,14 +64,17 @@ dist_avahiservice_DATA = \
 	unexicon.service
 
 dist_sysconf_DATA = \
-	ipinfodb.key
+	ipinfodb.key \
+	dhcpcd-unexicon.conf
 
 dist_bin_SCRIPTS = \
 	ipinfodb-lookup
 
 dist_systemdsystemunit_DATA = \
 	unexicon-setup.service \
-	unexicon-ifplugd@.service
+	unexicon-ifplugd@.service \
+	unexicon-dhcpcd.service \
+	unexicon-dhcpcd@.service
 
 dist_ifplugdconf_SCRIPTS = \
 	unexicon.action
