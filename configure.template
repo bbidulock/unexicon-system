@@ -77,6 +77,9 @@ AC_SUBST([modprobedir])
 ifplugdconfdir='${sysconfdir}/ifplugd'
 AC_SUBST([ifplugdconfdir])
 
+avahiconfdir='${sysconfdir}/avahi'
+AC_SUBST([avahiconfdir])
+
 
 test "x$prefix" = xNONE && prefix="$ac_default_prefix"
 sharedir="$datadir"

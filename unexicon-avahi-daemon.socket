@@ -1,0 +1,10 @@
+[Unit]
+Description=Avahi mDNS/DNS-SD Stack Activation Socket
+Documentation=man:avahi-daemon(8)
+Conflicts=avahi-daemon.socket
+
+[Socket]
+ListenStream=/var/run/avahi-daemon/socket
+
+[Install]
+WantedBy=sockets.target

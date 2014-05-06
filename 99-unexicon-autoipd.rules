@@ -1,0 +1,3 @@
+ACTION=="remove", GOTO="unexicon_autoipd_end"
+SUBSYSTEM=="net", KERNEL=="eth*|usb*|en*", TAG+="systemd", ENV{SYSTEMD_ALIAS}+="/sys/subsystem/net/devices/$name", ENV{SYSTEMD_WANTS}+="unexicon-avahi-autoipd@%k.service"
+LABEL="unexicon_autoipd_end"

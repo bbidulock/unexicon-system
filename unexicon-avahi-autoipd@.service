@@ -6,6 +6,7 @@ Before=network.target
 BindsTo=sys-subsystem-net-devices-%i.device
 After=sys-subsystem-net-devices-%i.device
 IgnoreOnIsolate=yes
+Conflicts=avahi-autoipd@%i.service
 
 [Service]
 Type=forking

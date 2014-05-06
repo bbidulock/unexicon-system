@@ -39,7 +39,6 @@ DISTCLEANFILES = AUTHORS AUTHORS.in
 dist_systemdsystemconf_DATA = \
 	autofs.service \
 	autologin@.service \
-	avahi-autoipd@.service \
 	pacman-init.service \
 	snmpd.service \
 	snmptrapd.service
@@ -53,7 +52,8 @@ dist_udevconfrules_DATA = \
 
 dist_udevrules_DATA = \
 	99-xtra-systemd.rules \
-	99-unexicon-ifplugd.rules
+	99-unexicon-ifplugd.rules \
+	99-unexicon-autoipd.rules
 
 dist_ferm_DATA = \
 	vars.sh \
@@ -80,10 +80,17 @@ dist_systemdsystemunit_DATA = \
 	unexicon-dhcpcd@.service \
 	unexicon-dnsmasq.service \
 	unexicon-ferm.service \
-	unexicon-accel-pppd.service
+	unexicon-accel-pppd.service \
+	unexicon-avahi-autoipd@.service \
+	unexicon-avahi-daemon.service \
+	unexicon-avahi-daemon.socket \
+	unexicon-avahi-dnsconfd.service
 
 dist_ifplugdconf_SCRIPTS = \
 	unexicon.action
+
+dist_avahiconf_DATA = \
+	avahi-daemon-unexicon.conf
 
 00-nm.sh: 00-nm
 	rm -f $@; $(LN_S) $< $@

@@ -1,0 +1,16 @@
+[Unit]
+Description=Avahi DNS Configuration Daemon
+Documentation=man:avahi-dnsconfd(8)
+Requires=unexicon-avahi-daemon.socket unexicon-avahi-daemon.service
+After=unexicon-avahi-daemon.socket
+Conflicts=avahi-dnsconfd.service
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/avahi-dnsconfd -D
+ExecReload=/usr/bin/avahi-dnsconfd -r
+ExecStop=/usr/bin/avahi-dnsconfd -k
+
+[Install]
+WantedBy=multi-user.target
+Also=avahi-daemon.socket

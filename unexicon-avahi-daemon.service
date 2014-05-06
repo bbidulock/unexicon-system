@@ -1,0 +1,17 @@
+[Unit]
+Description=Avahi mDNS/DNS-SD Stack
+Documentation=man:avahi-daemon(8)
+Requires=unexicon-avahi-daemon.socket
+Conflicts=avahi-daemon.service
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.Avahi
+ExecStart=/usr/bin/avahi-daemon -s -f /etc/avahi/avahi-daemon-unexicon.conf
+ExecReload=/usr/bin/avahi-daemon -r
+NotifyAccess=main
+
+[Install]
+WantedBy=multi-user.target
+Also=avahi-daemon.socket
+Alias=dbus-org.freedesktop.Avahi.service
