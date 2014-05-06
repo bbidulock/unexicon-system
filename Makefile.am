@@ -68,7 +68,7 @@ dist_sysconf_DATA = \
 	dhcpcd-unexicon.conf \
 	dnsmasq-unexicon.conf \
 	ferm-unexicon.conf \
-	accel-ppp-unexicon-conf
+	accel-ppp-unexicon.conf
 
 dist_bin_SCRIPTS = \
 	ipinfodb-lookup
