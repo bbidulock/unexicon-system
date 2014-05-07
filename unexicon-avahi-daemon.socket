@@ -6,5 +6,5 @@ Documentation=man:avahi-daemon(8)
 ListenStream=/run/avahi-daemon/socket
 
 [Install]
-Also=avahi-daemon.socket
+Alias=avahi-daemon.socket
 WantedBy=sockets.target
