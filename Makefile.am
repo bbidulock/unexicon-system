@@ -92,6 +92,10 @@ dist_ifplugdconf_SCRIPTS = \
 dist_avahiconf_DATA = \
 	avahi-daemon-unexicon.conf
 
+dist_modulesload_DATA = \
+	lpr.conf \
+	oss-compat.conf
+
 00-nm.sh: 00-nm
 	rm -f $@; $(LN_S) $< $@
 

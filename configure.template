@@ -74,6 +74,9 @@ AC_SUBST([nmdispatcherdir])
 modprobedir='${sysconfdir}/modprobe.d'
 AC_SUBST([modprobedir])
 
+modulesloaddir='${sysconfdir}/modules-load.d'
+AC_SUBST([modulesloaddir])
+
 ifplugdconfdir='${sysconfdir}/ifplugd'
 AC_SUBST([ifplugdconfdir])
 
