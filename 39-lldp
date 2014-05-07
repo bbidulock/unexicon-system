@@ -110,11 +110,12 @@ unit_remove ()
 
 unit_add ()
 {
-	local ip cc cn st cy pc la lo tz cb ca
-	if [ ! -s $unit_dir/ipinfodb.dat ]; then
-		/usr/sbin/ipinfodb-lookup $unit_dir/ipinfodb.dat </dev/null &>/dev/null &
+	local dat ip cc cn st cy pc la lo tz cb ca
+	if [ ! -s "$unit_dir/ipinfodb.dat" ]; then
+		/usr/bin/ipinfodb-lookup $unit_dir/ipinfodb.dat </dev/null &>/dev/null &
 	fi
-	if [ -s $unit_dir/ipinfodb.dat ]; then
+	if [ -s "$unit_dir/ipinfodb.dat" ]; then
+		dat=$(cat "$unit_dir/ipinfodb.dat")
 		ip=$(echo "$dat"|awk 'BEGIN{FS=";"}{print$3}')
 		cc=$(echo "$dat"|awk 'BEGIN{FS=";"}{print$4}')
 		cn=$(echo "$dat"|awk 'BEGIN{FS=";"}{print$5}')

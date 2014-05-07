@@ -16,7 +16,7 @@ lookup ()
 	  if [ -n "$key" ]; then
 		ret=$(wget -O - "http://api.ipinfodb.com/v3/ip-city/?key=$key" 2>/dev/null)
 	  fi
-	  case "$ret" in (OK;*) echo "$ret" >$outfile ;; fi
+	  case "$ret" in (OK*) echo "$ret" >$outfile ;; esac
 
 	) 9>${outfile}.LCK
 }

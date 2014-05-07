@@ -84,7 +84,8 @@ dist_systemdsystemunit_DATA = \
 	unexicon-avahi-autoipd@.service \
 	unexicon-avahi-daemon.service \
 	unexicon-avahi-daemon.socket \
-	unexicon-avahi-dnsconfd.service
+	unexicon-avahi-dnsconfd.service \
+	unexicon-lldpd.service
 
 dist_ifplugdconf_SCRIPTS = \
 	unexicon.action
@@ -95,6 +96,9 @@ dist_avahiconf_DATA = \
 dist_modulesload_DATA = \
 	lpr.conf \
 	oss-compat.conf
+
+dist_lldpdconf_DATA = \
+	lldpd-unexicon.conf
 
 00-nm.sh: 00-nm
 	rm -f $@; $(LN_S) $< $@

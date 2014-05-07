@@ -83,6 +83,9 @@ AC_SUBST([ifplugdconfdir])
 avahiconfdir='${sysconfdir}/avahi'
 AC_SUBST([avahiconfdir])
 
+lldpdconfdir='${sysconfdir}/lldpd.d'
+AC_SUBST([lldpdconfdir])
+
 
 test "x$prefix" = xNONE && prefix="$ac_default_prefix"
 sharedir="$datadir"
