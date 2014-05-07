@@ -13,5 +13,5 @@ NotifyAccess=main
 
 [Install]
 WantedBy=multi-user.target
-Also=avahi-daemon.socket
+Also=unexicon-avahi-daemon.socket
 Alias=dbus-org.freedesktop.Avahi.service
