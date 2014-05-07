@@ -9,6 +9,7 @@ Conflicts=dhcpcd.service
 Type=forking
 PIDFile=/run/dhcpcd.pid
 ExecStart=/usr/bin/dhcpcd -q -b -f /etc/dhcpcd-unexicon.conf
+ExecReload=/usr/bin/dhcpcd -n -f /etc/dhcpcd-unexicon.conf
 ExecStop=/usr/bin/dhcpcd -x -f /etc/dhcpcd-unexicon.conf
 
 [Install]
