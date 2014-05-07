@@ -2,7 +2,6 @@
 Description=Avahi mDNS/DNS-SD Stack
 Documentation=man:avahi-daemon(8)
 Requires=unexicon-avahi-daemon.socket
-Conflicts=avahi-daemon.service
 
 [Service]
 Type=dbus
@@ -14,4 +13,4 @@ NotifyAccess=main
 [Install]
 WantedBy=multi-user.target
 Also=unexicon-avahi-daemon.socket
-Alias=dbus-org.freedesktop.Avahi.service
+Alias=dbus-org.freedesktop.Avahi.service avahi-daemon.service

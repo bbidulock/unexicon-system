@@ -2,7 +2,6 @@
 Description=For Easy Rule Making automatic firewall
 Documentation=man:ferm(1)
 After=ipset.service
-Conflicts=ferm.service
 
 [Service]
 Type=oneshot
@@ -12,4 +11,5 @@ ExecReload=/usr/bin/ferm /etc/ferm-unexicon.conf
 ExecStop=/usr/bin/ferm -F /etc/ferm-unexicon.conf
 
 [Install]
+Alias=ferm.service
 WantedBy=multi-user.target

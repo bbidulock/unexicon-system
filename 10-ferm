@@ -45,12 +45,12 @@ fi
 
 unit_remove ()
 {
-	systemctl reload-or-try-restart unexicon-${unit}.service || :
+	systemctl reload-or-try-restart ${unit}.service || :
 }
 
 unit_add ()
 {
-	systemctl reload-or-restart unexicon-${unit}.service || :
+	systemctl reload-or-restart ${unit}.service || :
 }
 
 unit_nm_add ()
