@@ -39,7 +39,6 @@ DISTCLEANFILES = AUTHORS AUTHORS.in
 dist_systemdsystemconf_DATA = \
 	autofs.service \
 	autologin@.service \
-	lldpd.service \
 	pacman-init.service \
 	snmpd.service \
 	snmptrapd.service
