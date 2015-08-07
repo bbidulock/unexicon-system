@@ -4,7 +4,12 @@ BindsTo=sys-subsystem-net-devices-%i.device
 After=sys-subsystem-net-devices-%i.device
 
 [Service]
-ExecStart=/usr/bin/ifplugd -i %I -r /etc/ifplugd/unexicon.action -bfIns
+Type=forking
+PIDFile=/run/ifplugd.%i.pid
+ExecStart=/usr/bin/ifplugd -i %I -r /etc/ifplugd/unexicon.action -bMfwI -u5 -d5
+ExecStop=/usr/bin/ifplugd -i %I -k
+SuccessExitStatus=0 1 2
 
 [Install]
 WantedBy=multi-user.target
+Alias=ifplugd@.service
