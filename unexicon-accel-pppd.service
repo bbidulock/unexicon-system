@@ -1,7 +1,7 @@
 [Unit]
 Description=Unexicon Accel-PPPD Daemon
 Documentation=man:accel-ppp.conf(5)
-Conflicts=pptpd.service
+Conflicts=pptpd.service accel-pppd.service
 After=network.target
 
 [Service]
@@ -11,5 +11,5 @@ PIDFile=/run/accel-pppd.pid
 Type=forking
 
 [Install]
-Alias=accel-pppd.service
 WantedBy=multi-user.target
+Alias=accel-pppd.service

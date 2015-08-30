@@ -3,6 +3,7 @@ Description=LLDP daemon
 Documentation=man:lldpd(8)
 Requires=snmpd.service
 After=snmpd.service network.target
+Conflicts=lldpd.service
 
 [Service]
 Type=notify
@@ -13,5 +14,5 @@ ExecReload=/usr/bin/lldpcli -u /run/lldpd.socket update
 Restart=on-failure
 
 [Install]
-Alias=lldpd.service
 WantedBy=multi-user.target
+Alias=lldpd.service

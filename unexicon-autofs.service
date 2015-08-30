@@ -1,16 +1,19 @@
 [Unit]
 Description=Automounter
 Documentation=man:automount(8)
-After=network.target ypbind.service sssd.service remote-fs.target
+After=network.target ypbind.service sssd.service network-online.target
+Wants=network-online.target
 Before=systemd-user-sessions.service
+Conflicts=autofs.service
 
 [Service]
 Type=forking
 PIDFile=/run/autofs.pid
 EnvironmentFile=-/etc/default/autofs
-ExecStart=/usr/sbin/automount $OPTIONS --pid-file /run/autofs.pid
-ExecReload=/bin/kill -HUP $MAINPID
+ExecStart=/usr/bin/automount $OPTIONS --pid-file /run/autofs.pid
+ExecReload=/usr/bin/kill -HUP $MAINPID
 TimeoutSec=180
 
 [Install]
 WantedBy=multi-user.target
+Alias=autofs.service

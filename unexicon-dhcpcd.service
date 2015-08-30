@@ -3,6 +3,7 @@ Description=DHCP Client Daemon on all interfaces
 Documentation=man:dhcpcd(8)
 Wants=network.target
 Before=network.target
+Conflicts=dhcpcd.service
 
 [Service]
 Type=forking
@@ -11,5 +12,5 @@ ExecStart=/usr/bin/dhcpcd -q -b -f /etc/dhcpcd-unexicon.conf
 ExecStop=/usr/bin/dhcpcd -x -f /etc/dhcpcd-unexicon.conf
 
 [Install]
-Alias=dhcpcd.service
 WantedBy=multi-user.target
+Alias=dhcpcd.service

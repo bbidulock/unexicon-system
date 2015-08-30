@@ -8,3 +8,4 @@ ListenStream=/run/avahi-daemon/socket
 
 [Install]
 WantedBy=sockets.target
+Alias=avahi-daemon.socket

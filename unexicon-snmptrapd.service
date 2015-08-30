@@ -2,6 +2,7 @@
 Description=Simple Network Management Protocol (SNMP) Trap Daemon
 Documentation=man:snmptrapd(8) man:snmpcmd(5)
 After=syslog.target network.target
+Conflicts=snmptrapd.service
 
 [Service]
 Type=forking
@@ -11,3 +12,4 @@ ExecReload=/bin/kill -HUP $MAINPID
 
 [Install]
 WantedBy=multi-user.target
+Alias=snmptrapd.service

@@ -2,6 +2,7 @@
 Description=Avahi mDNS/DNS-SD Stack
 Documentation=man:avahi-daemon(8)
 Requires=unexicon-avahi-daemon.socket
+Conflicts=avahi-daemon.service
 
 [Service]
 Type=dbus

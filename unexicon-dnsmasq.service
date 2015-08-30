@@ -2,6 +2,7 @@
 Description=A lightweight DHCP and caching DNS server
 Documentation=man:dnsmasq(8)
 After=network.target
+Conflicts=dnsmasq.service
 
 [Service]
 Type=dbus

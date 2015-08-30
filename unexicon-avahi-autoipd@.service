@@ -11,11 +11,12 @@ Conflicts=avahi-autoipd@%i.service
 [Service]
 Type=forking
 PIDFile=/run/avahi-autoipd.%I.pid
-ExecStart=/usr/sbin/avahi-autoipd -D -w %I
-ExecReload=/usr/sbin/avahi-autoipd -r %I
-ExecStop=/usr/sbin/avahi-autoipd -k %I
+ExecStart=/usr/bin/avahi-autoipd -D -w --force-bind %I
+ExecReload=/usr/bin/avahi-autoipd -r %I
+ExecStop=/usr/bin/avahi-autoipd -k %I
 Restart=always
 RestartSec=0
 
 [Install]
 WantedBy=multi-user.target
+Alias=avahi-autoipd@%i.service

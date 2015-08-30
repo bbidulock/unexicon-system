@@ -4,6 +4,7 @@ Documentation=man:ferm(1)
 After=ipset.service
 Before=network-pre.target
 Wants=network-pre.target
+Conflicts=ferm.service
 
 [Service]
 Type=oneshot
