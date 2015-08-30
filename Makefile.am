@@ -37,11 +37,8 @@ EXTRA_DIST = autogen.sh configure.template 00-nm \
 DISTCLEANFILES = AUTHORS AUTHORS.in
 
 dist_systemdsystemconf_DATA = \
-	autofs.service \
 	autologin@.service \
-	pacman-init.service \
-	snmpd.service \
-	snmptrapd.service
+	pacman-init.service
 
 dist_systemdutil_SCRIPTS = \
 	unexicon-setup
@@ -74,18 +71,24 @@ dist_bin_SCRIPTS = \
 	ipinfodb-lookup
 
 dist_systemdsystemunit_DATA = \
-	unexicon-setup.service \
-	unexicon-ifplugd@.service \
-	unexicon-dhcpcd.service \
-	unexicon-dhcpcd@.service \
-	unexicon-dnsmasq.service \
-	unexicon-ferm.service \
 	unexicon-accel-pppd.service \
+	unexicon-autofs.service \
 	unexicon-avahi-autoipd@.service \
 	unexicon-avahi-daemon.service \
 	unexicon-avahi-daemon.socket \
 	unexicon-avahi-dnsconfd.service \
-	unexicon-lldpd.service
+	unexicon-dhcpcd.service \
+	unexicon-dhcpcd@.service \
+	unexicon-dnsmasq.service \
+	unexicon-ferm.service \
+	unexicon-ifplugd@.service \
+	unexicon-lldpd.service \
+	unexicon-setup.service \
+	unexicon-snmpd.service \
+	unexicon-snmptrapd.service \
+	unexicon-ypbind.service
+
+
 
 dist_ifplugdconf_SCRIPTS = \
 	unexicon.action
