@@ -16,6 +16,7 @@
 # PPPOED establish the server associations.
 #
 
+unx_name=lldp
 unx_unit=lldp
 unx_unit_dir=/run/nm-unexicon/$unx_unit
 [ -d $unx_unit_dir ] || mkdir -p -- $unx_unit_dir
@@ -287,27 +288,32 @@ unx_unit_dhcpcd_hook ()
 # directories.  So, we decide what to do based on how we were
 # called.
 
-syslog debug "Dispatcher for $unx_unit invoked..."
+unx_unit_hook ()
+{
+	syslog debug "Dispatcher for $unx_unit invoked..."
 
-case "$unx_dispatcher" in
-	(*/dispatcher.d/*)
-		syslog debug "Invoked as dispatcher."
-		case "$2" in
-		(up)		unx_unit_nm_up			$@ ;;
-		(down)		unx_unit_nm_down		$@ ;;
-		(vpn-up)	unx_unit_nm_vpn_up		$@ ;;
-		(vpn-down)	unx_unit_nm_vpn_down		$@ ;;
-		(dhcp4-change)	unx_unit_nm_dhcp4_change	$@ ;;
-		(dhcp6-change)	unx_unit_nm_dhcp6_change	$@ ;;
-		(hostname)	unx_unit_nm_hostname		$@ ;;
-		esac
-		;;
-	(*/ip-up.d/*)		unx_unit_ppp_ip_up		$@ ;;
-	(*/ip-down.d/*)		unx_unit_ppp_ip_down		$@ ;;
-	(*/ipv6-up.d/*)		unx_unit_ppp_ipv6_up		$@ ;;
-	(*/ipv6-down.d/*)	unx_unit_ppp_ipv6_down		$@ ;;
-	(*/dhcpcd-run-hooks)	unx_unit_dhcpcd_hook		$@ ;;
-esac
+	case "$unx_dispatcher" in
+		(*/dispatcher.d/*)
+			syslog debug "Invoked as dispatcher."
+			case "$2" in
+			(up)		unx_unit_nm_up			$@ ;;
+			(down)		unx_unit_nm_down		$@ ;;
+			(vpn-up)	unx_unit_nm_vpn_up		$@ ;;
+			(vpn-down)	unx_unit_nm_vpn_down		$@ ;;
+			(dhcp4-change)	unx_unit_nm_dhcp4_change	$@ ;;
+			(dhcp6-change)	unx_unit_nm_dhcp6_change	$@ ;;
+			(hostname)	unx_unit_nm_hostname		$@ ;;
+			esac
+			;;
+		(*/ip-up.d/*)		unx_unit_ppp_ip_up		$@ ;;
+		(*/ip-down.d/*)		unx_unit_ppp_ip_down		$@ ;;
+		(*/ipv6-up.d/*)		unx_unit_ppp_ipv6_up		$@ ;;
+		(*/ipv6-down.d/*)	unx_unit_ppp_ipv6_down		$@ ;;
+		(*/dhcpcd-run-hooks)	unx_unit_dhcpcd_hook		$@ ;;
+	esac
 
-syslog debug "...done dispatcher for ${unx_unit}."
+	syslog debug "...done dispatcher for ${unx_unit}."
+}
+
+unx_unit_hook $@ || :
 
