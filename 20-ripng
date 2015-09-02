@@ -111,11 +111,11 @@ unx_unit_rebuild_config ()
 			fi
 		else
 			cp -pf -- $temp $conf
-			systemctl reload-or-restart $unx_unit || :
+			systemctl --now --runtime enable $unx_unit || :
 		fi
 		rm -f -- $temp
 	else
-		systemctl stop $unx_unit || :
+		systemctl --now --runtime disable $unx_unit || :
 		if [ -s $save ]; then
 			cp -pf -- $save $conf
 		else
