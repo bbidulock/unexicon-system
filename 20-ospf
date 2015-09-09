@@ -191,9 +191,9 @@ unx_unit_add ()
 	*) [ -n "$5" ] && ntype=broadcast ;;
 	esac
 	echo "interface $iface" >$unx_unit_dir/${1}_interface
-	[ -z "$cost"  ] || echo " ip $unx_Name cost $cost" >>$unx_unit_dir/${1}_interface
-	[ -z "$ntype" ] || echo " ip $unx_Name network $ntype" >>$unx_unit_dir/${1}_interface
-	[ -z "$prio"  ] || echo " ip $unx_Name priority $prio" >>$unx_unit_dir/${1}_interface
+	[ -z "$cost"  ] || echo " ip $unx_name cost $cost" >>$unx_unit_dir/${1}_interface
+	[ -z "$ntype" ] || echo " ip $unx_name network $ntype" >>$unx_unit_dir/${1}_interface
+	[ -z "$prio"  ] || echo " ip $unx_name priority $prio" >>$unx_unit_dir/${1}_interface
 	echo " ${passive}passive-interface $iface" >$unx_unit_dir/${1}_passive
 	cat /dev/null >$unx_unit_dir/${1}_network
 	cat /dev/null >$unx_unit_dir/${1}_area
