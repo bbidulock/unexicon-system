@@ -3,7 +3,6 @@ Description=LLDP daemon
 Documentation=man:lldpd(8)
 Requires=snmpd.service
 After=snmpd.service network.target
-Conflicts=lldpd.service
 
 [Service]
 Type=notify

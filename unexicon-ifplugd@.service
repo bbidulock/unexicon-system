@@ -2,7 +2,6 @@
 Description=Automatic wired network interface setup for unexicon
 BindsTo=sys-subsystem-net-devices-%i.device
 After=sys-subsystem-net-devices-%i.device
-Conflicts=ifplugd@%i.service
 
 [Service]
 Type=forking

@@ -2,7 +2,6 @@
 Description=Simple Network Management Protocol (SNMP) Daemon
 Documentation=man:snmpd(8) man:snmpcmd(5)
 After=syslog.target network.target
-Conflicts=snmpd.service
 
 [Service]
 Type=forking

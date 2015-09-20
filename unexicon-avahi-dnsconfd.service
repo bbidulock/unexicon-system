@@ -3,7 +3,6 @@ Description=Avahi DNS Configuration Daemon
 Documentation=man:avahi-dnsconfd(8)
 Requires=unexicon-avahi-daemon.socket unexicon-avahi-daemon.service
 After=unexicon-avahi-daemon.socket
-Conflicts=avahi-dnsconfd.service
 
 [Service]
 Type=forking

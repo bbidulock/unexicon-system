@@ -1,7 +1,7 @@
 [Unit]
 Description=Unexicon Accel-PPPD Daemon
 Documentation=man:accel-ppp.conf(5)
-Conflicts=pptpd.service accel-pppd.service
+Conflicts=pptpd.service
 After=network.target
 
 [Service]

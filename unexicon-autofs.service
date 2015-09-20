@@ -4,7 +4,6 @@ Documentation=man:automount(8)
 After=network.target ypbind.service sssd.service network-online.target
 Wants=network-online.target
 Before=systemd-user-sessions.service
-Conflicts=autofs.service
 
 [Service]
 Type=forking

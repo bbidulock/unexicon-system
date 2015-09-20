@@ -1,7 +1,6 @@
 [Unit]
 Description=Avahi mDNS/DNS-SD Stack Activation Socket
 Documentation=man:avahi-daemon(8)
-Conflicts=avahi-daemon.socket
 
 [Socket]
 ListenStream=/run/avahi-daemon/socket

@@ -5,7 +5,7 @@ Wants=network.target
 Before=network.target
 BindsTo=sys-subsystem-net-devices-%i.device
 After=sys-subsystem-net-devices-%i.device
-Conflicts=dhcpcd@%i.service unexicon-dhcpcd.service dhcpcd.service
+Conflicts=unexicon-dhcpcd.service dhcpcd.service
 
 [Service]
 Type=forking
