@@ -1,7 +1,7 @@
 [Unit]
 Description=Automounter
 Documentation=man:automount(8)
-After=network.target ypbind.service sssd.service network-online.target
+After=network.target nss-user-lookup.target ypbind.service sssd.service network-online.target
 Wants=network-online.target
 Before=systemd-user-sessions.service
 
