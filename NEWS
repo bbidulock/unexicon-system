@@ -1,0 +1,67 @@
+unexicon-system -- history of user-visible changes.  2016-05-25
+
+Release unexicon-system-1.1.49 released 2016-05-25
+--------------------------------------------------
+
+git shortlog -e -n -w80,6,8 1.1...HEAD
+
+Brian Bidulock <bidulock@openss7.org> (49):
+      bit better build
+      passes a distcheck
+      updates to autofs.service
+      ypwait no longer required
+      more logging, add blacklist correct modes
+      do no error out on systemctl commands in hook scripts
+      mode on dhcpcd hooks should be 0444
+      do not call dhcpcd hooks so often, strap in more hooks
+      strap out ttyS0 rules add ifplugd rules
+      use separate unexicon-ifplugd service ala netctl
+      actually install unexicon-ifplugd service
+      typo
+      no duplicate variables
+      use a separate dhcpcd service to avoid overlays
+      break off dnsmasq service to avoid overlays
+      break out ferm service to avoid overlays
+      split off accel-pppd service to avoid overlay
+      typo
+      do not need environment file
+      split off avahi configuration for daemon and dnsconfd
+      only dhcpcd or autoipd need assign ipv4ll
+      add reload function to dhcpcd service
+      wrong socket
+      load lpr and oss compatability modules
+      break out lldpd service, try using Alias instead of Conflicts
+      use Alias instead of Conflicts where possible
+      mistyped Also instead of Alias
+      weird alias result
+      set rlimit_nproc to 10 from 3 to avoid fork errors
+      remove force bind, it messes up network
+      lldpd moved to community and now has broken .service file
+      Revert "lldpd moved to community and now has broken .service file"
+      typo: logitude->longitude
+      a few updates to service files and lldpd
+      protect namespace of shell variables
+      touch up services
+      adjust service names
+      rationalize network book scripts
+      slightly different approach to systemd activation
+      protect ferm hook from failure
+      typo
+      use Alias instead of Conflicts in service files
+      make plug service start after local-fs.target
+      make it look like current default
+      should be network-online.target
+      ypbind appears to be coming in too late
+      dependencies for autofs
+      better autogen.sh
+      lldpd socket location changed
+
+
+Release unexicon-system-1.1 released 2014-05-03
+-----------------------------------------------
+
+git shortlog -e -n -w80,6,8 1.1
+
+Brian Bidulock <bidulock@openss7.org> (1):
+      initial commit of unexicon-system package w/ autoconf build
+

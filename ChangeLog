@@ -1,0 +1,738 @@
+# created with git log --stat=76 -M -C|fmt -sct -w80
+
+commit a2dc480393091377b79c53cb880ff6225fa6b4bc
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Wed May 25 00:46:20 2016 -0600
+
+    lldpd socket location changed
+
+ unexicon-lldpd.service | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit d2fd66c60b04ce0ce4f46ac75134a39e3877beb1
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon Mar 7 12:00:00 2016 -0700
+
+    better autogen.sh
+
+ autogen.sh | 18 +++++++++++-------
+ 1 file changed, 11 insertions(+), 7 deletions(-)
+
+commit 9bfd52efb26286521ee15df695bcf3c6b37a2fb5
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue Dec 22 12:00:00 2015 -0700
+
+    dependencies for autofs
+
+ unexicon-autofs.service | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 257c31c4636bb4b68a362bcb76960c66f3ee9032
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon Dec 21 10:28:02 2015 -0700
+
+    ypbind appears to be coming in too late
+
+     - ypbind (because it provides user/group lookups) should be
+       available before nss-user-lookup.target
+
+     - before systemd-user-sessions is probably now redundant
+
+ unexicon-ypbind.service | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 10d55c324f8ee976d4351ef23a5f28c5ee2770e0
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon Dec 21 10:27:19 2015 -0700
+
+    should be network-online.target
+
+ unexicon-accel-pppd.service | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 209c4c9eccbfc6531c7840855c4c44afaf4e03b8
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon Dec 21 10:26:29 2015 -0700
+
+    make it look like current default
+
+ dhcpcd-unexicon.conf | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+commit 35b4bd85650b83cc952eeb6b55189cbd972db2e1
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon Dec 21 10:20:40 2015 -0700
+
+    make plug service start after local-fs.target
+
+     - before this change, ifplugd@eth0 (for example) was failing
+       because it could not establish its pid file in the /run
+       directory
+
+     - I think this was because the unit was running before the
+       tmpfs on /run was mounted
+
+     - maybe After=local-fs-pre.target would do.
+
+ unexicon-ifplugd@.service | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 4eaaa406b4ee5a844afac7dfd100e28970e80f6e
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Sep 20 15:59:25 2015 -0600
+
+    use Alias instead of Conflicts in service files
+
+ unexicon-accel-pppd.service     | 2 +-
+ unexicon-autofs.service         | 1 -
+ unexicon-avahi-autoipd@.service | 1 -
+ unexicon-avahi-daemon.service   | 1 -
+ unexicon-avahi-daemon.socket    | 1 -
+ unexicon-avahi-dnsconfd.service | 1 -
+ unexicon-dhcpcd.service         | 1 -
+ unexicon-dhcpcd@.service        | 2 +-
+ unexicon-dnsmasq.service        | 1 -
+ unexicon-ferm.service           | 1 -
+ unexicon-ifplugd@.service       | 1 -
+ unexicon-lldpd.service          | 1 -
+ unexicon-snmpd.service          | 1 -
+ unexicon-snmptrapd.service      | 1 -
+ unexicon-ypbind.service         | 1 -
+ 15 files changed, 2 insertions(+), 15 deletions(-)
+
+commit ea2b7f5bee50ac2e6c8f0ccca95675d77825e441
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue Sep 8 23:42:07 2015 -0600
+
+    typo
+
+ 20-ospf | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit dcaf847c9f544bb668fcdfe002a5808deab24275
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue Sep 1 22:40:15 2015 -0600
+
+    protect ferm hook from failure
+
+ 10-ferm | 49 +++++++++++++++++++++++++++----------------------
+ 1 file changed, 27 insertions(+), 22 deletions(-)
+
+commit 650873cda07f8c038ac255f8fe837b1d460e719d
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue Sep 1 22:36:29 2015 -0600
+
+    slightly different approach to systemd activation
+
+ 10-ferm  | 4 ++--
+ 19-zebra | 4 ++--
+ 20-babel | 4 ++--
+ 20-ospf  | 4 ++--
+ 20-ospf6 | 4 ++--
+ 20-rip   | 4 ++--
+ 20-ripng | 4 ++--
+ 35-ntp   | 4 ++--
+ 37-nis   | 6 +++---
+ 39-lldp  | 4 ++--
+ 10 files changed, 21 insertions(+), 21 deletions(-)
+
+commit 0ee376597fc003da304a47dd47b63f9c5d58dd98
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Aug 30 13:32:52 2015 -0600
+
+    rationalize network book scripts
+
+ 19-zebra    |  50 +++++++++--------
+ 20-babel    |  49 +++++++++--------
+ 20-ospf     |  50 +++++++++--------
+ 20-ospf6    |  49 +++++++++--------
+ 20-rip      |  49 +++++++++--------
+ 20-ripng    |  49 +++++++++--------
+ 30-hostname | 162 +++++++++++++++++++++++++++++---------------------------
+ 35-ntp      |  50 +++++++++--------
+ 37-nis      | 161 ++++++++++++++++++++++++++++++++++++-------------------
+ 39-lldp     |  50 +++++++++--------
+ 50-geoip    | 162 +++++++++++++++++++++++++++++---------------------------
+ 11 files changed, 494 insertions(+), 387 deletions(-)
+
+commit 76540d94830241ec09f236d283a32c11785e4f4b
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Aug 29 22:37:47 2015 -0600
+
+    adjust service names
+
+ Makefile.am | 25 ++++++++++++++-----------
+ 1 file changed, 14 insertions(+), 11 deletions(-)
+
+commit 66510e7c0e8c36823e8a0aee21a7a84dec5bd5ff
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Aug 29 22:37:22 2015 -0600
+
+    touch up services
+
+ lldpd-unexicon.conf             |  2 +-
+ unexicon-accel-pppd.service     |  4 ++--
+ unexicon-autofs.service         |  9 ++++++---
+ unexicon-avahi-autoipd@.service |  7 ++++---
+ unexicon-avahi-daemon.service   |  1 +
+ unexicon-avahi-daemon.socket    |  1 +
+ unexicon-avahi-dnsconfd.service |  3 ++-
+ unexicon-dhcpcd.service         |  3 ++-
+ unexicon-dhcpcd@.service        |  1 +
+ unexicon-dnsmasq.service        |  1 +
+ unexicon-ferm.service           |  1 +
+ unexicon-ifplugd@.service       |  3 ++-
+ unexicon-lldpd.service          |  3 ++-
+ unexicon-snmpd.service          |  2 ++
+ unexicon-snmptrapd.service      |  2 ++
+ unexicon-ypbind.service         | 18 ++++++++++++++++++
+ 16 files changed, 48 insertions(+), 13 deletions(-)
+
+commit 097f4d7154c8be808eccea4658800617c2419499
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Aug 29 22:36:15 2015 -0600
+
+    protect namespace of shell variables
+
+ 10-ferm                                         | 151 ++++++------
+ 19-zebra                                        | 171 ++++++-------
+ 20-babel                                        | 181 +++++++-------
+ 20-ospf                                         | 259 ++++++++++----------
+ 20-ospf6                                        | 223 ++++++++---------
+ 20-rip                                          | 245 +++++++++---------
+ 20-ripng                                        | 213 ++++++++--------
+ 35-ntp                                          | 196 ++++++++-------
+ 37-nis                                          | 191 ++++++++-------
+ 39-lldp                                         | 171 +++++++------
+ avahi-autoipd@.service                          |  20 --
+ autofs.service => unexicon-autofs.service       |   0
+ snmpd.service => unexicon-snmpd.service         |   0
+ snmptrapd.service => unexicon-snmptrapd.service |   0
+ 14 files changed, 1007 insertions(+), 1014 deletions(-)
+
+commit b7adb18e58b6026b1b40abf21f7c582bb84b1184
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu Aug 6 18:41:27 2015 -0600
+
+    a few updates to service files and lldpd
+
+ dhcpcd-unexicon.conf      | 8 ++++++++
+ lldpd-unexicon.conf       | 2 +-
+ unexicon-dhcpcd.service   | 1 -
+ unexicon-ferm.service     | 2 ++
+ unexicon-ifplugd@.service | 7 ++++++-
+ 5 files changed, 17 insertions(+), 3 deletions(-)
+
+commit 426ba9b110f40a285a6816ed2360cc28e5c2e621
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Wed Aug 5 01:18:51 2015 -0600
+
+    typo: logitude->longitude
+
+ lldpd-unexicon.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 67eb3a34f0a7b3fceb2779bc456305c4c144c297
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Wed Aug 6 09:40:23 2014 -0600
+
+    Revert "lldpd moved to community and now has broken .service file"
+
+    This reverts commit ff492af4f78ccf7470e6abb056186c9a46424b29.
+
+    service file already installed as unexicon-lldpd.service
+
+ Makefile.am   |  1 -
+ lldpd.service | 16 ----------------
+ 2 files changed, 17 deletions(-)
+
+commit ff492af4f78ccf7470e6abb056186c9a46424b29
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Wed Aug 6 09:19:22 2014 -0600
+
+    lldpd moved to community and now has broken .service file
+
+ Makefile.am   |  1 +
+ lldpd.service | 16 ++++++++++++++++
+ 2 files changed, 17 insertions(+)
+
+commit ea1dda485920be07e742ec8eb35c3d00bd6859de
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu May 15 22:18:36 2014 -0600
+
+    remove force bind, it messes up network
+
+ unexicon-avahi-autoipd@.service | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7beb937f8f920a7c722d07961dbe0009bb8c12c6
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue May 13 09:07:41 2014 -0600
+
+    set rlimit_nproc to 10 from 3 to avoid fork errors
+
+ avahi-daemon-unexicon.conf | 3 ++-
+ avahi-daemon.conf          | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+commit 54157a2dbafd3cc45eaf7cc5fde364db7fb0c4f1
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Wed May 7 05:31:56 2014 -0600
+
+    weird alias result
+
+ unexicon-avahi-daemon.socket | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit a70d0fb609420ad4626b50756cc9ac8437f3dddf
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Wed May 7 05:27:19 2014 -0600
+
+    mistyped Also instead of Alias
+
+ unexicon-avahi-daemon.socket | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 677a1b3b75510190762082da6e600cf606e05207
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Wed May 7 05:20:07 2014 -0600
+
+    use Alias instead of Conflicts where possible
+
+ 10-ferm                         | 4 ++--
+ unexicon-accel-pppd.service     | 3 ++-
+ unexicon-avahi-daemon.service   | 3 +--
+ unexicon-avahi-daemon.socket    | 4 ++--
+ unexicon-avahi-dnsconfd.service | 4 ++--
+ unexicon-dhcpcd.service         | 2 +-
+ unexicon-dnsmasq.service        | 3 +--
+ unexicon-ferm.service           | 2 +-
+ 8 files changed, 12 insertions(+), 13 deletions(-)
+
+commit 1e5e4cfc8211a73bf647c9f38b66696d4a1e82b5
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Wed May 7 05:00:35 2014 -0600
+
+    break out lldpd service, try using Alias instead of Conflicts
+
+ 39-lldp                |  9 +++++----
+ 50-geoip               |  7 ++++---
+ Makefile.am            |  6 +++++-
+ configure.template     |  3 +++
+ ipinfodb-lookup        |  2 +-
+ lldpd-unexicon.conf    |  6 ++++++
+ unexicon-lldpd.service | 17 +++++++++++++++++
+ 7 files changed, 41 insertions(+), 9 deletions(-)
+
+commit da661ceaa7619f6c254d7426b97715d1ec24ba80
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue May 6 20:10:45 2014 -0600
+
+    load lpr and oss compatability modules
+
+ Makefile.am        | 4 ++++
+ configure.template | 3 +++
+ lpr.conf           | 3 +++
+ oss-compat.conf    | 3 +++
+ 4 files changed, 13 insertions(+)
+
+commit e2eed0b8489ffdf9ff2875e78c608098a3e58af3
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue May 6 19:56:12 2014 -0600
+
+    wrong socket
+
+ unexicon-avahi-daemon.service | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 802f4acded9a9a509309b20cbbce38bdcd322cb7
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue May 6 18:23:21 2014 -0600
+
+    add reload function to dhcpcd service
+
+ unexicon-dhcpcd.service | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit f11de28204352eb13709add5ebe224ce0472e543
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue May 6 18:04:31 2014 -0600
+
+    only dhcpcd or autoipd need assign ipv4ll
+
+ dhcpcd-unexicon.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c7831409659905ae7a6b5446b4d0c4ba4cc00ba3
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue May 6 17:22:55 2014 -0600
+
+    split off avahi configuration for daemon and dnsconfd
+
+      - avoids more overlay
+
+ 99-unexicon-autoipd.rules                        |   3 +
+ Makefile.am                                      |  13 ++-
+ avahi-autoipd@.service                           |   7 +-
+ avahi-daemon-unexicon.conf                       | 109 +++++++++++++++++++
+ configure.template                               |   3 +
+ ...d@.service => unexicon-avahi-autoipd@.service |   8 +-
+ unexicon-avahi-daemon.service                    |  17 +++
+ unexicon-avahi-daemon.socket                     |  10 ++
+ unexicon-avahi-dnsconfd.service                  |  16 +++
+ 9 files changed, 177 insertions(+), 9 deletions(-)
+
+commit a871b8ec899f03964726d5dd7d095d06b4a9410e
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue May 6 06:18:49 2014 -0600
+
+    do not need environment file
+
+ unexicon-accel-pppd.service | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 8cd20c7fb074d6ff70a15ef0d477582b96df8195
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue May 6 06:14:33 2014 -0600
+
+    typo
+
+ Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 06f12ed9246a2e361354542e1ccc82cf65f60b5e
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue May 6 06:13:15 2014 -0600
+
+    split off accel-pppd service to avoid overlay
+
+ Makefile.am                 |   6 +-
+ accel-ppp-unexicon.conf     | 225 ++++++++++++++++++++++++++++++++++++++++
+ unexicon-accel-pppd.service |  15 +++
+ 3 files changed, 244 insertions(+), 2 deletions(-)
+
+commit 24c06c206cbdf258bfc18bcf5e20e9b81b4b3b56
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue May 6 03:40:21 2014 -0600
+
+    break out ferm service to avoid overlays
+
+ 10-ferm               |  4 ++--
+ Makefile.am           |  6 ++++--
+ ferm-unexicon.conf    |  1 +
+ overlay.lst           |  3 ---
+ unexicon-ferm.service | 15 +++++++++++++++
+ 5 files changed, 22 insertions(+), 7 deletions(-)
+
+commit 7ba6ff73897eed03ea34da27b21c36f7c3b1ce6c
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue May 6 03:13:09 2014 -0600
+
+    break off dnsmasq service to avoid overlays
+
+ Makefile.am                           |  6 ++++--
+ dnsmasq.conf => dnsmasq-unexicon.conf | 17 ++++++++++++++++-
+ dnsmasq.conf                          | 17 ++++++++++++++++-
+ unexicon-dnsmasq.service              | 16 ++++++++++++++++
+ 4 files changed, 52 insertions(+), 4 deletions(-)
+
+commit 0c1f180f24ffa204603c07c673bc9f1b8a6f77ab
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue May 6 02:37:10 2014 -0600
+
+    use a separate dhcpcd service to avoid overlays
+
+ Makefile.am              |   7 +-
+ dhcpcd-unexicon.conf     | 229 +++++++++++++++++++++++++++++++++++++++++++
+ unexicon-dhcpcd.service  |  15 +++
+ unexicon-dhcpcd@.service |  17 ++++
+ 4 files changed, 266 insertions(+), 2 deletions(-)
+
+commit deaa4e9d14f2bb0ba1a3383999c524b8bf3aa317
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon May 5 23:15:57 2014 -0600
+
+    no duplicate variables
+
+ Makefile.am | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+commit 7245d7c20741627c0c094b1f17802f33a9bf8d91
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon May 5 22:49:41 2014 -0600
+
+    typo
+
+ 99-unexicon-ifplugd.rules | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7c667204325d8106458961864678dd7fe120b88a
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon May 5 22:49:14 2014 -0600
+
+    actually install unexicon-ifplugd service
+
+ Makefile.am | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit d24cb8ac5aafa009aad40532b6b5a9085125c834
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon May 5 22:22:47 2014 -0600
+
+    use separate unexicon-ifplugd service ala netctl
+
+ .gitignore                |  8 +++++++-
+ 99-unexicon-ifplugd.rules |  3 +++
+ 99-xtra-systemd.rules     |  2 +-
+ Makefile.am               | 13 ++++++++++---
+ configure.template        |  3 +++
+ unexicon-ifplugd@.service | 10 ++++++++++
+ unexicon.action           | 20 ++++++++++++++++++++
+ 7 files changed, 54 insertions(+), 5 deletions(-)
+
+commit 87a466a974d6944b444e53ad0aca8daea9287585
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon May 5 19:15:21 2014 -0600
+
+    strap out ttyS0 rules add ifplugd rules
+
+ 99-xtra-systemd.rules | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit c8073d8deba31ce35cbf48ea525e91157f6c0c66
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon May 5 01:24:36 2014 -0600
+
+    do not call dhcpcd hooks so often, strap in more hooks
+
+ 10-ferm     | 19 +++++++++++------
+ 19-zebra    | 19 ++++++++++++-----
+ 20-babel    | 17 +++++++++++----
+ 20-ospf     | 17 +++++++++++----
+ 20-ospf6    | 59 ++++++++++++++++++++++++++++++++-------------------
+ 20-rip      | 17 +++++++++++----
+ 20-ripng    | 65 ++++++++++++++++++++++++++++++++++++---------------------
+ 30-hostname | 61 ++++++++++++++++++++++++++++++++++-------------------
+ 35-ntp      | 17 +++++++++++----
+ 37-nis      | 18 ++++++++++++----
+ 39-lldp     | 65 ++++++++++++++++++++++++++++++++++++---------------------
+ 50-geoip    | 59 ++++++++++++++++++++++++++++++++-------------------
+ Makefile.am | 52 ++++++++++++++++++++++++++++++++++++++-------
+ XX-template | 65 ++++++++++++++++++++++++++++++++++++---------------------
+ 14 files changed, 375 insertions(+), 175 deletions(-)
+
+commit 391e78e934532f4bb7c2be542ca6d10967cd4b46
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun May 4 21:39:10 2014 -0600
+
+    mode on dhcpcd hooks should be 0444
+
+ Makefile.am | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit 73a8b40cd3fefc8ed5abec23d8e406b637fd0073
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun May 4 21:33:08 2014 -0600
+
+    do no error out on systemctl commands in hook scripts
+
+ 10-ferm  | 4 ++--
+ 19-zebra | 6 +++---
+ 20-babel | 6 +++---
+ 20-ospf  | 6 +++---
+ 20-rip   | 6 +++---
+ 35-ntp   | 6 +++---
+ 37-nis   | 6 +++---
+ 7 files changed, 20 insertions(+), 20 deletions(-)
+
+commit 5b46396e5d699ca603dd086805a4d2b54ffbcf45
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun May 4 21:13:55 2014 -0600
+
+    more logging, add blacklist correct modes
+
+ 10-ferm               |  4 ++--
+ 19-zebra              |  2 ++
+ 20-babel              |  2 ++
+ 20-ospf               |  2 ++
+ 20-rip                |  2 ++
+ 35-ntp                |  2 ++
+ 37-nis                |  2 ++
+ Makefile.am           | 27 +++++++++++++++------------
+ blacklist-mei_me.conf |  2 ++
+ configure.template    |  3 +++
+ 10 files changed, 34 insertions(+), 14 deletions(-)
+
+commit 611362bcbd34f13576be1b0564eccc059fa5cbc9
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun May 4 03:45:49 2014 -0600
+
+    ypwait no longer required
+
+     - archlinux now has proper hack in ypbind.service
+
+ Makefile.am | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+commit 0158aa3f11ac113af87d20b3c0b493eda0f3936d
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun May 4 03:43:34 2014 -0600
+
+    updates to autofs.service
+
+     - place remote-fs.target in After= per FS#40200 on archlinux
+     - match otherwise to arch distributed autofs.service
+
+ autofs.service | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit 0b090b58e9bd547859c31461f6f677a0ffb1a4c7
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun May 4 00:45:00 2014 -0600
+
+    passes a distcheck
+
+ .gitignore         |  1 +
+ Makefile.am        | 31 ++++++++++++++++++++++++++++
+ NEWS.in            | 11 ++++++++++
+ README.in          | 56 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ configure.template | 27 ++++++++++++++----------
+ 5 files changed, 115 insertions(+), 11 deletions(-)
+
+commit dd4f39025faf5f3839c1954bffb958cccaff91d0
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun May 4 00:06:02 2014 -0600
+
+    bit better build
+
+ .gitignore  | 26 +++++++++++++++-----------
+ Makefile.am |  3 +++
+ NEWS.in     |  0
+ README.in   |  0
+ THANKS.in   |  0
+ TODO.in     |  0
+ autogen.sh  |  2 +-
+ 7 files changed, 19 insertions(+), 12 deletions(-)
+
+commit ae06f1440d0f053deab63862ec777d9667175abc
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat May 3 23:56:34 2014 -0600
+
+    initial commit of unexicon-system package w/ autoconf build
+
+ .gitignore                     |     33 +
+ 00-nm                          |     73 +
+ 10-ferm                        |    213 +
+ 10-myradeon.conf.save          |     18 +
+ 19-zebra                       |    323 +
+ 20-babel                       |    309 +
+ 20-ospf                        |    414 +
+ 20-ospf6                       |    356 +
+ 20-rip                         |    418 +
+ 20-ripng                       |    359 +
+ 30-hostname                    |    308 +
+ 35-ntp                         |    453 +
+ 37-nis                         |    331 +
+ 39-lldp                        |    296 +
+ 50-geoip                       |    224 +
+ 80-net-name-slot.rules         |      8 +
+ 80-net-setup-link.rules        |      8 +
+ 99-xtra-systemd.rules          |      4 +
+ Makefile.am                    |    130 +
+ NOTES                          |     66 +
+ NetworkManager.conf            |      8 +
+ XX-template                    |    264 +
+ accel-ppp.conf                 |    225 +
+ arch-release                   |      2 +
+ aurgetrc                       |    101 +
+ auth-down                      |     13 +
+ auth-up                        |     12 +
+ auto.master                    |      7 +
+ autofs.service                 |     15 +
+ autogen.sh                     |     40 +
+ autologin@.service             |     48 +
+ avahi-autoipd@.service         |     19 +
+ avahi-daemon.conf              |    109 +
+ babeld.conf                    |     33 +
+ configure.template             |     82 +
+ dhclient.conf                  |      8 +
+ dhcpcd-hooks.lst               |      8 +
+ dhcpcd.conf                    |    215 +
+ dispatchers.lst                |      7 +
+ dnsmasq.conf                   |    648 +
+ domainname-control             |    257 +
+ dump-services                  |      8 +
+ etc-pacman.d-gnupg.mount       |      9 +
+ eth0                           |      9 +
+ eth1                           |      9 +
+ ferm-control                   |    256 +
+ ferm.conf                      |      1 +
+ fstab                          |      6 +
+ functions                      |     20 +
+ g_wheel                        |      1 +
+ grub                           |     57 +
+ hostname                       |      1 +
+ hosts                          |      9 +
+ hosts.allow                    |      7 +
+ hosts.deny                     |      7 +
+ hosts.dnsmasq                  |    830 +
+ ifplugd.conf                   |     42 +
+ ip-down-hooks.lst              |      5 +
+ ip-pre-up                      |     15 +
+ ip-pre-up-hooks.lst            |      1 +
+ ip-up-hooks.lst                |      5 +
+ ipinfodb-lookup                |     28 +
+ ipinfodb.key                   |      1 +
+ issue                          |      3 +
+ linux-lts.preset               |     14 +
+ linux.preset                   |     14 +
+ locale.conf                    |      1 +
+ locale.gen                     |    462 +
+ lsb-release                    |      4 +
+ mirrorlist                     |    250 +
+ mkinitcpio.conf                |     70 +
+ netgroup                       |      0
+ networks                       |     25 +
+ nsswitch.conf                  |     22 +
+ ntp.conf                       |    110 +
+ ntpd-control                   |    353 +
+ os-release                     |      5 +
+ ospfd.conf                     |     82 +
+ overlay.lst                    |     60 +
+ pacman-init.service            |     15 +
+ pacman.conf                    |    105 +
+ rgb.txt                        |    754 +
+ ripd.conf                      |     92 +
+ service-names-port-numbers.xml | 110466 ++++++++++++++++++++++++++++++++++
+ service-types                  |  11072 ++++
+ service-types.db               |    Bin 0 -> 1290240 bytes
+ snmpd.conf                     |    195 +
+ snmpd.service                  |     13 +
+ snmptrapd.service              |     13 +
+ ssh_config                     |     47 +
+ sshd_config                    |    139 +
+ su                             |      6 +
+ template-control               |    256 +
+ timezone                       |      1 +
+ tmp.dat                        |      1 +
+ tmp.xml                        |      1 +
+ u_unexicon                     |      1 +
+ unexicon-setup                 |     57 +
+ unexicon-setup.service         |     11 +
+ unexicon.ferm                  |    141 +
+ unexicon.service               |     41 +
+ units.lst                      |      6 +
+ update-avahi-service-types     |     67 +
+ update-config-functions        |    113 +
+ update-config-template         |    192 +
+ vars.ferm                      |      1 +
+ vars.sh                        |     38 +
+ vconsole.conf                  |      2 +
+ vimrc                          |     16 +
+ vtysh.conf                     |     11 +
+ yp.conf                        |     24 +
+ ypbind-control                 |    261 +
+ ypwait                         |      9 +
+ zebra-control                  |    322 +
+ zebra.conf                     |     31 +
+ 115 files changed, 133787 insertions(+)
