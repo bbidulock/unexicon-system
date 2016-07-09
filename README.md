@@ -2,14 +2,14 @@
 
 ### unexicon-system
 
-Package unexicon-system-1.1.49 was released under GPLv3 license 2016-05-25.
+Package unexicon-system-1.2 was released under GPLv3 license 2016-07-09.
 
 This is a set of configuration files, dispatchers and hook scripts that
 are use to mount the "Unexicon Live" platform.
 
 ### Release
 
-This is the unexicon-system-1.1.49 package, released 2016-05-25.  This
+This is the unexicon-system-1.2 package, released 2016-07-09.  This
 release, and the latest version, can be obtained from the GitHub
 repository at [](https://github.com/bbidulock/unexicon-system), using
 a command such as:

@@ -1,7 +1,7 @@
 
 AC_PREREQ([2.69])
-AC_INIT([unexicon-system],[1.1.49],[http://github.com/bbidulock/unexicon-system],[unexicon-system])
-AC_REVISION([1.1.49])
+AC_INIT([unexicon-system],[1.2],[http://github.com/bbidulock/unexicon-system],[unexicon-system])
+AC_REVISION([1.2])
 
 AC_CONFIG_SRCDIR([configure.ac])
 AC_CONFIG_HEADERS([autoconf.h])
@@ -9,7 +9,7 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([scripts])
 AC_USE_SYSTEM_EXTENSIONS
 
-DATE='2016-05-25'
+DATE='2016-07-09'
 AC_SUBST([DATE])
 
 # Initialize Automake

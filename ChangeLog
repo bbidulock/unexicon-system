@@ -1,5 +1,30 @@
 # created with git log --stat=76 -M -C|fmt -sct -w80
 
+commit 208ebf28a9aac465868a483486a7fef8b6b61bcd
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Jul 9 15:52:26 2016 -0600
+
+    simplify distribution
+
+ .gitignore                         |  31 +-
+ AUTHORS                            |   3 +
+ ChangeLog                          | 738 +++++++++++++++++++++++++++++++++
+ Makefile.am                        |  85 ++--
+ NEWS                               |  67 +++
+ NEWS.in                            |  11 -
+ README.in                          |  56 ---
+ README.md                          |  53 +++
+ README.md.in                       |  53 +++
+ THANKS.in => THANKS                |   0
+ TODO.in => TODO                    |   0
+ autogen.sh                         |  54 +--
+ configure.template => configure.ac |  12 +-
+ configure.sh                       |  38 ++
+ dist.sh                            |   9 +
+ gennews.sh                         |  34 ++
+ rebuild.sh                         |  11 +
+ 17 files changed, 1110 insertions(+), 145 deletions(-)
+
 commit a2dc480393091377b79c53cb880ff6225fa6b4bc
 Author: Brian Bidulock <bidulock@openss7.org>
 Date:   Wed May 25 00:46:20 2016 -0600

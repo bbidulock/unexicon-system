@@ -1,11 +1,11 @@
-unexicon-system -- history of user-visible changes.  2016-05-25
+unexicon-system -- history of user-visible changes.  2016-07-09
 
-Release unexicon-system-1.1.49 released 2016-05-25
---------------------------------------------------
+Release unexicon-system-1.2 released 2016-07-09
+-----------------------------------------------
 
-git shortlog -e -n -w80,6,8 1.1...HEAD
+git shortlog -e -n -w80,6,8 1.1...1.2
 
-Brian Bidulock <bidulock@openss7.org> (49):
+Brian Bidulock <bidulock@openss7.org> (50):
       bit better build
       passes a distcheck
       updates to autofs.service
@@ -55,6 +55,7 @@ Brian Bidulock <bidulock@openss7.org> (49):
       dependencies for autofs
       better autogen.sh
       lldpd socket location changed
+      simplify distribution
 
 
 Release unexicon-system-1.1 released 2014-05-03
