@@ -22,7 +22,7 @@ Please see the [NEWS][2] file for release notes and history of user
 visible changes for the current version, and the [ChangeLog][3]
 file for a more detailed history of implementation changes.  The
 [TODO][4] file lists features not yet implemented and other
-oustanding items.
+outstanding items.
 
 Please see the [INSTALL][5] file for installation instructions.
 
@@ -70,4 +70,4 @@ Report problems at GitHub [here][7].
 [6]: COPYING
 [7]: https://github.com/bbidulock/@PACKAGE@/issues
 
-[ vim: set ft=markdown sw=4 tw=72 nocin nosi fo+=tcqlorn: ]: #
+[ vim: set ft=markdown sw=4 tw=72 nocin nosi fo+=tcqlorn spell: ]: #
