@@ -1,6 +1,9 @@
 [Unit]
 Description=Automatic wired network interface setup for unexicon
-After=local-fs.target
+Documentation=man:ifplugd(8)
+BindsTo=sys-subsystem-net-devices-%i.device
+After=sys-subsystem-net-devices-%i.device network-pre.target
+Before=network.target
 
 [Service]
 Type=forking
