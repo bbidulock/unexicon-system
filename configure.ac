@@ -87,6 +87,9 @@ AC_SUBST([avahiconfdir])
 lldpdconfdir='${sysconfdir}/lldpd.d'
 AC_SUBST([lldpdconfdir])
 
+snmpdconfdir='${sysconfdir}/snmp'
+AC_SUBST([snmpdconfdir])
+
 
 test "x$prefix" = xNONE && prefix="$ac_default_prefix"
 

@@ -136,6 +136,9 @@ dist_modulesload_DATA = \
 dist_lldpdconf_DATA = \
 	lldpd-unexicon.conf
 
+dist_snmpdconf_DATA = \
+	snmpd.conf
+
 00-nm.sh: 00-nm
 	rm -f $@; $(LN_S) $< $@
 
