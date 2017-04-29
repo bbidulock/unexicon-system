@@ -1,10 +1,10 @@
 @hook pre "echo 1 > /proc/sys/net/ipv4/ip_dynaddr";
-@hook pre "echo 1 > /proc/sys/net/ipv4/conf/all/rp_filter";
+@hook pre "echo 0 > /proc/sys/net/ipv4/conf/all/rp_filter";
 @hook pre "echo 0 > /proc/sys/net/ipv4/conf/all/accept_source_route";
 @hook pre "echo 0 > /proc/sys/net/ipv4/conf/all/accept_redirects";
 @hook pre "echo 0 > /proc/sys/net/ipv4/conf/all/log_martians";
 @hook pre "echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts";
-@hook pre "echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all";
+@hook pre "echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_all";
 @hook pre "echo 1 > /proc/sys/net/ipv4/icmp_ignore_bogus_error_responses";
 @hook post "echo 1 >/proc/sys/net/ipv4/ip_forward";
 @hook post "echo 1 >/proc/sys/net/ipv4/conf/all/forwarding";

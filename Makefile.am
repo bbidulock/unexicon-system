@@ -139,6 +139,9 @@ dist_lldpdconf_DATA = \
 dist_snmpdconf_DATA = \
 	snmpd.conf
 
+dist_sysctl_DATA = \
+	forwarding.conf
+
 00-nm.sh: 00-nm
 	rm -f $@; $(LN_S) $< $@
 

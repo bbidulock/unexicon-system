@@ -90,6 +90,8 @@ AC_SUBST([lldpdconfdir])
 snmpdconfdir='${sysconfdir}/snmp'
 AC_SUBST([snmpdconfdir])
 
+sysctldir='${sysconfdir}/sysctl.d'
+AC_SUBST([sysctldir])
 
 test "x$prefix" = xNONE && prefix="$ac_default_prefix"
 
