@@ -10,7 +10,7 @@ IgnoreOnIsolate=yes
 [Service]
 Type=forking
 PIDFile=/run/avahi-autoipd.%I.pid
-ExecStart=/usr/bin/avahi-autoipd -D -w --force-bind %I
+ExecStart=/usr/bin/avahi-autoipd -D -w %I
 ExecReload=/usr/bin/avahi-autoipd -r %I
 ExecStop=/usr/bin/avahi-autoipd -k %I
 Restart=always
