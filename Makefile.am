@@ -81,9 +81,11 @@ dist_udevconfrules_DATA = \
 	80-net-setup-link.rules
 
 dist_udevrules_DATA = \
-	99-xtra-systemd.rules \
+	99-unexicon-autoipd.rules \
+	99-unexicon-dhcpcd.rules \
 	99-unexicon-ifplugd.rules \
-	99-unexicon-autoipd.rules
+	99-unexicon-wpa_supplicant.rules \
+	99-xtra-systemd.rules
 
 dist_ferm_DATA = \
 	vars.sh \
@@ -119,9 +121,11 @@ dist_systemdsystemunit_DATA = \
 	unexicon-setup.service \
 	unexicon-snmpd.service \
 	unexicon-snmptrapd.service \
+	unexicon-sshd.service \
+	unexicon-sshd@.service \
+	unexicon-sshd.socket \
+	unexicon-wpa_supplication@.service \
 	unexicon-ypbind.service
-
-
 
 dist_ifplugdconf_SCRIPTS = \
 	unexicon.action
@@ -141,6 +145,9 @@ dist_snmpdconf_DATA = \
 
 dist_sysctl_DATA = \
 	forwarding.conf
+
+dist_ssh_DATA = \
+	unexicon-sshd_config
 
 00-nm.sh: 00-nm
 	rm -f $@; $(LN_S) $< $@

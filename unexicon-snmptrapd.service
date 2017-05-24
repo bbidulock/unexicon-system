@@ -1,7 +1,8 @@
 [Unit]
 Description=Simple Network Management Protocol (SNMP) Trap Daemon
 Documentation=man:snmptrapd(8) man:snmpcmd(5)
-After=syslog.target network.target
+After=syslog.target network-online.target
+Wants=network-online.target
 
 [Service]
 Type=forking

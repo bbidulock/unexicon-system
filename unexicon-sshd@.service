@@ -1,0 +1,9 @@
+[Unit]
+Description=OpenSSH Per-Connection Daemon
+Documentation=man:sshd(8)
+After=sshdgenkeys.service
+
+[Service]
+ExecStart=-/usr/bin/sshd -i -f /etc/ssh/unexicon-sshd_config
+StandardInput=socket
+StandardError=syslog

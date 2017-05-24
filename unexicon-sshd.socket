@@ -1,0 +1,13 @@
+[Unit]
+Description=SSH Daemon Listen Socket
+Documentation=man:sshd(8)
+Conflicts=sshd.service
+Wants=sshdgenkeys.service
+
+[Socket]
+ListenStream=22
+Accept=yes
+
+[Install]
+WantedBy=sockets.target
+Alias=sshd.socket

@@ -93,6 +93,9 @@ AC_SUBST([snmpdconfdir])
 sysctldir='${sysconfdir}/sysctl.d'
 AC_SUBST([sysctldir])
 
+sshdir='${sysconfdir}/ssh'
+AC_SUBST([sshdir])
+
 test "x$prefix" = xNONE && prefix="$ac_default_prefix"
 
 sharedir="$datadir"

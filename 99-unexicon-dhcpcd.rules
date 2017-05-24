@@ -1,0 +1,3 @@
+ACTION=="remove", GOTO="unexicon_dhcpcd_end"
+#SUBSYSTEM=="net", KERNEL=="eth*|usb*|en*|wlan*", TAG+="systemd", ENV{SYSTEMD_ALIAS}+="/sys/subsystem/net/devices/$name", ENV{SYSTEMD_WANTS}+="unexicon-dhcpcd@%k.service"
+LABEL="unexicon_dhcpcd_end"
