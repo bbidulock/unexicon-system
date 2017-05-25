@@ -151,7 +151,7 @@ unx_unit_add ()
 {
 	local addr iface passive= scopes= area ntype cost
 	for addr in $3; do
-		scopes="${scopes:+$scopes }$(unit_test_ipv5_addr $addr)"
+		scopes="${scopes:+$scopes }$(unx_unit_test_ipv6_addr $addr)"
 	done
 	syslog debug "Scopes are: '$scopes'"
 	case " $scopes " in
