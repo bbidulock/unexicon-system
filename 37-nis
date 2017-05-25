@@ -137,16 +137,16 @@ unx_unit_rebuild_config ()
 		if [ -e $sconf ]; then
 			if ! diff $stemp $sconf &>/dev/null; then
 				cp -pf -- $stemp $sconf
-				systemctl try-reload-or-restart $unx_unit autofs || :
+				systemctl --no-block try-reload-or-restart unexicon-$unx_unit unexicon-autofs || :
 			fi
 		else
 			cp -pf -- $stemp $sconf
-			systemctl --runtime enable $unx_unit autofs || :
+			systemctl --no-block --now --runtime enable unexicon-$unx_unit unexicon-autofs || :
 		fi
 		rm -f -- $stemp
 	else
 		syslog debug "No defined server or domain, shutting down"
-		systemctl --now --runtime disable autofs $unx_unit || :
+		systemctl --no-block --now --runtime disable unexicon-autofs unexicon-$unx_unit || :
 		unx_unit_set_domainname || :
 		if [ -s $dsave ]; then
 			cp -pf -- $dsave $dconf

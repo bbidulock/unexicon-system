@@ -46,12 +46,12 @@ fi
 
 unx_unit_remove ()
 {
-	systemctl try-reload-or-restart $unx_unit || :
+	systemctl --no-block try-reload-or-restart unexicon-$unx_unit || :
 }
 
 unx_unit_add ()
 {
-	systemctl --runtime enable $unx_unit || :
+	systemctl --no-block try-reload-or-restart unexicon-$unx_unit || :
 }
 
 unx_unit_nm_add ()
