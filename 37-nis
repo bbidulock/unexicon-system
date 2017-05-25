@@ -66,7 +66,7 @@ unx_unit_rebuild_config ()
 	ssave="$unx_unit_dir/$(basename $sconf).save"
 	sfiles=$(find $unx_unit_dir -name '*_servers' 2>/dev/null)
 	dconf=/etc/nisdomainname
-	dsave="$unx_init_dir/$(basenaem $dconf).save"
+	dsave="$unx_init_dir/$(basename $dconf).save"
 	dfiles=$(find $unx_unit_dir -name '*_domain' 2>/dev/null)
 	if [ -n "$sfiles$dfiles" ]; then
 		syslog debug "Defined servers are $sfiles"
@@ -109,7 +109,7 @@ unx_unit_rebuild_config ()
 				touch $dsave
 			fi
 		fi
-		dtemp=$(mktemp "$unx_unit_dir/$(basenaem $dconf).XXXXXX") || return
+		dtemp=$(mktemp "$unx_unit_dir/$(basename $dconf).XXXXXX") || return
 		chmod --reference=$dsave $dtemp
 		chown --reference=$dsave $dtemp
 		{
