@@ -1,12 +1,12 @@
 [Unit]
-Description=Simple Network Management Protocol (SNMP) Trap Daemon
+Description=Simple Network Management Protocol (SNMP) TRAP Daemon
 Documentation=man:snmptrapd(8) man:snmpcmd(5)
 After=syslog.target network.target
 
 [Service]
 Type=forking
 PIDFile=/run/snmptrapd.pid
-ExecStart=/usr/bin/snmptrapd -LS 0-5 d -Lf /dev/null -p /run/snmptrapd.pid
+ExecStart=/usr/bin/snmptrapd -p /run/snmptrapd.pid -LS 0-5 d -Lf /dev/null
 ExecReload=/bin/kill -HUP $MAINPID
 
 [Install]

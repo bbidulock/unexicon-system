@@ -5,10 +5,8 @@ Requires=unexicon-avahi-daemon.socket unexicon-avahi-daemon.service
 After=unexicon-avahi-daemon.socket
 
 [Service]
-Type=forking
-ExecStart=/usr/bin/avahi-dnsconfd -D
-ExecReload=/usr/bin/avahi-dnsconfd -r
-ExecStop=/usr/bin/avahi-dnsconfd -k
+Type=simple
+ExecStart=/usr/bin/avahi-dnsconfd -s
 
 [Install]
 WantedBy=multi-user.target
