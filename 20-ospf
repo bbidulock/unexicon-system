@@ -89,7 +89,6 @@ unx_unit_rebuild_config ()
 			!
 			router $unx_name
 			 no $unx_name router-id
-			 no network 169.254.0.0/16
 			EOF
 			[ -z "$nfiles" ] || cat $nfiles|awk '{if($0&&!($0 in seen)){seen[$0]=1;print$0}}'
 			[ -z "$afiles" ] || cat $afiles|awk '{if($0&&!($0 in seen)){seen[$0]=1;print$0}}'
@@ -97,7 +96,6 @@ unx_unit_rebuild_config ()
 			cat<<-'EOF'
 			 redistribute kernel
 			 redistribute static
-			 redistribute connected
 			 redistribute rip
 			 redistribute bgp
 			 default-information originate
