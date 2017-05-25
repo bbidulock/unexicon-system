@@ -141,7 +141,7 @@ unx_unit_rebuild_config ()
 			fi
 		else
 			cp -pf -- $stemp $sconf
-			systemctl --now --runtime enable $unx_unit autofs || :
+			systemctl --runtime enable $unx_unit autofs || :
 		fi
 		rm -f -- $stemp
 	else

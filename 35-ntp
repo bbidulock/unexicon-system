@@ -169,7 +169,7 @@ unx_unit_rebuild_config ()
 			fi
 		else
 			cp -pf -- $temp $conf
-			systemctl --now --runtime enable ntpdate $unx_unit || :
+			systemctl --runtime enable ntpdate $unx_unit || :
 		fi
 		rm -f -- $temp
 	else

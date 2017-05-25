@@ -51,7 +51,7 @@ unx_unit_remove ()
 
 unx_unit_add ()
 {
-	systemctl --now --runtime enable $unx_unit || :
+	systemctl --runtime enable $unx_unit || :
 }
 
 unx_unit_nm_add ()
