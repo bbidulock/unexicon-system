@@ -1,9 +1,8 @@
 [Unit]
 Description=YP Bind
 Requires=rpcbind.service domainname.service
-After=rpcbind.service domainname.service network-online.target
+After=rpcbind.service domainname.service network.target
 Before=nss-user-lookup.target systemd-user-sessions.service
-Wants=network-online.target
 
 [Service]
 Type=forking

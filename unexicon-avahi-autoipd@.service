@@ -1,7 +1,8 @@
 [Unit]
 Description=Avahi auto IP on %I
 Documentation=man:avahi-autoipd(8)
-After=network.target
+Wants=network.target
+Before=network.target
 BindsTo=sys-subsystem-net-devices-%i.device
 After=sys-subsystem-net-devices-%i.device
 IgnoreOnIsolate=yes

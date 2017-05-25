@@ -3,7 +3,6 @@ Description=Automatic wired network interface setup for unexicon
 Documentation=man:ifplugd(8)
 BindsTo=sys-subsystem-net-devices-%i.device
 After=sys-subsystem-net-devices-%i.device network-pre.target
-Wants=network.target
 Before=network.target
 
 [Service]

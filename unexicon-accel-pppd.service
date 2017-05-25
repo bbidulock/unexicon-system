@@ -3,7 +3,6 @@ Description=Unexicon Accel-PPPD Daemon
 Documentation=man:accel-ppp.conf(5)
 Conflicts=pptpd.service
 After=network-online.target
-Wants=network-online.target
 
 [Service]
 ExecStart=/usr/bin/accel-pppd -d -p /run/accel-pppd.pid -c /etc/accel-ppp-unexicon.conf
