@@ -95,7 +95,7 @@ unx_unit_rebuild_config ()
 		if [ -e $conf ]; then
 			if ! diff $temp $conf &>/dev/null; then
 				cp -pf -- $temp $conf
-				systemctl reload-or-try-restart $unx_unit || :
+				systemctl try-reload-or-restart $unx_unit || :
 			fi
 		else
 			cp -pf -- $temp $conf

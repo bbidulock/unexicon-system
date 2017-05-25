@@ -137,7 +137,7 @@ unx_unit_rebuild_config ()
 		if [ -e $sconf ]; then
 			if ! diff $stemp $sconf &>/dev/null; then
 				cp -pf -- $stemp $sconf
-				systemctl reload-or-try-restart $unx_unit autofs || :
+				systemctl try-reload-or-restart $unx_unit autofs || :
 			fi
 		else
 			cp -pf -- $stemp $sconf

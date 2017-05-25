@@ -46,7 +46,7 @@ fi
 
 unx_unit_remove ()
 {
-	systemctl reload-or-try-restart $unx_unit || :
+	systemctl try-reload-or-restart $unx_unit || :
 }
 
 unx_unit_add ()
