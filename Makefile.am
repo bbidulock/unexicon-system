@@ -124,7 +124,7 @@ dist_systemdsystemunit_DATA = \
 	unexicon-sshd.service \
 	unexicon-sshd@.service \
 	unexicon-sshd.socket \
-	unexicon-wpa_supplication@.service \
+	unexicon-wpa_supplicant@.service \
 	unexicon-ypbind.service
 
 dist_ifplugdconf_SCRIPTS = \
