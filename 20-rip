@@ -188,7 +188,7 @@ unx_unit_add ()
 	*" multicast "*|*" reserved "*|*" default "*|*)
 		unx_unit_remove $@; return 0 ;;
 	esac
-	if $4 ; then iface= ; fi
+	[ -n "$4" ] && iface=
 	syslog debug "iface='$iface' passive='$passive'"
 	case "$iface" in
 	"") unx_unit_remove $@; return 0 ;;
