@@ -10,7 +10,7 @@ Conflicts=unexicon-dhcpcd.service dhcpcd.service
 [Service]
 Type=forking
 PIDFile=/run/dhcpcd-%I.pid
-ExecStart=/usr/bin/dhcpcd -q --waitip 4 -f /etc/dhcpcd-unexicon.conf %I 
+ExecStart=/usr/bin/dhcpcd -q --waitip=4 -f /etc/dhcpcd-unexicon.conf %I 
 ExecStop=/usr/bin/dhcpcd -x -f /etc/dhcpcd-unexicon.conf %I
 
 [Install]
