@@ -186,7 +186,6 @@ dist_ssh_DATA = \
 	rm -f $@; $(LN_S) $< $@
 
 dist_dhcpcdhooks_DATA = \
-	00-nm \
 	10-ferm \
 	19-zebra \
 	20-babel \
