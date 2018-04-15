@@ -163,10 +163,9 @@ unx_unit_nm_add ()
 	*" multicast "*|*" reserved "*|*" default "*|*)
 		unx_unit_remove $@; return 0 ;;
 	esac
-	[ $DHCP4_IFWIRELESS -eq 1 ] && iface=
+	[ $DHCP4_IFWIRELESS -eq 1 ] && passive=
 	syslog debug "iface='$iface' passive='$passive'"
 	case "$iface" in
-	"") unx_unit_remove $@; return 0 ;;
 	tun*|ppp*) passive= ;;
 	esac
 	echo "interface $iface" >$unx_unit_dir/${1}_interface
