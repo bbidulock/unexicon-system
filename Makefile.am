@@ -118,6 +118,7 @@ dist_systemdsystemunit_DATA = \
 	unexicon-ferm.service \
 	unexicon-ifplugd@.service \
 	unexicon-lldpd.service \
+	unexicon-nscd.service \
 	unexicon-setup.service \
 	unexicon-snmpd.service \
 	unexicon-snmptrapd.service \
