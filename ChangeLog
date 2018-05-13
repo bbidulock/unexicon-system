@@ -1,4 +1,419 @@
-# created with git log --stat=76 -M -C|fmt -sct -w80
+# created with git log --stat=76 -M -C -300|fmt -sct -w80
+
+commit f06501c7b04a8fc742fa52278d7ae5db6978c8be
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun May 13 04:21:38 2018 -0600
+
+    add unexicon-nscd.service
+
+ Makefile.am           |  1 +
+ unexicon-nscd.service | 22 ++++++++++++++++++++++
+ 2 files changed, 23 insertions(+)
+
+commit 7d340a020029b3ef338a350ff2a0ad00d1818329
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Apr 28 05:45:22 2018 -0600
+
+    update nsswitch.conf
+
+ nsswitch.conf | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
+
+commit ecf6b9f1ca2b64cb99adc9301a70732c924e8e2f
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Apr 15 00:19:35 2018 -0600
+
+    network-manager hook is broken, do not install it
+
+ Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit c9a043a70189e4439060062fdf5b62e283187dde
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Apr 14 23:45:17 2018 -0600
+
+    fix wireless behaviour
+
+ 20-ospf  | 3 +--
+ 20-ospf6 | 3 +--
+ 20-rip   | 3 +--
+ 20-ripng | 3 +--
+ 4 files changed, 4 insertions(+), 8 deletions(-)
+
+commit 77d03639103e8b92f311180fb0b54afe0bfcc7af
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon Sep 11 02:22:37 2017 -0600
+
+    update build system
+
+ Makefile.am  | 16 +++++++--------
+ README.md    | 61 +++++++++++++++++++++++++++++++-------------------------
+ README.md.in | 61 +++++++++++++++++++++++++++++++-------------------------
+ autogen.sh   |  9 +++++++++
+ configure.ac | 45 ++++++++++++++++++++++++++++++++++++++++-
+ configure.sh | 19 +++++++++++-------
+ rebuild.sh   |  4 ++--
+ 7 files changed, 143 insertions(+), 72 deletions(-)
+
+commit 5e38fef856d1f09e499b21202d95431dd532cf9a
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu May 25 16:30:58 2017 -0600
+
+    put option in right place
+
+ dhcpcd-unexicon.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 05404b5827b9143b7875085b8202f1313aedd561
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu May 25 16:27:48 2017 -0600
+
+    option spelling error
+
+ dhcpcd-unexicon.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 37f4f17b979333c9b04654152422f2bed26bb0f2
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu May 25 16:21:30 2017 -0600
+
+    was too fast
+
+ dhcpcd-unexicon.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fa7a3b4decc8a8e055eb5536a0f36fd9efca1400
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu May 25 16:15:03 2017 -0600
+
+    wait five seconds for ipv4 address
+
+ dhcpcd-unexicon.conf | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit ca7000a62f9616151455a08821857b0a312356e6
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu May 25 16:13:22 2017 -0600
+
+    correction
+
+ 20-rip | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2bdec1e8b571dc43c6ea149e547c889aac030b30
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu May 25 15:49:12 2017 -0600
+
+    never block in hook script
+
+ 10-ferm  | 4 ++--
+ 19-zebra | 6 +++---
+ 20-babel | 6 +++---
+ 20-ospf  | 6 +++---
+ 20-ospf6 | 6 +++---
+ 20-rip   | 6 +++---
+ 20-ripng | 6 +++---
+ 35-ntp   | 6 +++---
+ 37-nis   | 6 +++---
+ 39-lldp  | 6 +++---
+ 10 files changed, 29 insertions(+), 29 deletions(-)
+
+commit 7d42e8f3ce1cfa34d14f2cf240244eaba2bcf11b
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu May 25 14:52:31 2017 -0600
+
+    corrections
+
+ 20-ospf  | 2 +-
+ 20-ospf6 | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit d6729382c09e8c36f43bf343c7fe2539eab466da
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu May 25 14:37:52 2017 -0600
+
+    misspelt command
+
+ 37-nis | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit e32befabd1ddf42e2f773ce0a96c3301a560f60d
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu May 25 14:34:30 2017 -0600
+
+    command spelt wrong
+
+ 10-ferm                | 2 +-
+ 19-zebra               | 2 +-
+ 20-babel               | 2 +-
+ 20-ospf                | 2 +-
+ 20-ospf6               | 2 +-
+ 20-rip                 | 2 +-
+ 20-ripng               | 2 +-
+ 35-ntp                 | 2 +-
+ 37-nis                 | 2 +-
+ 39-lldp                | 2 +-
+ XX-template            | 2 +-
+ update-config-template | 2 +-
+ 12 files changed, 12 insertions(+), 12 deletions(-)
+
+commit 60d65ecf1252a06021d00cb3a4305d252b67d27e
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu May 25 13:49:31 2017 -0600
+
+    don't start them immediately, let systemd do that on boot
+
+ 10-ferm                 | 2 +-
+ 19-zebra                | 2 +-
+ 20-babel                | 2 +-
+ 20-ospf                 | 2 +-
+ 20-ospf6                | 2 +-
+ 20-rip                  | 2 +-
+ 20-ripng                | 2 +-
+ 35-ntp                  | 2 +-
+ 37-nis                  | 2 +-
+ 39-lldp                 | 2 +-
+ accel-ppp-unexicon.conf | 2 +-
+ accel-ppp.conf          | 2 +-
+ 12 files changed, 12 insertions(+), 12 deletions(-)
+
+commit 5a2605510288a3a84a51b9c39eecd3cc8c4a1e03
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu May 25 09:50:37 2017 -0600
+
+    take wlan out of ifplugd
+
+ 99-unexicon-ifplugd.rules | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c8c38630f17bf46ca7a34abb246562474ef9089b
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu May 25 09:46:59 2017 -0600
+
+    correct some services
+
+ unexicon-accel-pppd.service     | 6 ++++--
+ unexicon-autofs.service         | 3 ++-
+ unexicon-avahi-dnsconfd.service | 6 ++----
+ unexicon-dnsmasq.service        | 4 ++--
+ unexicon-snmpd.service          | 2 +-
+ unexicon-snmptrapd.service      | 4 ++--
+ unexicon-ypbind.service         | 3 ++-
+ 7 files changed, 15 insertions(+), 13 deletions(-)
+
+commit 98aa401b8895cfee0aa0a1578784d6a23211d832
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu May 25 05:53:53 2017 -0600
+
+    give up
+
+ 20-ospf                   | 2 --
+ 20-ospf6                  | 2 --
+ 99-unexicon-autoipd.rules | 2 +-
+ 3 files changed, 1 insertion(+), 5 deletions(-)
+
+commit ac141f20de81c272af33b647ffe64bfbfeec9ee5
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Wed May 24 23:17:09 2017 -0600
+
+    back out some changes
+
+ unexicon-accel-pppd.service     | 1 -
+ unexicon-avahi-autoipd@.service | 3 ++-
+ unexicon-dhcpcd.service         | 2 +-
+ unexicon-dhcpcd@.service        | 4 ++--
+ unexicon-ifplugd@.service       | 1 -
+ unexicon-snmpd.service          | 3 +--
+ unexicon-snmptrapd.service      | 3 +--
+ unexicon-ypbind.service         | 3 +--
+ 8 files changed, 8 insertions(+), 12 deletions(-)
+
+commit 72a5438b978d1204dab458aecc5b061081ab0b15
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Wed May 24 18:44:03 2017 -0600
+
+    a few fixups
+
+ 20-ospf                  | 2 ++
+ 20-ospf6                 | 4 ++++
+ 20-rip                   | 2 ++
+ 20-ripng                 | 2 ++
+ unexicon-dhcpcd.service  | 2 +-
+ unexicon-dhcpcd@.service | 2 +-
+ 6 files changed, 12 insertions(+), 2 deletions(-)
+
+commit 2de0a2bb14442e1461ab0195724befe1b7f4b404
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Wed May 24 18:02:48 2017 -0600
+
+    typo
+
+ Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7702f95da2974ca8f327e901151ad31b966aa23b
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Wed May 24 18:01:51 2017 -0600
+
+    missed a file
+
+ unexicon-sshd_config | 136 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 136 insertions(+)
+
+commit 301f0bb740da4385b97c1737109966620dc93ce7
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Wed May 24 17:58:51 2017 -0600
+
+    more correct systemd behaviour
+
+ 99-unexicon-autoipd.rules        |  2 +-
+ 99-unexicon-dhcpcd.rules         |  3 +++
+ 99-unexicon-ifplugd.rules        |  2 +-
+ 99-unexicon-wpa_supplicant.rules |  3 +++
+ Makefile.am                      | 15 +++++++++++----
+ configure.ac                     |  3 +++
+ unexicon-accel-pppd.service      |  1 +
+ unexicon-avahi-autoipd@.service  |  3 +--
+ unexicon-dhcpcd.service          |  2 +-
+ unexicon-dhcpcd@.service         |  4 ++--
+ unexicon-ifplugd@.service        |  1 +
+ unexicon-snmpd.service           |  3 ++-
+ unexicon-snmptrapd.service       |  3 ++-
+ unexicon-sshd.service            | 19 +++++++++++++++++++
+ unexicon-sshd.socket             | 13 +++++++++++++
+ unexicon-sshd@.service           |  9 +++++++++
+ unexicon-wpa_supplicant@.service | 17 +++++++++++++++++
+ unexicon-ypbind.service          |  3 ++-
+ 18 files changed, 92 insertions(+), 14 deletions(-)
+
+commit b6dfd3ff4766588b29b6b338d132bf18fa330a20
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun May 7 19:15:15 2017 -0600
+
+    no force bind avahi-autoipd
+
+ unexicon-avahi-autoipd@.service | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 245dd072232d12276d9a1b1de980c758f0b2c0e6
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat May 6 03:26:11 2017 -0600
+
+    fix ifplugd service file
+
+ unexicon-ifplugd@.service | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+commit 6cf9d27ce4733ef583b11a08bb1e18ea4181b16d
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue May 2 00:56:24 2017 -0600
+
+    add sequencer to oss-compat
+
+ oss-compat.conf | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 3876b1699467a57f64486099eea32c2f28221c71
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon May 1 11:27:20 2017 -0600
+
+    some corrections
+
+ forwarding.conf | 26 ++++++++++++++------------
+ 1 file changed, 14 insertions(+), 12 deletions(-)
+
+commit 5133aa2d176f87eab36027433679313ba943cbf7
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Apr 29 00:39:32 2017 -0600
+
+    get system controls straight
+
+ Makefile.am     |  3 +++
+ configure.ac    |  2 ++
+ forwarding.conf | 35 +++++++++++++++++++++++++++++++++++
+ unexicon.ferm   |  4 ++--
+ 4 files changed, 42 insertions(+), 2 deletions(-)
+
+commit a49f65b8ee88d156b83c4d78f2da5af8d710dae2
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Fri Jan 6 01:21:45 2017 -0700
+
+    net-snmp needs configuration file now
+
+ Makefile.am  | 3 +++
+ configure.ac | 3 +++
+ snmpd.conf   | 4 ++++
+ 3 files changed, 10 insertions(+)
+
+commit 0dede59f4f3499eeb94ad4278091423990c802d7
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Fri Jan 6 00:42:22 2017 -0700
+
+    get order right on ifplugd
+
+ unexicon-ifplugd@.service | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit a0c62eca75d16b2ad6f41774d61a4ec446b99cc7
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Jul 10 02:46:40 2016 -0600
+
+    limit changelog
+
+ Makefile.am | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+commit 14fc59c4c862daea1374a8c603412994d022ead3
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Jul 10 02:32:54 2016 -0600
+
+    better formatting
+
+ README.md    | 4 ++--
+ README.md.in | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+commit 182b15d85ceb4cdc67f8d877d7016751519ee06c
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Jul 10 01:09:38 2016 -0600
+
+    better formatting
+
+ README.md    | 66 ++++++++++++++++++++++++++++++++++++--------------------
+ README.md.in | 66 ++++++++++++++++++++++++++++++++++++--------------------
+ 2 files changed, 86 insertions(+), 46 deletions(-)
+
+commit ca895935a06e477f6db8fd5cbda11909495e63e2
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Jul 10 01:09:28 2016 -0600
+
+    git hates trailing space
+
+ gennews.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1f0bc461516a6c07e65fbbd8066496b1f9f155cf
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Jul 9 17:42:35 2016 -0600
+
+    do not need c compiler
+
+ configure.ac | 1 -
+ configure.sh | 1 -
+ 2 files changed, 2 deletions(-)
+
+commit e37df6aa84d226dcf037c3e21bc322fda803602b
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Jul 9 15:53:55 2016 -0600
+
+    update release files
+
+ AUTHORS      |  2 +-
+ ChangeLog    | 25 +++++++++++++++++++++++++
+ NEWS         | 11 ++++++-----
+ README.md    |  4 ++--
+ configure.ac |  6 +++---
+ 5 files changed, 37 insertions(+), 11 deletions(-)
 
 commit 208ebf28a9aac465868a483486a7fef8b6b61bcd
 Author: Brian Bidulock <bidulock@openss7.org>

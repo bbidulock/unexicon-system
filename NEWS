@@ -1,11 +1,54 @@
-unexicon-system -- history of user-visible changes.  2016-07-09
+unexicon-system -- history of user-visible changes.  2018-05-13
+
+Release unexicon-system-1.2.35 released 2018-05-13
+--------------------------------------------------
+
+git shortlog -e -n -w80,6,8 1.2...HEAD
+
+Brian Bidulock <bidulock@openss7.org> (35):
+      do not need c compiler
+      git hates trailing space
+      better formatting
+      better formatting
+      limit changelog
+      get order right on ifplugd
+      net-snmp needs configuration file now
+      get system controls straight
+      some corrections
+      add sequencer to oss-compat
+      fix ifplugd service file
+      no force bind avahi-autoipd
+      more correct systemd behaviour
+      missed a file
+      typo
+      a few fixups
+      back out some changes
+      give up
+      correct some services
+      take wlan out of ifplugd
+      don't start them immediately, let systemd do that on boot
+      command spelt wrong
+      misspelt command
+      corrections
+      never block in hook script
+      correction
+      wait five seconds for ipv4 address
+      was too fast
+      option spelling error
+      put option in right place
+      update build system
+      fix wireless behaviour
+      network-manager hook is broken, do not install it
+      update nsswitch.conf
+      add unexicon-nscd.service
+
 
 Release unexicon-system-1.2 released 2016-07-09
 -----------------------------------------------
 
 git shortlog -e -n -w80,6,8 1.1...1.2
 
-Brian Bidulock <bidulock@openss7.org> (50):
+Brian Bidulock <bidulock@openss7.org> (51):
       bit better build
       passes a distcheck
       updates to autofs.service
@@ -56,6 +99,7 @@ Brian Bidulock <bidulock@openss7.org> (50):
       better autogen.sh
       lldpd socket location changed
       simplify distribution
+      update release files
 
 
 Release unexicon-system-1.1 released 2014-05-03
