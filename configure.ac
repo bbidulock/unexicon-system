@@ -97,6 +97,9 @@ AC_SUBST([udevconfrulesdir])
 fermdir='${sysconfdir}/ferm'
 AC_SUBST([fermdir])
 
+sssddir='${sysconfdir}/sssd'
+AC_SUBST([sssddir])
+
 avahiservicedir='${sysconfdir}/avahi/services'
 AC_SUBST([avahiservicedir])
 

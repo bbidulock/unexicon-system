@@ -92,6 +92,9 @@ dist_ferm_DATA = \
 	vars.ferm \
 	unexicon.ferm
 
+dist_sssd_DATA = \
+	sssd.conf
+
 dist_avahiservice_DATA = \
 	unexicon.service
 
@@ -100,7 +103,8 @@ dist_sysconf_DATA = \
 	dhcpcd-unexicon.conf \
 	dnsmasq-unexicon.conf \
 	ferm-unexicon.conf \
-	accel-ppp-unexicon.conf
+	accel-ppp-unexicon.conf \
+	nscd-unexicon.conf
 
 dist_bin_SCRIPTS = \
 	ipinfodb-lookup
@@ -279,5 +283,7 @@ AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = \
 
 install-data-hook:
 	chmod 0444 $(DESTDIR)$(dhcpcdhooksdir)/*-*
+	chmod 0711 $(DESTDIR)$(sssddir)
+	chmod 0600 $(DESTDIR)$(sssddir)/sssd.conf
 
 #	chmod 0700 $(DESTDIR)$(nmdispatcherdir)/*-*
