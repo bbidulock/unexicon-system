@@ -132,6 +132,9 @@ dist_systemdsystemunit_DATA = \
 	unexicon-wpa_supplicant@.service \
 	unexicon-ypbind.service
 
+dist_logindsnippet_DATA = \
+	noipsandbox.conf
+
 dist_ifplugdconf_SCRIPTS = \
 	unexicon.action
 
