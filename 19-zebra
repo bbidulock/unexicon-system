@@ -95,16 +95,16 @@ unx_unit_rebuild_config ()
 		if [ -e $conf ]; then
 			if ! diff $temp $conf &>/dev/null; then
 				cp -pf -- $temp $conf
-				systemctl --no-block try-reload-or-restart $unx_unit || :
+#				systemctl --no-block try-reload-or-restart $unx_unit || :
 			fi
 		else
 			cp -pf -- $temp $conf
-			systemctl --no-block --now --runtime enable $unx_unit || :
+#			systemctl --no-block --now --runtime enable $unx_unit || :
 		fi
 		rm -f -- $temp
 	else
 		syslog debug "No defined server, shutting down"
-		systemctl --no-block --now --runtime disable $unx_unit || :
+#		systemctl --no-block --now --runtime disable $unx_unit || :
 		if [ -s $save ]; then
 			cp -pf -- $save $conf
 		else
