@@ -248,6 +248,11 @@ dist_pppipdown_SCRIPTS = \
 dist_modprobe_DATA = \
 	blacklist-mei_me.conf
 
+dist_wpaconf_DATA = \
+	wpa_supplicant.conf \
+	wpa_supplicant-wlan0.conf \
+	wpa_supplicant-wlan1.conf
+
 AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = \
 	00-nm.sh \
 	10-ferm \

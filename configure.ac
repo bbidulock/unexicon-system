@@ -145,6 +145,9 @@ AC_SUBST([sysctldir])
 sshdir='${sysconfdir}/ssh'
 AC_SUBST([sshdir])
 
+wpaconfdir='${sysconfdir}/wpa_supplicant'
+AC_SUBST([wpaconfdir])
+
 test "x$prefix" = xNONE && prefix="$ac_default_prefix"
 
 sharedir="$datadir"
