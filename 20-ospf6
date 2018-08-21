@@ -155,10 +155,12 @@ unx_unit_add ()
 	done
 	syslog debug "Scopes are: '$scopes'"
 	case " $scopes " in
-	*" public "*)		iface="$DEVICE_IP_IFACE"; passive= ; cost=200 ;;
-	*" unexicon "*)		iface="$DEVICE_IP_IFACE"; passive= ; cost=300 ;;
-	*" private "*)		iface="$DEVICE_IP_IFACE"; passive='no '; cost=100 ;;
-	*" linklocal "*)	iface="$DEVICE_IP_IFACE"; passive='no '; cost=10 ;;
+	*" public "*)		iface="$2"; passive= ; cost=200 ;;
+	*" unexicon "*)		iface="$2"; passive= ; cost=300 ;;
+	*" l2tp "*|*" pppoe "*|*" unxres "*)
+				iface="$2"; passive='no '; cost=20 ;;
+	*" private "*)		iface="$2"; passive='no '; cost=100 ;;
+	*" linklocal "*)	iface="$2"; passive='no '; cost=10 ;;
 	*" multicast "*|*" reserved "*|*" default "*|*)
 				unx_unit_remove $@; return 0 ;;
 	esac
@@ -175,30 +177,47 @@ unx_unit_add ()
 	echo " ${passive}passive-interface $iface" >$unx_unit_dir/${1}_passive
 	cat /dev/null >$unx_unit_dir/${1}_network
 	cat /dev/null >$unx_unit_dir/${1}_area
-	for addr in $3; do
-		subnet=$(echo $addr|awk '{if($1)print$1}')
-		gatewy=$(echo $addr|awk '{if($2)print$2}')
-		case "$(unx_unit_test_ipv6_addr $addr)" in
-		public)		[ -z "$subnet" ] || echo " network $subnet area 0.0.0.0" >>$unx_unit_dir/${1}_network
-				[ -z "$subnet" ] || echo " area 0.0.0.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
-		private)	[ -z "$subnet" ] || echo " network $subnet area 10.0.0.0" >>$unx_unit_dir/${1}_network
-				[ -z "$subnet" ] || echo " area 10.0.0.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
-		unexicon)	[ -z "$subnet" ] || echo " network $subnet area 10.55.7.0" >>$unx_unit_dir/${1}_network
-				[ -z "$subnet" ] || echo " area 10.55.7.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
-		default|loopback|linklocal|reserved|multicast|*) ;;
-		esac
-	done
-	if [ -n "$6" ]; then
-		subnet="$6/$7"
-		case "$(unx_unit_test_ipv6_addr $subnet)" in
-		public)		echo " network $subnet area 0.0.0.0" >>$unx_unit_dir/${1}_network
-				echo " area 0.0.0.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
-		private)	echo " network $subnet area 10.0.0.0" >>$unx_unit_dir/${1}_network
-				echo " area 10.0.0.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
-		unexicon)	echo " network $subnet area 10.55.7.0" >>$unx_unit_dir/${1}_network
-				echo " area 10.55.7.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
-		default|loopback|linklocal|reserved|multicast|*) ;;
-		esac
+	if [ -n "$7" ]; then
+		for addr in $3; do
+			subnet="$addr/$7"
+			case "$(unx_unit_test_ipv6_addr $addr)" in
+			public)		[ -z "$subnet" ] || echo " network $subnet area 0.0.0.0" >>$unx_unit_dir/${1}_network
+					[ -z "$subnet" ] || echo " area 0.0.0.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
+			private)	[ -z "$subnet" ] || echo " network $subnet area 10.0.0.0" >>$unx_unit_dir/${1}_network
+					[ -z "$subnet" ] || echo " area 10.0.0.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
+			unxres)		[ -z "$subnet" ] || echo " network $subnet area 10.55.4.0" >>$unx_unit_dir/${1}_network
+					[ -z "$subnet" ] || echo " area 10.55.4.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
+			pppoe)		[ -z "$subnet" ] || echo " network $subnet area 10.55.5.0" >>$unx_unit_dir/${1}_network
+					[ -z "$subnet" ] || echo " area 10.55.5.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
+			l2tp)		[ -z "$subnet" ] || echo " network $subnet area 10.55.6.0" >>$unx_unit_dir/${1}_network
+					[ -z "$subnet" ] || echo " area 10.55.6.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
+			unexicon)	[ -z "$subnet" ] || echo " network $subnet area 10.55.7.0" >>$unx_unit_dir/${1}_network
+					[ -z "$subnet" ] || echo " area 10.55.7.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
+			shared)		[ -z "$subnet" ] || echo " network $subnet area 10.41.0.0" >>$unx_unit_dir/${1}_network
+					[ -z "$subnet" ] || echo " area 10.41.0.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
+			default|loopback|linklocal|reserved|multicast|*) ;;
+			esac
+		done
+		if [ -n "$6" ]; then
+			subnet="$6/$7"
+			case "$(unx_unit_test_ipv6_addr $subnet)" in
+			public)		echo " network $subnet area 0.0.0.0" >>$unx_unit_dir/${1}_network
+					echo " area 0.0.0.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
+			private)	echo " network $subnet area 10.0.0.0" >>$unx_unit_dir/${1}_network
+					echo " area 10.0.0.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
+			unxres)		echo " network $subnet area 10.55.4.0" >>$unx_unit_dir/${1}_network
+					echo " area 10.55.4.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
+			pppoe)		echo " network $subnet area 10.55.5.0" >>$unx_unit_dir/${1}_network
+					echo " area 10.55.5.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
+			l2tp)		echo " network $subnet area 10.55.6.0" >>$unx_unit_dir/${1}_network
+					echo " area 10.55.6.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
+			unexicon)	echo " network $subnet area 10.55.7.0" >>$unx_unit_dir/${1}_network
+					echo " area 10.55.7.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
+			shared)		echo " network $subnet area 10.41.0.0" >>$unx_unit_dir/${1}_network
+					echo " area 10.41.0.0 range $subnet" >>$unx_unit_dir/${1}_area ;;
+			default|loopback|linklocal|reserved|multicast|*) ;;
+			esac
+		fi
 	fi
 	unx_unit_rebuild_config
 }
@@ -278,7 +297,7 @@ unx_unit_nm_hostname ()
 
 unx_unit_ppp_add ()
 {
-	:
+	unx_unit_add $@
 }
 
 unx_unit_ppp_rmv ()
@@ -289,7 +308,20 @@ unx_unit_ppp_rmv ()
 # PPP daemon ip-up command
 unx_unit_ppp_ip_up ()
 {
-	unx_unit_ppp_add $@
+	local wireless=0 broadcast= number= cidr=
+	case "$4" in
+	(10.55.7.[123]) broadcast=10.55.7.255; number=10.55.7.0; cidr=24 ;;
+	(10.55.6.[123]) broadcast=10.55.6.255; number=10.55.6.0; cidr=24 ;;
+	(10.55.5.[123]) broadcast=10.55.5.255; number=10.55.5.0; cidr=24 ;;
+	(10.55.4.[123]) broadcast=10.55.4.255; number=10.55.4.0; cidr=24 ;;
+	esac
+	case "$5" in
+	(10.55.7.[123]) broadcast=10.55.7.255; number=10.55.7.0; cidr=24 ;;
+	(10.55.6.[123]) broadcast=10.55.6.255; number=10.55.6.0; cidr=24 ;;
+	(10.55.5.[123]) broadcast=10.55.5.255; number=10.55.5.0; cidr=24 ;;
+	(10.55.4.[123]) broadcast=10.55.4.255; number=10.55.4.0; cidr=24 ;;
+	esac
+	unx_unit_ppp_add "$1" "$1" "$4" "$wireless" "$broadcast" "$number" "$cidr"
 }
 
 # PPP daemon ip-down command
@@ -301,7 +333,7 @@ unx_unit_ppp_ip_down ()
 # PPP daemon ipv6-up command
 unx_unit_ppp_ipv6_up ()
 {
-	unx_unit_ppp_add $@
+	unx_unit_ppp_add "$1" "$1" "$4" "0" "" "" ""
 }
 
 # PPP daemon ipv6-down command
