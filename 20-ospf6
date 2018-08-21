@@ -118,7 +118,7 @@ unx_unit_rebuild_config ()
 		rm -f -- $temp
 	else
 		syslog debug "No defined server, shutting down"
-		systemctl --no-block --now --runtime disable $unx_unit || :
+		systemctl --no-block --now disable $unx_unit || :
 		if [ -s $save ]; then
 			cp -pf -- $save $conf
 		else

@@ -85,7 +85,7 @@ unx_unit_rebuild_config ()
 		fi
 		rm -f -- $temp
 	else
-		systemctl --no-block --now --runtime disable unexicon-$unx_unit || :
+		systemctl --no-block --now disable unexicon-$unx_unit || :
 		if [ -s $save ]; then
 			cp -pf -- $save $conf
 		else

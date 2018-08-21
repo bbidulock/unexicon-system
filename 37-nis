@@ -146,7 +146,7 @@ unx_unit_rebuild_config ()
 		rm -f -- $stemp
 	else
 		syslog debug "No defined server or domain, shutting down"
-		systemctl --no-block --now --runtime disable unexicon-autofs unexicon-$unx_unit || :
+		systemctl --no-block --now disable unexicon-autofs unexicon-$unx_unit || :
 		unx_unit_set_domainname || :
 		if [ -s $dsave ]; then
 			cp -pf -- $dsave $dconf
