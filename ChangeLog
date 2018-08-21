@@ -1,5 +1,94 @@
 # created with git log --stat=76 -M -C -300|fmt -sct -w80
 
+commit 005f515d6e05747588c0f9fb3c9242c01d045bef
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Aug 19 23:09:28 2018 -0600
+
+    configure dhcpcd-ui
+
+ Makefile.am               | 5 +++++
+ configure.ac              | 3 +++
+ dhcpcd-unexicon.conf      | 2 +-
+ wpa_supplicant-wlan0.conf | 2 ++
+ wpa_supplicant-wlan1.conf | 2 ++
+ wpa_supplicant.conf       | 2 ++
+ 6 files changed, 15 insertions(+), 1 deletion(-)
+
+commit 3b8069462d261d27902cc435a1cb9ccad03abea4
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Jul 8 16:51:52 2018 -0600
+
+    do not runtime-enable zebra
+
+    - let protocol units pull it in: all we need is the
+      configuration files
+
+ 19-zebra | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 048c6aae48745ef2978f798ca852e4774db00a48
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Jun 10 18:29:47 2018 -0600
+
+    include snippet for no logind ip sandbox for nis
+
+ Makefile.am      | 3 +++
+ configure.ac     | 3 +++
+ noipsandbox.conf | 2 ++
+ 3 files changed, 8 insertions(+)
+
+commit efd853a949809f0666d2f37e667e224966b4654f
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Jun 10 17:32:24 2018 -0600
+
+    tweak nscd.conf
+
+ nscd-unexicon.conf | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit 475f59fba707ad9ab6e7c92f1c4ad1cdbf56e68b
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Jun 10 17:23:33 2018 -0600
+
+    tweak sssd.conf
+
+ sssd.conf | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 59cfab49ac63d5d89b55f9953e371dddb81e1cdf
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Jun 10 16:06:55 2018 -0600
+
+    work in sssd
+
+ Makefile.am        |  8 ++++-
+ configure.ac       |  3 ++
+ nscd-unexicon.conf | 88 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ nsswitch.conf      | 10 +++---
+ sssd.conf          | 11 +++++++
+ 5 files changed, 114 insertions(+), 6 deletions(-)
+
+commit ed034056f9f66e767e77643ce8a4f38436d9be6b
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun May 13 04:35:07 2018 -0600
+
+    pull in nss-user-lookup.target
+
+ unexicon-ypbind.service | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit cb30693054259638bef337ead06a2e4c469c6e8d
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun May 13 04:24:38 2018 -0600
+
+    update release files
+
+ AUTHORS   |   2 +-
+ ChangeLog | 417 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ NEWS      |  48 ++++++-
+ README.md |   6 +-
+ 4 files changed, 466 insertions(+), 7 deletions(-)
+
 commit f06501c7b04a8fc742fa52278d7ae5db6978c8be
 Author: Brian Bidulock <bidulock@openss7.org>
 Date:   Sun May 13 04:21:38 2018 -0600

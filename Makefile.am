@@ -253,6 +253,9 @@ dist_wpaconf_DATA = \
 	wpa_supplicant-wlan0.conf \
 	wpa_supplicant-wlan1.conf
 
+dist_tmpfiles_DATA = \
+	dhcpcd-perms.conf
+
 AM_INSTALLCHECK_STD_OPTIONS_EXEMPT = \
 	00-nm.sh \
 	10-ferm \

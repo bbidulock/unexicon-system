@@ -1,11 +1,11 @@
-unexicon-system -- history of user-visible changes.  2018-05-13
+unexicon-system -- history of user-visible changes.  2018-08-19
 
-Release unexicon-system-1.2.35 released 2018-05-13
+Release unexicon-system-1.2.43 released 2018-08-19
 --------------------------------------------------
 
 git shortlog -e -n -w80,6,8 1.2...HEAD
 
-Brian Bidulock <bidulock@openss7.org> (35):
+Brian Bidulock <bidulock@openss7.org> (43):
       do not need c compiler
       git hates trailing space
       better formatting
@@ -41,6 +41,14 @@ Brian Bidulock <bidulock@openss7.org> (35):
       network-manager hook is broken, do not install it
       update nsswitch.conf
       add unexicon-nscd.service
+      update release files
+      pull in nss-user-lookup.target
+      work in sssd
+      tweak sssd.conf
+      tweak nscd.conf
+      include snippet for no logind ip sandbox for nis
+      do not runtime-enable zebra
+      configure dhcpcd-ui
 
 
 Release unexicon-system-1.2 released 2016-07-09
