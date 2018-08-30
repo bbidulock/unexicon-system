@@ -80,8 +80,8 @@ AC_SUBST([systemdsystemconfdir])
 test -n "$systemdutildir" || systemdutildir='${libdir}/systemd'
 AC_SUBST([systemdutildir])
 
-logindsnippetdir="$systemdsystemunitdir/systemd-logind.d"
-AC_SUBST([logindsnippetdir])
+systemdsnippetdir="$systemdsystemunitdir/systemd-.service.d"
+AC_SUBST([systemdsnippetdir])
 
 #udevdir="`pkg-config udev --variable=udevdir 2>/dev/null`"
 #test -n "$udevdir" && udevdir="${DESTDIR}$udevdir"
