@@ -8,10 +8,9 @@ After=sys-subsystem-net-devices-%i.device
 Conflicts=unexicon-dhcpcd.service dhcpcd.service
 
 [Service]
-Type=forking
-PIDFile=/run/dhcpcd-%I.pid
-ExecStart=/usr/bin/dhcpcd -q -w %I  -f /etc/dhcpcd-unexicon.conf
-ExecStop=/usr/bin/dhcpcd -x %I  -f /etc/dhcpcd-unexicon.conf
+Type=simple
+ExecStart=/usr/bin/dhcpcd -q -t 0 -B -w %I  -f /etc/dhcpcd-unexicon.conf
+ExecStop=/usr/bin/dhcpcd -x %I -f /etc/dhcpcd-unexicon.conf
 
 [Install]
 WantedBy=multi-user.target
