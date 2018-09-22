@@ -88,8 +88,16 @@ unx_unit_rebuild_config ()
 			cat<<-EOF
 			!
 			router $unx_name
+			no network 0.0.0.0/8
 			no network 169.254.0.0/16
 			no network 127.0.0.0/8
+			no network 192.0.2.0/24
+			no network 192.0.0.0/29
+			no network 224.0.0.0/4
+			no network 240.0.0.0/4
+			network 10.0.0.0/8
+			network 172.16.0.0/12
+			network 192.168.0.0/16
 			EOF
 			[ -z "$nfiles" ] || cat $nfiles|awk '{if($0&&!($0 in seen)){seen[$0]=1;print$0}}'
 			[ -z "$bfiles" ] || cat $bfiles|awk '{if($0&&!($0 in seen)){seen[$0]=1;print$0}}'
