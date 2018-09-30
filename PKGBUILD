@@ -8,7 +8,7 @@ license=('AGPL3')
 url="http://www.unexicon.com/"
 depends=(dhcpcd ntp ypbind-mt autofs quagga iptables ebtables arptables ferm ppp accel-ppp avahi
 	 lldpd net-snmp openssh xdm-unexicon-theme wpa_supplicant ifplugd openssh rsync sssd-nosmb
-	 tlp ypserv)
+	 tlp ypserv bluez)
 
 makedepends=(git)
 optdepends=('networkmanager: network manager support')
