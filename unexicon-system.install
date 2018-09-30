@@ -61,6 +61,9 @@ post_install () {
 		usr/bin/systemctl mask systemd-rfkill.service
 		usr/bin/systemctl mask systemd-rfkill.socket
 		usr/bin/systemctl mask NetworkManager
+		# ok
+		usr/bin/systemctl disable bluetooth.service
+		usr/bin/systemctl enable unexicon-bluetooth.service
 	fi
 	if [ -x usr/bin/sysctl ]; then
 		usr/bin/sysctl --system

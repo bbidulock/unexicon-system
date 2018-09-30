@@ -103,6 +103,9 @@ AC_SUBST([fermdir])
 sssddir='${sysconfdir}/sssd'
 AC_SUBST([sssddir])
 
+bluezdir='${sysconfdir}/bluetooth'
+AC_SUBST([bluezdir])
+
 avahiservicedir='${sysconfdir}/avahi/services'
 AC_SUBST([avahiservicedir])
 

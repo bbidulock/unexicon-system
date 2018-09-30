@@ -95,6 +95,9 @@ dist_ferm_DATA = \
 dist_sssd_DATA = \
 	sssd.conf
 
+dist_bluez_DATA = \
+	unexicon-main.conf
+
 dist_avahiservice_DATA = \
 	unexicon.service
 
@@ -116,6 +119,7 @@ dist_systemdsystemunit_DATA = \
 	unexicon-avahi-daemon.service \
 	unexicon-avahi-daemon.socket \
 	unexicon-avahi-dnsconfd.service \
+	unexicon-bluetooth.service \
 	unexicon-dhcpcd.service \
 	unexicon-dhcpcd@.service \
 	unexicon-dnsmasq.service \
