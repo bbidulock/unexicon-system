@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([unexicon-system],[1.2.43],[http://github.com/bbidulock/unexicon-system],[unexicon-system],[http://github.com/bbidulock/unexicon-system/issues])
-AC_REVISION([1.2.43])
+AC_INIT([unexicon-system],[1.2.54],[http://github.com/bbidulock/unexicon-system],[unexicon-system],[http://github.com/bbidulock/unexicon-system/issues])
+AC_REVISION([1.2.54])
 
 AC_CONFIG_SRCDIR([configure.ac])
 AC_CONFIG_HEADERS([autoconf.h])
@@ -12,7 +12,7 @@ AC_CONFIG_AUX_DIR([scripts])
 AC_USE_SYSTEM_EXTENSIONS
 AC_CANONICAL_TARGET
 
-DATE='2018-08-19'
+DATE='2018-09-30'
 AC_SUBST([DATE])
 
 BRANCH='master'

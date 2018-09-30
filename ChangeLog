@@ -1,5 +1,132 @@
 # created with git log --stat=76 -M -C -300|fmt -sct -w80
 
+commit f1b017a995a02ea9bda880875b83a5935ebe9cda
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Sep 30 02:07:47 2018 -0600
+
+    add self-detecting bluetooth service
+
+ Makefile.am                |   4 ++
+ PKGBUILD                   |   1 +
+ configure.ac               |   3 ++
+ unexicon-bluetooth.service |  21 ++++++++
+ unexicon-main.conf         | 107 +++++++++++++++++++++++++++++++++++++++++
+ unexicon-system.install    |   3 ++
+ 6 files changed, 139 insertions(+)
+
+commit 48dac36ad3948ef82a5bd321c31c5c187b6eb60b
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Sep 30 02:05:07 2018 -0600
+
+    add PKGBUILD and install
+
+ PKGBUILD                | 50 ++++++++++++++++++++++++++++++
+ unexicon-system.install | 74 +++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 124 insertions(+)
+
+commit e647679e48e790ad7bdbd793a972bad06d264e21
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Sep 22 04:12:55 2018 -0600
+
+    make ripd always active on private interfaces
+
+ 20-rip | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit bce741f43650130b6473631fcb16989a97210c65
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Sep 22 04:10:52 2018 -0600
+
+    adjust some system controls
+
+    - never send nor accept ICMP redirects, they are usually wrong
+    - always ignore routes with link down (wlan interfaces and vti
+      tunnels) can really mess things up otherwise and it appears
+      to really confuse quagga (zebra daemon)
+
+ forwarding.conf | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
+
+commit 9b00c7a7223d7e9e56916239f748a8b2230c08b3
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue Sep 11 08:56:22 2018 -0600
+
+    convert dhcpcd from forking to simple
+
+ unexicon-dhcpcd.service  | 5 ++---
+ unexicon-dhcpcd@.service | 7 +++----
+ 2 files changed, 5 insertions(+), 7 deletions(-)
+
+commit 6259ec9854e1da741a6f71e08fdf0b1ab768a3f7
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu Aug 30 13:01:44 2018 -0600
+
+    expand and correct noipsandbox snippet
+
+ Makefile.am      | 2 +-
+ configure.ac     | 4 ++--
+ noipsandbox.conf | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+commit c3765f70562de61c57210e15803488be9c830a5b
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue Aug 21 10:53:53 2018 -0600
+
+    runtime cannot be used with disable
+
+ 19-zebra | 2 +-
+ 20-babel | 2 +-
+ 20-ospf  | 2 +-
+ 20-ospf6 | 2 +-
+ 20-rip   | 2 +-
+ 20-ripng | 2 +-
+ 35-ntp   | 2 +-
+ 37-nis   | 2 +-
+ 39-lldp  | 2 +-
+ 9 files changed, 9 insertions(+), 9 deletions(-)
+
+commit e866427693e340dcde42b6a08b7ed1524b7dd99b
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue Aug 21 10:49:54 2018 -0600
+
+    fix ospf hook
+
+ 20-ospf  |  2 +-
+ 20-ospf6 | 94 ++++++++++++++++++++++++++++++++++++++++--------------------
+ 2 files changed, 64 insertions(+), 32 deletions(-)
+
+commit 52a6f3fc1f3ef9be4030734868f09bc5dcacf902
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon Aug 20 21:53:19 2018 -0600
+
+    wrong order
+
+ dhcpcd-perms.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8dad22301e90bd9d65287ac7ba9adbe279bdc2b0
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon Aug 20 21:49:50 2018 -0600
+
+    missed file
+
+ dhcpcd-perms.conf | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 30ac6653d56108d3ce0930a7d3fe223d10db6947
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon Aug 20 21:47:40 2018 -0600
+
+    set dhcpcd-unexicon.conf permisions
+
+ AUTHORS      |  2 +-
+ ChangeLog    | 89 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Makefile.am  |  3 ++
+ NEWS         | 14 +++++++--
+ README.md    |  6 ++--
+ configure.ac |  9 ++++--
+ 6 files changed, 113 insertions(+), 10 deletions(-)
+
 commit 005f515d6e05747588c0f9fb3c9242c01d045bef
 Author: Brian Bidulock <bidulock@openss7.org>
 Date:   Sun Aug 19 23:09:28 2018 -0600

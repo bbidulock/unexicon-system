@@ -1,11 +1,11 @@
-unexicon-system -- history of user-visible changes.  2018-08-19
+unexicon-system -- history of user-visible changes.  2018-09-30
 
-Release unexicon-system-1.2.43 released 2018-08-19
+Release unexicon-system-1.2.54 released 2018-09-30
 --------------------------------------------------
 
 git shortlog -e -n -w80,6,8 1.2...HEAD
 
-Brian Bidulock <bidulock@openss7.org> (43):
+Brian Bidulock <bidulock@openss7.org> (54):
       do not need c compiler
       git hates trailing space
       better formatting
@@ -49,6 +49,17 @@ Brian Bidulock <bidulock@openss7.org> (43):
       include snippet for no logind ip sandbox for nis
       do not runtime-enable zebra
       configure dhcpcd-ui
+      set dhcpcd-unexicon.conf permisions
+      missed file
+      wrong order
+      fix ospf hook
+      runtime cannot be used with disable
+      expand and correct noipsandbox snippet
+      convert dhcpcd from forking to simple
+      adjust some system controls
+      make ripd always active on private interfaces
+      add PKGBUILD and install
+      add self-detecting bluetooth service
 
 
 Release unexicon-system-1.2 released 2016-07-09
