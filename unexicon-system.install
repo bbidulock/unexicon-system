@@ -1,0 +1,74 @@
+post_install () {
+	if [ -f etc/nscd.conf ]; then
+		usr/bin/mv -f etc/nscd.conf etc/nscd.conf.pacsave
+	fi
+	echo ">>> Enabling/disabling services..." >&2
+	if [ -x usr/bin/systemctl ]; then
+		usr/bin/systemctl --system daemon-reload
+		usr/bin/systemctl disable dhcpcd.service
+		usr/bin/systemctl disable unexicon-dhcpcd.service
+		usr/bin/systemctl enable unexicon-dhcpcd.service
+		# not yet
+		usr/bin/systemctl disable dnsmasq.service
+		usr/bin/systemctl disable unexicon-dnsmasq.service
+		# ok
+		usr/bin/systemctl disable ferm.service
+		usr/bin/systemctl disable unexicon-ferm.service
+		usr/bin/systemctl enable unexicon-ferm.service
+		# not ok
+		usr/bin/systemctl disable accel-pppd.service
+		usr/bin/systemctl disable unexicon-accel-pppd.service
+		# ok
+		usr/bin/systemctl disable avahi-dnsconfd.service
+		usr/bin/systemctl disable unexicon-avahi-dnsconfd.service
+		usr/bin/systemctl enable unexicon-avahi-dnsconfd.service
+		# ok
+		usr/bin/systemctl disable avahi-daemon.service
+		usr/bin/systemctl disable unexicon-avahi-daemon.service
+		usr/bin/systemctl enable unexicon-avahi-daemon.service
+		# not ok
+		usr/bin/systemctl disable lldpd.service
+		usr/bin/systemctl disable unexicon-lldpd.service
+		# ok
+		usr/bin/rm -f etc/nscd.conf
+		usr/bin/ln -f etc/nscd-unexicon.conf etc/nscd.conf
+		usr/bin/systemctl disable nscd.service
+		usr/bin/systemctl disable unexicon-nscd.service
+		usr/bin/systemctl enable unexicon-nscd.service
+		# ok
+		usr/bin/systemctl disable snmpd.service
+		usr/bin/systemctl disable unexicon-snmpd.service
+		usr/bin/systemctl enable unexicon-snmpd.service
+		# not ok
+		usr/bin/systemctl disable snmptrapd.service
+		usr/bin/systemctl disable unexicon-snmptrapd.service
+		# not ok (invoked by sssd.conf)
+		usr/bin/systemctl disable sssd-nss.service
+		usr/bin/systemctl disable sssd-pam.service
+		usr/bin/systemctl disable sssd-ssh.service
+		usr/bin/systemctl disable sssd-pac.service
+		usr/bin/systemctl disable sssd-ifp.service
+		usr/bin/systemctl disable sssd-sudo.service
+		usr/bin/systemctl disable sssd-autofs.service
+		# not ok with nscd
+		usr/bin/systemctl disable sssd.service
+		# ok
+		usr/bin/systemctl disable tlp.service
+		usr/bin/systemctl disable tlp-sleep.service
+		usr/bin/systemctl enable tlp.service
+		usr/bin/systemctl enable tlp-sleep.service
+		# masking for tlp
+		usr/bin/systemctl mask systemd-rfkill.service
+		usr/bin/systemctl mask systemd-rfkill.socket
+		usr/bin/systemctl mask NetworkManager
+	fi
+	if [ -x usr/bin/sysctl ]; then
+		usr/bin/sysctl --system
+	fi
+}
+
+post_remove() {
+	if [ -f etc/nscd.conf.pacsave ]; then
+		usr/bin/mv -f etc/nscd.conf.pacsave etc/nscd.conf
+	fi
+}
