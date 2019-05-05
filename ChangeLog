@@ -1,5 +1,47 @@
 # created with git log --stat=76 -M -C -300|fmt -sct -w80
 
+commit a3e9b8d68974ed93a6aef5b7e73deb330472a020
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun May 5 01:37:31 2019 -0600
+
+    uppkg
+
+ PKGBUILD | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b2ec3095051f6e68f214ff45b2706b0e5918eefd
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun May 5 01:37:10 2019 -0600
+
+    add missing files
+
+ 99-unexicon-addrwatch.rules | 0
+ unexicon-addrwatch.service  | 0
+ unexicon-arpd.service       | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit bbc0aad6b5b654296bfc105839b369da9e765ce6
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Sep 30 02:11:43 2018 -0600
+
+    add dependency on bluez
+
+ PKGBUILD | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9a3a18a0684ee305e45ba38f6f648ec7483fa09b
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Sep 30 02:09:51 2018 -0600
+
+    update release files
+
+ AUTHORS      |   2 +-
+ ChangeLog    | 127 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ NEWS         |  17 ++++++--
+ README.md    |   6 +--
+ configure.ac |   6 +--
+ 5 files changed, 148 insertions(+), 10 deletions(-)
+
 commit f1b017a995a02ea9bda880875b83a5935ebe9cda
 Author: Brian Bidulock <bidulock@openss7.org>
 Date:   Sun Sep 30 02:07:47 2018 -0600
