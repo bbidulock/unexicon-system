@@ -11,7 +11,7 @@ if [ -x "`which git 2>/dev/null`" -a -d .git ]; then
 	DATE=$(git show -s --format=%ci HEAD^{commit}|awk '{print$1}')
 	MDOCDATE=$(perl -MDate::Format -MDate::Parse -E 'print time2str("%B %e, %Y", str2time("'"$DATE"'"))'|sed 's,  , ,')
 	BRANCH=$(git tag --sort=-creatordate|head -1)
-	GNITS="gnits "
+	GNITS=""
 	if [ "$VERSION" != "$BRANCH" ]; then
 		BRANCH="master"
 		GNITS=""
