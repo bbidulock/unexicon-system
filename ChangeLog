@@ -1,4 +1,112 @@
-# created with git log --stat=76 -M -C -300|fmt -sct -w80
+# created with git log --stat=76 -M -C -500|fmt -sct -w80
+
+commit b8b28b7e346ac03c42214432eff39b4074f4a763
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Aug 31 12:28:03 2019 -0600
+
+    build improvements
+
+    - do not need c compiler
+    - also update MOCDATE
+    - use lzip compression for distribution
+    - better asciidoc choices
+
+ configure.ac | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
+
+commit de4b8898170d2d06a830a3e5382a8bd3b28ee918
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Aug 31 12:22:28 2019 -0600
+
+    update release mechanism and add release notes
+
+ Makefile.am | 29 +++++++++++++++++++----------
+ 1 file changed, 19 insertions(+), 10 deletions(-)
+
+commit f447b3d00e4d611b19868bd8e5d372780176d1e1
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Aug 31 12:21:27 2019 -0600
+
+    add release notes to ignore
+
+ .gitignore | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit f4327653f9a267fe94ba601e786e398b1375b19a
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Aug 31 12:19:33 2019 -0600
+
+    add release notes file
+
+ RELEASE.md | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+commit cca4aa6311bd43785a00a2cd6253d2581358dca6
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Aug 31 12:17:02 2019 -0600
+
+    parallel distcheck
+
+ dist.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1dcf7d4344fe1a0480dd894b586c24d931e9ecd0
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Aug 31 12:16:19 2019 -0600
+
+    place filename last in sed command
+
+ autogen.sh | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit 7c2c4b36faed62adaee5e218b27ee07890d42596
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Aug 31 12:15:43 2019 -0600
+
+    quiet parallel rebuild
+
+ rebuild.sh | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit fb0800e6a20ef0f5e885585f92823632f5121484
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Aug 31 12:14:47 2019 -0600
+
+    don't need c compiler in build
+
+ configure.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ca71487d0015454eada5981fa15169062d937da3
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Aug 31 01:42:56 2019 -0600
+
+    generate NEWS better
+
+ gennews.sh | 26 +++++++++++++++++++++-----
+ 1 file changed, 21 insertions(+), 5 deletions(-)
+
+commit 9fb10689ec91587e08261eda1a6bcc188c908f5a
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Mon Jun 17 23:07:47 2019 -0600
+
+    update for gettext 0.20.1
+
+ autogen.sh | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+commit bbe9d25cdf9e944f6d651ca8a6137f221c285dc0
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun May 5 01:41:52 2019 -0600
+
+    update release files
+
+ AUTHORS      |  2 +-
+ ChangeLog    | 42 ++++++++++++++++++++++++++++++++++++++++++
+ PKGBUILD     |  2 +-
+ README.md    |  6 +++---
+ configure.ac |  6 +++---
+ 5 files changed, 50 insertions(+), 8 deletions(-)
 
 commit a3e9b8d68974ed93a6aef5b7e73deb330472a020
 Author: Brian Bidulock <bidulock@openss7.org>

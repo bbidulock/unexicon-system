@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([unexicon-system],[1.2.61],[http://github.com/bbidulock/unexicon-system],[unexicon-system],[http://github.com/bbidulock/unexicon-system/issues])
-AC_REVISION([1.2.61])
+AC_INIT([unexicon-system],[1.3],[http://github.com/bbidulock/unexicon-system],[unexicon-system],[http://github.com/bbidulock/unexicon-system/issues])
+AC_REVISION([1.3])
 
 AC_CONFIG_SRCDIR([configure.ac])
 AC_CONFIG_HEADERS([autoconf.h])
@@ -16,7 +16,7 @@ AC_SUBST([DATE])
 MDOCDATE='August 31, 2019'
 AC_SUBST([MDOCDATE])
 
-BRANCH='master'
+BRANCH='1.3'
 AC_SUBST([BRANCH])
 
 # Initialize Automake
