@@ -21,7 +21,7 @@ git tag -n100 -l 1.3
 
 git shortlog -e -n -w80,6,8 1.2...1.3
 
-Brian Bidulock <bidulock@openss7.org> (69):
+Brian Bidulock <bidulock@openss7.org> (71):
       do not need c compiler
       git hates trailing space
       better formatting
@@ -91,6 +91,8 @@ Brian Bidulock <bidulock@openss7.org> (69):
       add release notes to ignore
       update release mechanism and add release notes
       build improvements
+      update release files
+      don't really need gnits on this package
 
 
 Release unexicon-system-1.2 released 2016-07-09

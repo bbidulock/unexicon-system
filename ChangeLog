@@ -1,5 +1,27 @@
 # created with git log --stat=76 -M -C -500|fmt -sct -w80
 
+commit bbf3b727e31ce9dbbc5d3af3ef91da382112693f
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Aug 31 12:41:20 2019 -0600
+
+    don't really need gnits on this package
+
+ autogen.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 28babba7d89811fd43fc73393c997f120e44b21f
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Aug 31 12:36:16 2019 -0600
+
+    update release files
+
+ AUTHORS      |   2 +-
+ ChangeLog    | 110 ++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ NEWS         |  41 ++++++++++++++++++---
+ README.md    |  20 +++++-----
+ configure.ac |   6 +--
+ 5 files changed, 159 insertions(+), 20 deletions(-)
+
 commit b8b28b7e346ac03c42214432eff39b4074f4a763
 Author: Brian Bidulock <bidulock@openss7.org>
 Date:   Sat Aug 31 12:28:03 2019 -0600
