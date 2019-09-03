@@ -1,6 +1,6 @@
 # Maintainer: Brian Bidulock <bidulock@openss7.org>
 pkgname=unexicon-system
-pkgver=1.2.59
+pkgver=1.3
 pkgrel=1
 pkgdesc="System configuration for Unexicon Live" 
 arch=('any')
@@ -31,7 +31,7 @@ md5sums=('SKIP')
 
 pkgver() {
   cd $pkgname
-  git describe --long --tags|sed -e 's,[-_],.,g;s,\.g.*,,'
+  git describe|sed -e 's,[-_],.,g;s,\.g.*,,'
 }
 
 prepare() {
@@ -41,8 +41,8 @@ prepare() {
 
 build() {
   cd $pkgname
-  ./configure --prefix=/usr --sysconfdir=/etc
-  make V=0
+  ./configure
+  make
 }
 
 package () {
