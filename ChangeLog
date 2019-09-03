@@ -1,5 +1,70 @@
 # created with git log --stat=76 -M -C -500|fmt -sct -w80
 
+commit 14c4710bd8f952561de97ec09940c34ac18b50a4
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue Sep 3 03:32:17 2019 -0600
+
+    build release notes on distribution
+
+ dist.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 12c7caef3c523b1771e5b8b7206ace1cf8c93468
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue Sep 3 03:27:19 2019 -0600
+
+    better defaults now
+
+ PKGBUILD | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit ea28d4228beda095c92807ac171bfc65acc1a16e
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue Sep 3 03:26:44 2019 -0600
+
+    have better defaults now
+
+ configure.sh | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit 96c1f8a834dd41be79d2ade3cd448135ce50b307
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue Sep 3 03:26:23 2019 -0600
+
+    set better defaults
+
+ configure.ac | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+commit 8a3aadc9de011aa2ba3f273d9e475f5a6f0f088f
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue Sep 3 03:26:03 2019 -0600
+
+    keep gnits
+
+ autogen.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1061744415b6c1043999aab18ecc6a9b636b9480
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Sep 1 00:59:46 2019 -0600
+
+    add license file to git
+
+ .gitignore |   1 -
+ COPYING    | 674 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 674 insertions(+), 1 deletion(-)
+
+commit 655fd1112413feaf28f8b01a40ed1fc497febaeb
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Aug 31 12:44:09 2019 -0600
+
+    update release files
+
+ ChangeLog | 22 ++++++++++++++++++++++
+ NEWS      |  4 +++-
+ 2 files changed, 25 insertions(+), 1 deletion(-)
+
 commit bbf3b727e31ce9dbbc5d3af3ef91da382112693f
 Author: Brian Bidulock <bidulock@openss7.org>
 Date:   Sat Aug 31 12:41:20 2019 -0600

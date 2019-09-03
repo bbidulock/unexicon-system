@@ -1,6 +1,6 @@
 # Maintainer: Brian Bidulock <bidulock@openss7.org>
 pkgname=unexicon-system
-pkgver=1.3
+pkgver=1.3.5
 pkgrel=1
 pkgdesc="System configuration for Unexicon Live" 
 arch=('any')
