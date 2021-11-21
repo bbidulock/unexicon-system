@@ -1,9 +1,9 @@
-[unexicon-system -- read me first file.  2021-11-21]: #
+[unexicon-system -- read me first file.  2021-11-20]: #
 
 unexicon-system
 ===============
 
-Package `unexicon-system-1.5` was released under GPLv3 license 2021-11-21.
+Package `unexicon-system-1.5` was released under GPLv3 license 2021-11-20.
 
 This is a set of configuration files, dispatchers and hook scripts that
 are use to mount the _Unexicon Live_ platform.
@@ -12,7 +12,7 @@ are use to mount the _Unexicon Live_ platform.
 Release
 -------
 
-This is the `unexicon-system-1.5` package, released 2021-11-21.  This
+This is the `unexicon-system-1.5` package, released 2021-11-20.  This
 release, and the latest version, can be obtained from [GitHub][1], using
 a command such as:
 

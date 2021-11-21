@@ -1,5 +1,34 @@
 # created with git log --stat=76 -M -C -500|fmt -sct -w80
 
+commit 8d21fce0a25da96d10fab7c572d32895974bf7a6
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Nov 20 22:23:56 2021 -0700
+
+    update files for release
+
+ README.md  | 20 ++++++++++----------
+ RELEASE.md |  8 ++++----
+ 2 files changed, 14 insertions(+), 14 deletions(-)
+
+commit bdf9699c910666fd3b7caca6aadb4b4554803a06
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Nov 20 22:20:35 2021 -0700
+
+    post-release update
+
+ ChangeLog | 15 +++++++++++++++
+ NEWS      |  3 ++-
+ 2 files changed, 17 insertions(+), 1 deletion(-)
+
+commit ae7b9c0652878be3ee9efc116a09265155c417b3
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Nov 20 22:20:12 2021 -0700
+
+    make sure our setting not overridden
+
+ forwarding.conf | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
 commit f7c6354429e9ba676ab31f55d557ce9cd66ffe1c
 Author: Brian Bidulock <bidulock@openss7.org>
 Date:   Tue Sep 3 03:41:53 2019 -0600

@@ -1,4 +1,30 @@
-unexicon-system -- history of user-visible changes.  2019-09-03
+unexicon-system -- history of user-visible changes.  2021-11-20
+
+Release unexicon-system-1.5 released 2021-11-20
+-----------------------------------------------
+
+git tag -n100 -l 1.5
+
+1.5             Maintenance Release 1.5
+
+    This is another release of the unexicon-system package that provides a
+    set of configuration files, dispatchers and hook scripts that are used
+    to mount the Unexicon Live platform.
+
+    This release is a maintenance release that simply enforces systctl
+    settings better.
+
+    Included in the release is an autoconf tarball for building the package
+    from source. See the NEWS and TODO file in the release for more
+    information. Please report problems to the issues list on GitHub.
+
+git shortlog -e -n -w80,6,8 1.4...1.5
+
+Brian Bidulock <bidulock@openss7.org> (3):
+      make sure our setting not overridden
+      post-release update
+      update files for release
+
 
 Release unexicon-system-1.4 released 2019-09-03
 -----------------------------------------------
