@@ -84,7 +84,7 @@ unx_unit_rebuild_config ()
 			log syslog
 			!
 			EOF
-			[ -z "$ifiles" ] || cat $ifiles|awk '{if($0&&!($0 in seen)){seen[$0]=1;print$0}}'
+			[ -z "$ifiles" ] || cat $ifiles|awk '{if($0&&!($0 in seen)){seen[$0]=1;print$0"\n ip rip split-horizon"}}'
 			cat<<-EOF
 			!
 			router $unx_name
