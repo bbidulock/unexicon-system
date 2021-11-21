@@ -1,14 +1,14 @@
-[unexicon-system -- release notes.  2019-08-31]: #
+[unexicon-system -- release notes.  2021-11-21]: #
 
-Maintenance Release 1.4
+Maintenance Release 1.5
 =======================
 
 This is another release of the unexicon-system package that provides a
 set of configuration files, dispatchers and hook scripts that are used
 to mount the _Unexicon Live_ platform.
 
-This release is a maintenance release that simply sets autoconf
-directory defaults better and improves release packaging some more.
+This release is a maintenance release that simply enforces systctl
+settings better.
 
 Included in the release is an autoconf tarball for building the package
 from source.  See the [NEWS](NEWS) and [TODO](TODO) file in the release

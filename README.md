@@ -1,9 +1,9 @@
-[unexicon-system -- read me first file.  2019-09-03]: #
+[unexicon-system -- read me first file.  2021-11-21]: #
 
 unexicon-system
 ===============
 
-Package `unexicon-system-1.4` was released under GPLv3 license 2019-09-03.
+Package `unexicon-system-1.5` was released under GPLv3 license 2021-11-21.
 
 This is a set of configuration files, dispatchers and hook scripts that
 are use to mount the _Unexicon Live_ platform.
@@ -12,7 +12,7 @@ are use to mount the _Unexicon Live_ platform.
 Release
 -------
 
-This is the `unexicon-system-1.4` package, released 2019-09-03.  This
+This is the `unexicon-system-1.5` package, released 2021-11-21.  This
 release, and the latest version, can be obtained from [GitHub][1], using
 a command such as:
 
@@ -69,12 +69,12 @@ Report issues on GitHub [here][2].
 
 [1]: https://github.com/bbidulock/unexicon-system
 [2]: https://github.com/bbidulock/unexicon-system/issues
-[3]: https://github.com/bbidulock/unexicon-system/blob/1.4/NEWS
-[4]: https://github.com/bbidulock/unexicon-system/blob/1.4/ChangeLog
-[5]: https://github.com/bbidulock/unexicon-system/blob/1.4/TODO
-[6]: https://github.com/bbidulock/unexicon-system/blob/1.4/COMPLIANCE
-[7]: https://github.com/bbidulock/unexicon-system/blob/1.4/INSTALL
-[8]: https://github.com/bbidulock/unexicon-system/blob/1.4/LICENSE
-[9]: https://github.com/bbidulock/unexicon-system/blob/1.4/COPYING
+[3]: https://github.com/bbidulock/unexicon-system/blob/1.5/NEWS
+[4]: https://github.com/bbidulock/unexicon-system/blob/1.5/ChangeLog
+[5]: https://github.com/bbidulock/unexicon-system/blob/1.5/TODO
+[6]: https://github.com/bbidulock/unexicon-system/blob/1.5/COMPLIANCE
+[7]: https://github.com/bbidulock/unexicon-system/blob/1.5/INSTALL
+[8]: https://github.com/bbidulock/unexicon-system/blob/1.5/LICENSE
+[9]: https://github.com/bbidulock/unexicon-system/blob/1.5/COPYING
 
 [ vim: set ft=markdown sw=4 tw=72 nocin nosi fo+=tcqlorn spell: ]: #
