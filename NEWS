@@ -20,10 +20,13 @@ git tag -n100 -l 1.5
 
 git shortlog -e -n -w80,6,8 1.4...1.5
 
-Brian Bidulock <bidulock@openss7.org> (3):
+Brian Bidulock <bidulock@openss7.org> (6):
       make sure our setting not overridden
       post-release update
       update files for release
+      update release files
+      ignore backup configure file
+      update ignore
 
 
 Release unexicon-system-1.4 released 2019-09-03
