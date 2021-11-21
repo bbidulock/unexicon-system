@@ -1,5 +1,20 @@
 # created with git log --stat=76 -M -C -500|fmt -sct -w80
 
+commit f7c6354429e9ba676ab31f55d557ce9cd66ffe1c
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Tue Sep 3 03:41:53 2019 -0600
+
+    update release files
+
+ AUTHORS      |  2 +-
+ ChangeLog    | 65 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ NEWS         | 34 +++++++++++++++++++++++++++--
+ PKGBUILD     |  2 +-
+ README.md    | 20 ++++++++---------
+ RELEASE.md   |  7 +++---
+ configure.ac | 12 +++++------
+ 7 files changed, 118 insertions(+), 24 deletions(-)
+
 commit 14c4710bd8f952561de97ec09940c34ac18b50a4
 Author: Brian Bidulock <bidulock@openss7.org>
 Date:   Tue Sep 3 03:32:17 2019 -0600
