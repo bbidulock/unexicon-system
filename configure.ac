@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([unexicon-system],[1.5.7],[http://github.com/bbidulock/unexicon-system],[unexicon-system],[http://github.com/bbidulock/unexicon-system/issues])
-AC_REVISION([1.5.7])
+AC_INIT([unexicon-system],[1.5.8],[http://github.com/bbidulock/unexicon-system],[unexicon-system],[http://github.com/bbidulock/unexicon-system/issues])
+AC_REVISION([1.5.8])
 
 # set better defaults
 AC_PREFIX_DEFAULT([/usr])
