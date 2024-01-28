@@ -1,5 +1,6 @@
 00-nm.sh
 10-ferm.sh
+18-bird.sh
 19-zebra.sh
 20-babel.sh
 20-ospf6.sh
@@ -17,6 +18,7 @@
 80-ripng.sh
 80-rip.sh
 81-zebra.sh
+82-bird.sh
 aclocal.m4
 autoconf.h
 autoconf.h.in
@@ -28,6 +30,7 @@ config.status
 configure
 configure.ac.bak
 configure.scan
+_config.yml
 core
 cscope.*
 .deps/
@@ -55,4 +58,3 @@ stamp-h*
 .*.sw[mnop]
 *.tar.*
 *.tmp
-configure~

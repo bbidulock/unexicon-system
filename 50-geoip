@@ -74,6 +74,7 @@ unx_unit_add ()
 			fi
 		fi
 	fi
+	systemctl daemon-reload
 }
 
 unx_unit_nm_add ()

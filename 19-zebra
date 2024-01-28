@@ -112,6 +112,7 @@ unx_unit_rebuild_config ()
 		fi
 		rm -f -- $save
 	fi
+	systemctl daemon-reload
 }
 
 unx_unit_remove ()
@@ -126,6 +127,30 @@ unx_unit_remove ()
 		rm -f -- $unx_unit_dir/${1}_*
 		unx_unit_rebuild_config
 	fi
+}
+
+unx_unit_test_ipv4_addr ()
+{
+	case "$1" in
+	0.*)					echo -n default		;; # 0/8
+	10.41.0.*)				echo -n shared		;; # 10.41.0/24 (NM shared)
+	10.55.4.*)				echo -n unxres		;; # 10.55.4/24 (Unexicon reserved)
+	10.55.5.*)				echo -n pppoe		;; # 10.55.5/24 (PPPOE direct)
+	10.55.6.*)				echo -n l2tp		;; # 10.55.6/24 (L2TP direct)
+	10.55.7.*)				echo -n unexicon	;; # 10.55.7/24 (Unexicon VPN)
+	10.*)					echo -n private		;; # 10/8
+	127.*)					echo -n loopback	;; # 127.0/8
+	169.254.*)				echo -n linklocal	;; # 169.254/16
+	172.1[6-9].*|172.2[0-9].*|172.3[0-1].*)	echo -n private		;; # 172.16/12
+	192.168.*)				echo -n private		;; # 192.168/16
+	192.0.2.*)				echo -n reserved	;; # 192.0.2/24
+	192.0.0.[0-7])				echo -n reserved	;; # 192.0.0/29
+	22[4-9].*|23[0-9].*)			echo -n multicast	;; # 224/4 (224-239.)
+	24[0-9].*|25[0-5].*)			echo -n reserved	;; # 240/4 (240-255.)
+	24[0-7].*)				echo -n reserved	;; # 240/5 (240-247.)
+	24[8-9].*|25[0-5].*)			echo -n reserved	;; # 248/5 (248-255.)
+	*)					echo -n public		;;
+	esac
 }
 
 unx_unit_add ()

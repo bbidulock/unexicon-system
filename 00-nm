@@ -24,6 +24,7 @@ nm_rebuild_conf() {
 		chown --reference=$f $t || :
 		/bin/cp -pf -- $t $f || :
 	fi
+	systemctl daemon-reload
 }
 
 nm_add_unmanaged() {

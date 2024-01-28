@@ -161,6 +161,7 @@ unx_unit_rebuild_config ()
 		fi
 		rm -f -- $ssave
 	fi
+	systemctl daemon-reload
 }
 
 unx_unit_remove ()
