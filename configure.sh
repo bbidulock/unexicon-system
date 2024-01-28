@@ -34,6 +34,9 @@ esac
 	DEBUG_CFLAGS="$DEBUG_CFLAGS" \
 	DEBUG_CXXFLAGS="$DEBUG_CXXFLAGS"
 
+# Fight unused direct deps
+[ -f libtool ] && sed -i -e "s| -shared | $LDFLAGS\0 |g" libtool
+
 # cscope target won't work without this
 #
 [ -f po/Makefile ] && echo -e '\n%:\n\t@:\n\n' >> po/Makefile
