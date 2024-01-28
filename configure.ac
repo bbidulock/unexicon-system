@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([unexicon-system],[1.5],[http://github.com/bbidulock/unexicon-system],[unexicon-system],[http://github.com/bbidulock/unexicon-system/issues])
-AC_REVISION([1.5])
+AC_INIT([unexicon-system],[1.5.7],[http://github.com/bbidulock/unexicon-system],[unexicon-system],[http://github.com/bbidulock/unexicon-system/issues])
+AC_REVISION([1.5.7])
 
 # set better defaults
 AC_PREFIX_DEFAULT([/usr])
@@ -18,17 +18,17 @@ AC_CONFIG_HEADERS([autoconf.h])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([scripts])
 
-DATE='2021-11-20'
+DATE='2024-01-28'
 AC_SUBST([DATE])
 
-MDOCDATE='November 20, 2021'
+MDOCDATE='January 28, 2024'
 AC_SUBST([MDOCDATE])
 
-BRANCH='1.5'
+BRANCH='master'
 AC_SUBST([BRANCH])
 
 # Initialize Automake
-AM_INIT_AUTOMAKE([gnits 1.16 dist-lzip no-dist-gzip std-options -Wall color-tests silent-rules tar-pax])
+AM_INIT_AUTOMAKE([1.16 dist-lzip no-dist-gzip std-options -Wall color-tests silent-rules tar-pax])
 AM_MAINTAINER_MODE
 AM_SILENT_RULES([yes])
 

@@ -1,4 +1,19 @@
-unexicon-system -- history of user-visible changes.  2021-11-20
+unexicon-system -- history of user-visible changes.  2024-01-28
+
+Release unexicon-system-1.5.7 released 2024-01-28
+-------------------------------------------------
+
+git shortlog -e -n -w80,6,8 1.5...HEAD
+
+Brian Bidulock <bidulock@openss7.org> (7):
+      post-release update
+      invoke split-horizon on ripd
+      update PKGBUILD
+      update build flags
+      add ssh-rsa host key type
+      systemd tracks config files now :(
+      fight unused direct deps
+
 
 Release unexicon-system-1.5 released 2021-11-20
 -----------------------------------------------

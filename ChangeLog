@@ -1,5 +1,81 @@
 # created with git log --stat=76 -M -C -500|fmt -sct -w80
 
+commit b78ce6032f0ce5effbebb84c438fc3016219ba6f
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Jan 28 07:13:40 2024 -0700
+
+    fight unused direct deps
+
+ configure.sh | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit b069abd16aec0f52dc432d436007a56ecd079dce
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Jan 28 07:12:00 2024 -0700
+
+    systemd tracks config files now :(
+
+ .gitignore         |   4 +-
+ 00-nm              |   1 +
+ 39-lldp => 18-bird | 137 ++++++++++++++++++-------------------------------
+ 19-zebra           |  25 +++++++++
+ 20-babel           |   1 +
+ 20-ospf            |   1 +
+ 20-ospf6           |   1 +
+ 20-rip             |   1 +
+ 20-ripng           |   1 +
+ 35-ntp             |   1 +
+ 37-nis             |   1 +
+ 39-lldp            |   1 +
+ 50-geoip           |   1 +
+ 13 files changed, 87 insertions(+), 89 deletions(-)
+
+commit 3d1a44ddbd7a6a1db66384f7391224455e2ea71e
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Aug 21 11:07:51 2022 -0600
+
+    add ssh-rsa host key type
+
+ unexicon-sshd_config | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit f7ad1c491a08cf00334c328197c8fe31a7314d39
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Thu Jan 27 20:51:45 2022 -0700
+
+    update build flags
+
+ configure.sh | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+commit 4678a9f0ab5e2475b69f61176d905ede8c84b601
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Nov 21 01:25:05 2021 -0700
+
+    update PKGBUILD
+
+ PKGBUILD | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 4cbe43c888afacca531fa0eb62d085afbc6f48d7
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sun Nov 21 01:24:54 2021 -0700
+
+    invoke split-horizon on ripd
+
+ 20-rip | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 6d37a22e23c8467a90764d0f21c09546b253e07e
+Author: Brian Bidulock <bidulock@openss7.org>
+Date:   Sat Nov 20 22:32:21 2021 -0700
+
+    post-release update
+
+ ChangeLog | 10 ++++++++++
+ NEWS      |  5 ++++-
+ 2 files changed, 14 insertions(+), 1 deletion(-)
+
 commit b0ab183c74a8357bcf192d98ba67d0c75211044d
 Author: Brian Bidulock <bidulock@openss7.org>
 Date:   Sat Nov 20 22:31:25 2021 -0700
