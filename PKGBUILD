@@ -1,12 +1,12 @@
 # Maintainer: Brian Bidulock <bidulock@openss7.org>
 pkgname=unexicon-system
-pkgver=1.5.5
+pkgver=1.5.9
 pkgrel=1
 pkgdesc="System configuration for Unexicon Live" 
 arch=('any')
 license=('AGPL3')
 url="http://www.unexicon.com/"
-depends=(dhcpcd ntp ypbind-mt autofs quagga iptables-nft ferm ppp accel-ppp avahi
+depends=(dhcpcd ntp ypbind-mt autofs quagga iptables ferm ppp accel-ppp avahi
 	 lldpd net-snmp openssh xdm-unexicon-theme wpa_supplicant ifplugd openssh rsync sssd-nosmb
 	 tlp ypserv bluez)
 
