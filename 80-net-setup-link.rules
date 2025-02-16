@@ -6,3 +6,22 @@
 # for details on what that new name might be.
 # 
 # http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames
+
+SUBSYSTEM!="net", GOTO="net_setup_link_end"
+
+# If we don't do this ID_PATH will not be set up by udev
+#
+IMPORT{builtin}="path_id"
+
+ACTION=="remove", GOTO="net_setup_link_end"
+
+# If we don't do this ID_NET_LINK_FILE will not be set up by udev
+#
+IMPORT{builtin}="net_setup_link"
+
+#
+# Need to do everything but this step, otherwise eth* names will not be applied correctly
+#
+# NAME=="", ENV{ID_NET_NAME}!="", NAME="$env{ID_NET_NAME}"
+
+LABEL="net_setup_link_end"
